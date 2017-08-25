@@ -1,0 +1,120 @@
+/*
+ * Copyright (C) 2017 cpsdqs
+ *
+ * This file is part of Harmony.
+ *
+ * Harmony is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * Harmony is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with Harmony. If not, see <http://www.gnu.org/licenses/>.
+ */
+
+@import 'variables';
+
+.node-panel {
+  .scroll-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: #ddd;
+
+    .view-transform-origin {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+
+      .node {
+        background: fade(#000, 10%);
+        border-radius: 4px;
+        border: 1px solid #aaa;
+        position: relative;
+
+        .node-header {
+          padding: 5px 10px;
+          background: @accent;
+          color: #fff;
+          border-radius: 3px 3px 0 0;
+
+          .node-name {
+            font-weight: bolder;
+          }
+        }
+
+        &:focus {
+          outline: none;
+          border-color: #fff;
+          box-shadow: 0 0 10px #fff;
+        }
+
+        .node-properties {
+          padding: 5px 0;
+
+          .node-property {
+            display: flex;
+            position: relative;
+            padding: 5px 10px;
+
+            .property-port {
+              position: absolute;
+              width: 8px;
+              height: 8px;
+              border: 1px solid fade(#000, 20%);
+              background: #000;
+              border-radius: 50%;
+              z-index: 1;
+            }
+
+            &.audio-property .property-port {
+              background: #3163ff;
+            }
+            &.value-property .property-port {
+              background: #7d7d7d;
+            }
+
+            .property-name {
+              white-space: nowrap;
+              text-overflow: ellipsis;
+              overflow: hidden;
+              flex: 1;
+              min-width: 40px;
+            }
+
+            &.input .property-port {
+              left: -5px;
+            }
+
+            &.output {
+              text-align: right;
+
+              .property-port {
+                right: -5px;
+              }
+            }
+
+            .property-control {
+              // something
+            }
+          }
+        }
+
+        .width-adjust {
+          position: absolute;
+          top: 0;
+          right: -3px;
+          height: 100%;
+          width: 6px;
+          cursor: col-resize;
+        }
+      }
+    }
+  }
+}

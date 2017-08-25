@@ -1,0 +1,42 @@
+{
+  "name": "harmony",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Node-based audio",
+  "main": "dist/bundle.js",
+  "scripts": {
+    "build": "webpack",
+    "dev": "webpack-dev-server --hot --inline"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cpsdqs/harmony.git"
+  },
+  "author": "cpsdqs",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/cpsdqs/harmony/issues"
+  },
+  "homepage": "https://github.com/cpsdqs/harmony#readme",
+  "dependencies": {
+    "rc-menu": "^5.0.10",
+    "react": "^15.6.1",
+    "react-dom": "^15.6.1"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-plugin-transform-decorators": "^6.24.1",
+    "babel-plugin-transform-do-expressions": "^6.22.0",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-preset-env": "^1.6.0",
+    "babel-preset-react": "^6.24.1",
+    "css-loader": "^0.28.5",
+    "less": "^2.7.2",
+    "less-loader": "^4.0.5",
+    "style-loader": "^0.18.2",
+    "webpack": "^3.5.5",
+    "webpack-dev-server": "^2.7.1"
+  }
+}
