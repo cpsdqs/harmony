@@ -19,6 +19,7 @@
 
 body {
   position: fixed; // prevent overscroll
+  cursor: default;
 }
 
 .harmony-app {
@@ -30,12 +31,15 @@ body {
   height: 100%;
   grid-template-columns: 1fr;
   grid-template-rows: 24px 1fr 72px;
-  font-family: Interface, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', 'Roboto',
+    'Lucida Grande', 'Segoe UI', 'Oxygen Sans', 'Ubuntu', 'Cantarell',
+    sans-serif;
   font-size: 12px;
   -webkit-user-select: none;
   -moz-user-select: none;
   user-select: none;
 }
 
+@import 'menu';
 @import 'panel';
 @import 'node-panel';

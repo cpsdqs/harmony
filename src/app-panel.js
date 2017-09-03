@@ -19,19 +19,29 @@
 
 import React from 'react'
 import Panel from './panel'
-import Menu, { SubMenu, MenuItem } from 'rc-menu'
+import { Menu, MenuItem, Shortcut } from './menu'
 
 export default class AppPanel extends Panel {
   renderMenu () {
     return (
-      <Menu mode="horizontal">
-        <SubMenu title="File">
-          <MenuItem onClick={this.menuOpen}>Open</MenuItem>
-          <MenuItem onClick={this.menuSave}>Save</MenuItem>
-        </SubMenu>
-        <SubMenu title="Help">
-          <MenuItem disabled>No Help</MenuItem>
-        </SubMenu>
+      <Menu horizontal>
+        <MenuItem>
+          File
+          <Menu>
+            <MenuItem onClick={this.menuOpen}>
+              Open
+            </MenuItem>
+            <MenuItem onClick={this.menuSave}>
+              Save
+            </MenuItem>
+          </Menu>
+        </MenuItem>
+        <MenuItem>
+          Help
+          <Menu>
+            <MenuItem disabled>No Help</MenuItem>
+          </Menu>
+        </MenuItem>
       </Menu>
     )
   }
@@ -39,3 +49,4 @@ export default class AppPanel extends Panel {
   menuOpen () {}
   menuSave () {}
 }
+

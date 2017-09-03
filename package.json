@@ -19,7 +19,6 @@
   },
   "homepage": "https://github.com/cpsdqs/harmony#readme",
   "dependencies": {
-    "rc-menu": "^5.0.10",
     "react": "^15.6.1",
     "react-dom": "^15.6.1"
   },

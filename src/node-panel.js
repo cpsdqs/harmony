@@ -18,9 +18,11 @@
  */
 
 import React from 'react'
-import Menu, { SubMenu, MenuItem } from 'rc-menu'
+import { Menu, MenuItem } from './menu'
 import Panel from './panel'
 import NodeView from './node-view'
+import nodeTypes from './node-types'
+import util from './util'
 
 export default class NodePanel extends Panel {
   constructor (props) {
@@ -36,46 +38,35 @@ export default class NodePanel extends Panel {
     const position = this.state.position
     const viewTransform = `translate(${position[0]}px, ${position[1]}px)` +
       ` scale(${position[2]})`
+
+    let nodes = []
+    for (let id in this.state.nodes) {
+      let node = this.state.nodes[id]
+      nodes.push(<NodeView
+        x={node.x}
+        y={node.y}
+        width={node.width}
+        type={node.type}
+        name={node.name}
+        id={node.id}
+        key={node.id}
+        properties={node.properties}
+        saveState={state => {
+          const nodes = { ...this.state.nodes }
+          if (state.deleted) delete nodes[state.id]
+          else {
+            delete state.deleted
+            nodes[state.id] = state
+          }
+          this.setState({ nodes: nodes })
+        }}
+        />)
+    }
+
     return (
-      <div className="scroll-container"
-        onWheel={this.onWheel}
-      >
+      <div className="scroll-container" onWheel={this.onWheel}>
         <div className="view-transform-origin"
-          style={{transform: viewTransform}}>
-          <NodeView
-            name="Oscillator"
-            id="somerandomid"
-            properties={[
-              {
-                type: 'audio',
-                position: 'output',
-                name: 'Audio',
-                value: null
-              }, {
-                type: 'value',
-                position: 'input',
-                name: 'Frequency',
-                min: 10,
-                value: 440,
-                max: 22000
-              }, {
-                type: 'value',
-                position: 'input',
-                name: 'Gain',
-                min: 0,
-                value: 1,
-                max: 2
-              }
-            ]}
-            saveState={state => {
-              const nodes = { ...this.state.nodes }
-              nodes['somerandomid'] = state
-              this.setState({
-                nodes: nodes
-              })
-            }}
-            />
-        </div>
+          style={{transform: viewTransform}}>{nodes}</div>
       </div>
     )
   }
@@ -86,8 +77,9 @@ export default class NodePanel extends Panel {
     let position = [...this.state.position]
     if (e.ctrlKey) {
       let scaleFactor = 1 - (e.deltaY / 100)
-      if (position[2] > 3 && scaleFactor > 1) scaleFactor = 1
-      if (position[2] < .3 && scaleFactor < 1) scaleFactor = 1
+      if (position[2] < 0) position[2] = .3
+      if (position[2] >= 3 && scaleFactor > 1) scaleFactor = 1
+      if (position[2] <= .3 && scaleFactor < 1) scaleFactor = 1
       position[2] *= scaleFactor
       position[0] *= scaleFactor
       position[1] *= scaleFactor
@@ -100,21 +92,45 @@ export default class NodePanel extends Panel {
     })
   }
 
+  addNode (template) {
+    const nodes = { ...this.state.nodes }
+    let id
+    do {
+      id = Math.random().toString(36)
+    } while (id in nodes)
+    let node = util.deepClone(template)
+    nodes[id] = node
+    Object.assign(node, {
+      id: id,
+      x: -this.state.position[0],
+      y: -this.state.position[1],
+      width: 150
+    })
+    this.setState({ nodes: nodes })
+  }
+
   renderMenu () {
+    let addNode = type => this.addNode(nodeTypes[type])
     return (
-      <Menu mode="horizontal" className="submenu-above">
-        <SubMenu title="View">
-          <MenuItem onClick={() => {
-            this.setState({ position: [0, 0, 1] })
-          }}>Reset</MenuItem>
-        </SubMenu>
-        <SubMenu title="Add">
-          <MenuItem>Math</MenuItem>
-          <MenuItem>Oscillator</MenuItem>
-          <MenuItem>Output</MenuItem>
-          <MenuItem>Current Time</MenuItem>
-          <MenuItem>Value</MenuItem>
-        </SubMenu>
+      <Menu horizontal className="submenu-above">
+        <MenuItem>
+          View
+          <Menu>
+            <MenuItem onClick={() => {
+              this.setState({ position: [0, 0, 1] })
+            }}>Reset</MenuItem>
+          </Menu>
+        </MenuItem>
+        <MenuItem>
+          Add
+          <Menu>
+            <MenuItem onClick={() => addNode('math')}>Math</MenuItem>
+            <MenuItem onClick={() => addNode('oscillator')}>Oscillator</MenuItem>
+            <MenuItem onClick={() => addNode('output')}>Output</MenuItem>
+            <MenuItem onClick={() => addNode('currentTime')}>Current Time</MenuItem>
+            <MenuItem onClick={() => addNode('value')}>Value</MenuItem>
+          </Menu>
+        </MenuItem>
       </Menu>
     )
   }

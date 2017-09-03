@@ -24,30 +24,72 @@ export default class NodeView extends React.Component {
     super(props)
 
     this.state = {
-      x: 0,
-      y: 0,
-      width: 150
+      x: props.x,
+      y: props.y,
+      width: props.width,
+      name: props.name,
+      type: props.type,
+      properties: [...props.properties],
+      deleted: false
     }
   }
 
   saveState () {
+    this.props.saveState({
+      x: this.state.x,
+      y: this.state.y,
+      width: this.state.width,
+      name: this.state.name,
+      type: this.state.type,
+      properties: this.state.properties,
+      id: this.props.id,
+      deleted: this.state.deleted
+    })
+  }
+
+  getComputed () {
     // TODO
+    let properties = {}
+    for (let property of this.state.properties) {
+      let computedProperty = {
+        getComputedValue () {
+          // TODO
+        },
+        setComputedValue (value) {
+          // TODO
+        }
+      }
+      properties[property.key] = computedProperty
+    }
+    return { properties }
   }
 
   render () {
     const properties = []
     for (const property of this.props.properties) {
+      let control = ''
+      if (property.type === 'select') {
+        let options = []
+        for (let option in property.value) {
+          options.push(
+            <option value={option}>
+              {property.value[option]}
+            </option>
+          )
+        }
+        control = <select>{options}</select>
+      }
       properties.push(
         <div
           className={`node-property ${property.type}-property ` +
             property.position}
-          key={property.name}
+          key={property.key}
         >
           <div className="property-port"></div>
           <div className="property-name">
             {property.name}
           </div>
-          <div className="property-control" /* TODO */></div>
+          <div className="property-control">{control}</div>
         </div>
       )
     }
@@ -108,14 +150,14 @@ export default class NodeView extends React.Component {
       this.adjustingWidth = false
       window.removeEventListener('mousemove', this.onMouseMove)
       window.removeEventListener('mousedown', this.onMouseDown)
-      saveState()
+      this.saveState()
     }
   }
   onBlur = e => {
     if (this.moving) {
       this.moving = false
       window.removeEventListener('mousemove', this.onMouseMove)
-      saveState()
+      this.saveState()
     }
   }
   onKeyDown = e => {
@@ -124,6 +166,8 @@ export default class NodeView extends React.Component {
       this.moving = true
       this.adjustingWidth = false
       window.addEventListener('mousemove', this.onMouseMove)
+    } else if (e.key === 'x') {
+      this.setState({ deleted: true }, () => this.saveState())
     }
   }
   onWidthAdjustMouseDown = e => {

@@ -17,32 +17,15 @@
  * along with Harmony. If not, see <http://www.gnu.org/licenses/>.
  */
 
-import React from 'react'
-import Menu from './menu'
-
-export default class Panel extends React.Component {
-  constructor (props) {
-    super(props)
+const deepClone = function deepClone (obj) {
+  if (Array.isArray(obj)) {
+    return [...obj].map(deepClone)
+  } else if (typeof obj === 'object') {
+    let clone = { ...obj }
+    for (let i in clone) clone[i] = deepClone(clone[i])
+    return clone
   }
-
-  render () {
-    return (
-      <div className={'panel ' + this.props.className}>
-        <div className="panel-content">
-          {this.renderContent()}
-        </div>
-        <div className="panel-menu">
-          {this.renderMenu()}
-        </div>
-      </div>
-      )
-  }
-
-  renderMenu () {
-    return (<Menu horizontal />)
-  }
-
-  renderContent () {
-    return <div />
-  }
+  return obj
 }
+
+export default { deepClone }

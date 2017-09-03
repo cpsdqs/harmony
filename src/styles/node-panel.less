@@ -36,7 +36,7 @@
         background: fade(#000, 10%);
         border-radius: 4px;
         border: 1px solid #aaa;
-        position: relative;
+        position: absolute;
 
         .node-header {
           padding: 5px 10px;
@@ -98,6 +98,10 @@
               .property-port {
                 right: -5px;
               }
+            }
+
+            &.select-property .property-port {
+              display: none;
             }
 
             .property-control {
