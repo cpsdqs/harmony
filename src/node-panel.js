@@ -29,8 +29,11 @@ export default class NodePanel extends Panel {
     super(props)
 
     this.state = {
-      nodes: this.props.data,
-      position: [0, 0, 1]
+      nodes: this.props.nodes,
+      links: this.props.links,
+      position: [0, 0, 1],
+      portPositions: {},
+      draggingPort: false
     }
   }
 
@@ -40,9 +43,10 @@ export default class NodePanel extends Panel {
       ` scale(${position[2]})`
 
     let nodes = []
+    let nodeIndex = {}
     for (let id in this.state.nodes) {
       let node = this.state.nodes[id]
-      nodes.push(<NodeView
+      let nodeView = <NodeView
         x={node.x}
         y={node.y}
         width={node.width}
@@ -53,22 +57,117 @@ export default class NodePanel extends Panel {
         properties={node.properties}
         saveState={state => {
           const nodes = { ...this.state.nodes }
-          if (state.deleted) delete nodes[state.id]
-          else {
+          const links = { ...this.state.links }
+          if (state.deleted) {
+            for (let property of node.properties) {
+              for (let link of property.links) {
+                delete links[link]
+              }
+            }
+            delete nodes[state.id]
+          } else {
             delete state.deleted
             nodes[state.id] = state
           }
-          this.setState({ nodes: nodes })
+          this.setState({ nodes, links })
         }}
-        />)
+        updatePortPositions={(positions) => {
+          const portPositions = { ...this.state.portPositions }
+          portPositions[node.id] = positions
+          this.setState({ portPositions })
+        }}
+        onPortDrag={propertyKey => {
+          const links = { ...this.state.links }
+          let id
+          do {
+            id = Math.random().toString(36)
+          } while (id in links)
+
+          let endPosition = this.state.portPositions[node.id][propertyKey]
+          links[id] = {
+            startNode: node.id,
+            startProperty: propertyKey,
+            endPosition: {
+              x: endPosition.x + node.x,
+              y: endPosition.y + node.y
+            }
+          }
+          this.setState({
+            links,
+            draggingPort: id
+          })
+          return id
+        }}
+        />
+      nodes.push(nodeView)
+      nodeIndex[node.id] = nodeView
+    }
+
+    let links = []
+    for (let id in this.state.links) {
+      let link = this.state.links[id]
+      let startX = 0, startY = 0, startDX = 0, startDY = 0
+      let endX = 100, endY = 100, endDX = 0, endDY = 0
+      let bezierOffset = 100
+
+      let startNode = this.state.portPositions[link.startNode]
+      let startPosition = startNode[link.startProperty]
+      startX = startPosition.x + this.state.nodes[link.startNode].x
+      startY = startPosition.y + this.state.nodes[link.startNode].y
+      startDX = startPosition.facingX * bezierOffset
+      startDY = startPosition.facingY * bezierOffset
+
+      if (link.endPosition) {
+        endX = link.endPosition.x
+        endY = link.endPosition.y
+        endDX = -startPosition.facingX * bezierOffset
+        endDY = -startPosition.facingY * bezierOffset
+      } else {
+        let endNode = this.state.portPositions[link.endNode]
+      }
+      let x1 = startX, y1 = startY
+      let x2 = startX + startDX, y2 = startY + startDY
+      let x3 = endX + endDX, y3 = endY + endDY
+      let x4 = endX, y4 = endY
+      let d = `M${x1},${y1} C${x2},${y2} ${x3},${y3} ${x4},${y4}`
+      let path = <path className="property-link" d={d} key={id} />
+      links.push(path)
     }
 
     return (
-      <div className="scroll-container" onWheel={this.onWheel}>
+      <div className="scroll-container"
+        onMouseMove={this.onMouseMove}
+        onMouseUp={this.onMouseUp}
+        onWheel={this.onWheel}>
         <div className="view-transform-origin"
-          style={{transform: viewTransform}}>{nodes}</div>
+          style={{transform: viewTransform}}>
+          <svg className="node-links-container">
+            {links}
+          </svg>
+          {nodes}
+        </div>
       </div>
     )
+  }
+
+  onMouseMove = e => {
+    if (this.state.draggingPort) {
+      const links = { ...this.state.links }
+      let link = { ...links[this.state.draggingPort] }
+      link.endPosition.x = e.pageX - this.state.position[0]
+      link.endPosition.y = e.pageY - this.state.position[1]
+      link[this.state.draggingPort] = link
+      this.setState({ links })
+    }
+  }
+
+  onMouseUp = e => {
+    if (this.state.draggingPort) {
+      // TODO
+      this.setState({
+        draggingPort: false
+      })
+    }
   }
 
   onWheel = e => {
@@ -106,6 +205,7 @@ export default class NodePanel extends Panel {
       y: -this.state.position[1],
       width: 150
     })
+    for (let property of node.properties) property.links = []
     this.setState({ nodes: nodes })
   }
 

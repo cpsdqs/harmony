@@ -163,5 +163,55 @@ export default {
         max: 2
       }
     ]
+  },
+  output: {
+    name: 'Output',
+    type: 'output',
+    properties: [
+      {
+        type: 'audio',
+        position: 'input',
+        name: 'Audio',
+        key: 'audio',
+        value: null
+      }
+    ]
+  },
+  currentTime: {
+    name: 'Current Time',
+    type: 'currentTime',
+    properties: [
+      {
+        type: 'value',
+        position: 'output',
+        name: 'Output',
+        key: 'output',
+        value (property, node) {
+          // TODO
+          return 0
+        }
+      }
+    ]
+  },
+  value: {
+    name: 'Value',
+    type: 'value',
+    properties: [
+      {
+        type: 'value',
+        position: 'output',
+        name: 'Output',
+        key: 'output',
+        value (property, node) {
+          return node.properties.value.getComputedValue()
+        }
+      }, {
+        type: 'value',
+        position: 'input',
+        name: 'Value',
+        key: 'value',
+        value: 0
+      }
+    ]
   }
 }

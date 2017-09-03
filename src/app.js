@@ -28,6 +28,7 @@ export default class App extends React.Component {
     this.state = {
       data: {
         nodes: {},
+        links: {},
         currentTime: 0,
         duration: 10
       }
@@ -38,7 +39,10 @@ export default class App extends React.Component {
     return (
       <div className="harmony-app">
         <AppPanel className="app-panel" />
-        <NodePanel className="node-panel" data={this.state.data.nodes} />
+        <NodePanel className="node-panel"
+          nodes={this.state.data.nodes}
+          links={this.state.data.links}
+          />
       </div>
     )
   }

@@ -6622,7 +6622,9 @@ var Menu = exports.Menu = function (_React$Component) {
       if (this.props.className) className += ' ' + this.props.className;
       return _react2.default.createElement(
         'div',
-        { className: className },
+        { className: className,
+          role: 'menu',
+          'aria-orientation': this.props.horizontal ? 'horizontal' : 'vertical' },
         this.props.children
       );
     }
@@ -6676,8 +6678,9 @@ var MenuItem = exports.MenuItem = function (_React$Component2) {
           className: className,
           onMouseOver: this.onMouseOver,
           onMouseOut: this.onMouseOut,
-          onClick: this.onClick
-        },
+          onClick: this.onClick,
+          role: 'menuitem',
+          'aria-disabled': this.props.disabled },
         this.props.children
       );
     }
@@ -22699,7 +22702,7 @@ exports = module.exports = __webpack_require__(188)(undefined);
 
 
 // module
-exports.push([module.i, "/*\n * Copyright (C) 2017 cpsdqs\n *\n * This file is part of Harmony.\n *\n * Harmony is free software: you can redistribute it and/or modify\n * it under the terms of the GNU General Public License as published by\n * the Free Software Foundation, either version 3 of the License, or\n * (at your option) any later version.\n *\n * Harmony is distributed in the hope that it will be useful,\n * but WITHOUT ANY WARRANTY; without even the implied warranty of\n * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the\n * GNU General Public License for more details.\n *\n * You should have received a copy of the GNU General Public License\n * along with Harmony. If not, see <http://www.gnu.org/licenses/>.\n */\nbody {\n  position: fixed;\n  cursor: default;\n}\n.harmony-app {\n  position: fixed;\n  display: grid;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  grid-template-columns: 1fr;\n  grid-template-rows: 24px 1fr 72px;\n  font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', 'Roboto', 'Lucida Grande', 'Segoe UI', 'Oxygen Sans', 'Ubuntu', 'Cantarell', sans-serif;\n  font-size: 12px;\n  -webkit-user-select: none;\n  -moz-user-select: none;\n  user-select: none;\n}\n/*\n * Copyright (C) 2017 cpsdqs\n *\n * This file is part of Harmony.\n *\n * Harmony is free software: you can redistribute it and/or modify\n * it under the terms of the GNU General Public License as published by\n * the Free Software Foundation, either version 3 of the License, or\n * (at your option) any later version.\n *\n * Harmony is distributed in the hope that it will be useful,\n * but WITHOUT ANY WARRANTY; without even the implied warranty of\n * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the\n * GNU General Public License for more details.\n *\n * You should have received a copy of the GNU General Public License\n * along with Harmony. If not, see <http://www.gnu.org/licenses/>.\n */\n.menu:not(.horizontal) {\n  position: absolute;\n  top: -4px;\n  left: 100%;\n  border-radius: 4px;\n  padding: 4px 0;\n  background: rgba(255, 255, 255, 0.5);\n  -webkit-backdrop-filter: blur(10px);\n  box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.2);\n}\n.menu.horizontal > .menu-item {\n  display: inline-block;\n}\n.menu.horizontal > .menu-item > .menu:not(.horizontal) {\n  top: 100%;\n  left: 0;\n  border-top-left-radius: 0;\n  border-top-right-radius: 0;\n}\n.menu.submenu-above > .menu-item > .menu:not(.horizontal) {\n  top: auto;\n  bottom: 100%;\n  border-radius: 4px;\n  border-bottom-left-radius: 0;\n  border-bottom-right-radius: 0;\n}\n.menu .menu-item {\n  padding: 3px 10px;\n  white-space: nowrap;\n  position: relative;\n  color: #000;\n}\n.menu .menu-item.selected {\n  background: #8c63d9;\n  color: #fff;\n  z-index: 1;\n}\n.menu .menu-item.disabled {\n  opacity: 0.5;\n}\n.menu .menu-item > .shortcut {\n  text-align: right;\n  margin-left: 1em;\n}\n.menu .menu-item:not(.selected) > .menu {\n  display: none;\n}\n/*\n * Copyright (C) 2017 cpsdqs\n *\n * This file is part of Harmony.\n *\n * Harmony is free software: you can redistribute it and/or modify\n * it under the terms of the GNU General Public License as published by\n * the Free Software Foundation, either version 3 of the License, or\n * (at your option) any later version.\n *\n * Harmony is distributed in the hope that it will be useful,\n * but WITHOUT ANY WARRANTY; without even the implied warranty of\n * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the\n * GNU General Public License for more details.\n *\n * You should have received a copy of the GNU General Public License\n * along with Harmony. If not, see <http://www.gnu.org/licenses/>.\n */\n.panel {\n  display: grid;\n  grid-template-rows: 1fr 24px;\n}\n.panel .panel-menu > .menu {\n  height: 100%;\n  box-shadow: none;\n}\n.panel .panel-menu > .menu > .menu-item > .menu {\n  z-index: 100;\n}\n/*\n * Copyright (C) 2017 cpsdqs\n *\n * This file is part of Harmony.\n *\n * Harmony is free software: you can redistribute it and/or modify\n * it under the terms of the GNU General Public License as published by\n * the Free Software Foundation, either version 3 of the License, or\n * (at your option) any later version.\n *\n * Harmony is distributed in the hope that it will be useful,\n * but WITHOUT ANY WARRANTY; without even the implied warranty of\n * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the\n * GNU General Public License for more details.\n *\n * You should have received a copy of the GNU General Public License\n * along with Harmony. If not, see <http://www.gnu.org/licenses/>.\n */\n.node-panel .scroll-container {\n  position: relative;\n  width: 100%;\n  height: 100%;\n  overflow: hidden;\n  background: #ddd;\n}\n.node-panel .scroll-container .view-transform-origin {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n}\n.node-panel .scroll-container .view-transform-origin .node {\n  background: #ccc;\n  border-radius: 4px;\n  border: 1px solid rgba(0, 0, 0, 0.1);\n  position: absolute;\n}\n.node-panel .scroll-container .view-transform-origin .node .node-header {\n  padding: 5px 10px;\n  background: #8c63d9;\n  color: #fff;\n  border-radius: 3px 3px 0 0;\n}\n.node-panel .scroll-container .view-transform-origin .node .node-header .node-name {\n  font-weight: bolder;\n}\n.node-panel .scroll-container .view-transform-origin .node:focus {\n  outline: none;\n  border-color: #fff;\n  box-shadow: 0 0 10px #fff;\n}\n.node-panel .scroll-container .view-transform-origin .node .node-properties {\n  padding: 5px 0;\n}\n.node-panel .scroll-container .view-transform-origin .node .node-properties .node-property {\n  display: flex;\n  position: relative;\n  padding: 5px 10px;\n}\n.node-panel .scroll-container .view-transform-origin .node .node-properties .node-property .property-port {\n  position: absolute;\n  width: 8px;\n  height: 8px;\n  border: 1px solid rgba(0, 0, 0, 0.2);\n  background: #000;\n  border-radius: 50%;\n  z-index: 1;\n}\n.node-panel .scroll-container .view-transform-origin .node .node-properties .node-property.audio-property .property-port {\n  background: #3163ff;\n}\n.node-panel .scroll-container .view-transform-origin .node .node-properties .node-property.value-property .property-port {\n  background: #7d7d7d;\n}\n.node-panel .scroll-container .view-transform-origin .node .node-properties .node-property .property-name {\n  white-space: nowrap;\n  text-overflow: ellipsis;\n  overflow: hidden;\n  flex: 1;\n  min-width: 40px;\n}\n.node-panel .scroll-container .view-transform-origin .node .node-properties .node-property.input .property-port {\n  left: -5px;\n}\n.node-panel .scroll-container .view-transform-origin .node .node-properties .node-property.output {\n  text-align: right;\n}\n.node-panel .scroll-container .view-transform-origin .node .node-properties .node-property.output .property-port {\n  right: -5px;\n}\n.node-panel .scroll-container .view-transform-origin .node .node-properties .node-property.select-property {\n  flex-direction: column;\n}\n.node-panel .scroll-container .view-transform-origin .node .node-properties .node-property.select-property .property-port {\n  display: none;\n}\n.node-panel .scroll-container .view-transform-origin .node .node-properties .node-property.select-property .property-control select {\n  -webkit-appearance: none;\n  -moz-appearance: none;\n  width: 100%;\n  border: none;\n  border-radius: 4px;\n  background: #eee;\n  font: inherit;\n  padding: 3px 10px;\n}\n.node-panel .scroll-container .view-transform-origin .node .node-properties .node-property.hidden {\n  display: none;\n}\n.node-panel .scroll-container .view-transform-origin .node .width-adjust {\n  position: absolute;\n  top: 0;\n  right: -3px;\n  height: 100%;\n  width: 6px;\n  cursor: col-resize;\n}\n", ""]);
+exports.push([module.i, "/*\n * Copyright (C) 2017 cpsdqs\n *\n * This file is part of Harmony.\n *\n * Harmony is free software: you can redistribute it and/or modify\n * it under the terms of the GNU General Public License as published by\n * the Free Software Foundation, either version 3 of the License, or\n * (at your option) any later version.\n *\n * Harmony is distributed in the hope that it will be useful,\n * but WITHOUT ANY WARRANTY; without even the implied warranty of\n * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the\n * GNU General Public License for more details.\n *\n * You should have received a copy of the GNU General Public License\n * along with Harmony. If not, see <http://www.gnu.org/licenses/>.\n */\nbody {\n  position: fixed;\n  cursor: default;\n}\n.harmony-app {\n  position: fixed;\n  display: grid;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  grid-template-columns: 1fr;\n  grid-template-rows: 24px 1fr 72px;\n  font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', 'Roboto', 'Lucida Grande', 'Segoe UI', 'Oxygen Sans', 'Ubuntu', 'Cantarell', sans-serif;\n  font-size: 12px;\n  -webkit-user-select: none;\n  -moz-user-select: none;\n  user-select: none;\n}\n/*\n * Copyright (C) 2017 cpsdqs\n *\n * This file is part of Harmony.\n *\n * Harmony is free software: you can redistribute it and/or modify\n * it under the terms of the GNU General Public License as published by\n * the Free Software Foundation, either version 3 of the License, or\n * (at your option) any later version.\n *\n * Harmony is distributed in the hope that it will be useful,\n * but WITHOUT ANY WARRANTY; without even the implied warranty of\n * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the\n * GNU General Public License for more details.\n *\n * You should have received a copy of the GNU General Public License\n * along with Harmony. If not, see <http://www.gnu.org/licenses/>.\n */\n.menu:not(.horizontal) {\n  position: absolute;\n  top: -4px;\n  left: 100%;\n  border-radius: 4px;\n  padding: 4px 0;\n  background: rgba(255, 255, 255, 0.5);\n  -webkit-backdrop-filter: blur(10px);\n  backdrop-filter: blur(10px);\n  box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.2);\n}\n.menu.horizontal > .menu-item {\n  display: inline-block;\n}\n.menu.horizontal > .menu-item > .menu:not(.horizontal) {\n  top: 100%;\n  left: 0;\n  border-top-left-radius: 0;\n  border-top-right-radius: 0;\n}\n.menu.submenu-above > .menu-item > .menu:not(.horizontal) {\n  top: auto;\n  bottom: 100%;\n  border-radius: 4px;\n  border-bottom-left-radius: 0;\n  border-bottom-right-radius: 0;\n}\n.menu .menu-item {\n  padding: 3px 10px;\n  white-space: nowrap;\n  position: relative;\n  color: #000;\n}\n.menu .menu-item.selected {\n  background: #8c63d9;\n  color: #fff;\n  z-index: 1;\n}\n.menu .menu-item.disabled {\n  opacity: 0.5;\n}\n.menu .menu-item > .shortcut {\n  text-align: right;\n  margin-left: 1em;\n}\n.menu .menu-item:not(.selected) > .menu {\n  display: none;\n}\n/*\n * Copyright (C) 2017 cpsdqs\n *\n * This file is part of Harmony.\n *\n * Harmony is free software: you can redistribute it and/or modify\n * it under the terms of the GNU General Public License as published by\n * the Free Software Foundation, either version 3 of the License, or\n * (at your option) any later version.\n *\n * Harmony is distributed in the hope that it will be useful,\n * but WITHOUT ANY WARRANTY; without even the implied warranty of\n * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the\n * GNU General Public License for more details.\n *\n * You should have received a copy of the GNU General Public License\n * along with Harmony. If not, see <http://www.gnu.org/licenses/>.\n */\n.panel {\n  display: grid;\n  grid-template-rows: 1fr 24px;\n}\n.panel .panel-menu > .menu {\n  height: 100%;\n  box-shadow: none;\n}\n.panel .panel-menu > .menu > .menu-item > .menu {\n  z-index: 100;\n}\n/*\n * Copyright (C) 2017 cpsdqs\n *\n * This file is part of Harmony.\n *\n * Harmony is free software: you can redistribute it and/or modify\n * it under the terms of the GNU General Public License as published by\n * the Free Software Foundation, either version 3 of the License, or\n * (at your option) any later version.\n *\n * Harmony is distributed in the hope that it will be useful,\n * but WITHOUT ANY WARRANTY; without even the implied warranty of\n * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the\n * GNU General Public License for more details.\n *\n * You should have received a copy of the GNU General Public License\n * along with Harmony. If not, see <http://www.gnu.org/licenses/>.\n */\n.node-panel .scroll-container {\n  position: relative;\n  width: 100%;\n  height: 100%;\n  overflow: hidden;\n  background: #ddd;\n}\n.node-panel .scroll-container .view-transform-origin {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n}\n.node-panel .scroll-container .view-transform-origin .node-links-container {\n  position: absolute;\n  overflow: visible;\n  pointer-events: none;\n}\n.node-panel .scroll-container .view-transform-origin .node-links-container .property-link {\n  fill: none;\n  stroke: #7d7d7d;\n  stroke-width: 5;\n  stroke-linecap: round;\n  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.4));\n}\n.node-panel .scroll-container .view-transform-origin .node {\n  background: #ccc;\n  border-radius: 4px;\n  border: 1px solid rgba(0, 0, 0, 0.1);\n  position: absolute;\n  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);\n}\n.node-panel .scroll-container .view-transform-origin .node .node-header {\n  padding: 5px 10px;\n  background: #8c63d9;\n  color: #fff;\n  border-radius: 3px 3px 0 0;\n}\n.node-panel .scroll-container .view-transform-origin .node .node-header .node-name {\n  font-weight: bolder;\n}\n.node-panel .scroll-container .view-transform-origin .node:focus {\n  outline: none;\n  border-color: #8c63d9;\n  box-shadow: 0 4px 8px #8c63d9;\n}\n.node-panel .scroll-container .view-transform-origin .node .node-properties {\n  padding: 5px 0;\n}\n.node-panel .scroll-container .view-transform-origin .node .node-properties .node-property {\n  display: flex;\n  position: relative;\n  padding: 5px 10px;\n}\n.node-panel .scroll-container .view-transform-origin .node .node-properties .node-property .property-port {\n  position: absolute;\n  width: 8px;\n  height: 8px;\n  border: 1px solid rgba(0, 0, 0, 0.2);\n  background: #000;\n  border-radius: 50%;\n  z-index: 1;\n}\n.node-panel .scroll-container .view-transform-origin .node .node-properties .node-property.audio-property .property-port {\n  background: #3163ff;\n}\n.node-panel .scroll-container .view-transform-origin .node .node-properties .node-property.value-property .property-port {\n  background: #7d7d7d;\n}\n.node-panel .scroll-container .view-transform-origin .node .node-properties .node-property .property-name {\n  white-space: nowrap;\n  text-overflow: ellipsis;\n  overflow: hidden;\n  flex: 1;\n  min-width: 40px;\n}\n.node-panel .scroll-container .view-transform-origin .node .node-properties .node-property.input .property-port {\n  left: -5px;\n}\n.node-panel .scroll-container .view-transform-origin .node .node-properties .node-property.output {\n  text-align: right;\n}\n.node-panel .scroll-container .view-transform-origin .node .node-properties .node-property.output .property-port {\n  right: -5px;\n}\n.node-panel .scroll-container .view-transform-origin .node .node-properties .node-property.select-property {\n  flex-direction: column;\n}\n.node-panel .scroll-container .view-transform-origin .node .node-properties .node-property.select-property .property-port {\n  display: none;\n}\n.node-panel .scroll-container .view-transform-origin .node .node-properties .node-property.select-property .property-control select {\n  -webkit-appearance: none;\n  -moz-appearance: none;\n  width: 100%;\n  border: none;\n  border-radius: 4px;\n  background: #eee;\n  font: inherit;\n  padding: 3px 10px;\n}\n.node-panel .scroll-container .view-transform-origin .node .node-properties .node-property.hidden {\n  display: none;\n}\n.node-panel .scroll-container .view-transform-origin .node .width-adjust {\n  position: absolute;\n  top: 0;\n  right: -3px;\n  height: 100%;\n  width: 6px;\n  cursor: col-resize;\n}\n", ""]);
 
 // exports
 
@@ -23301,6 +23304,7 @@ var App = function (_React$Component) {
     _this.state = {
       data: {
         nodes: {},
+        links: {},
         currentTime: 0,
         duration: 10
       }
@@ -23315,7 +23319,10 @@ var App = function (_React$Component) {
         'div',
         { className: 'harmony-app' },
         _react2.default.createElement(_appPanel2.default, { className: 'app-panel' }),
-        _react2.default.createElement(_nodePanel2.default, { className: 'node-panel', data: this.state.data.nodes })
+        _react2.default.createElement(_nodePanel2.default, { className: 'node-panel',
+          nodes: this.state.data.nodes,
+          links: this.state.data.links
+        })
       );
     }
   }]);
@@ -23508,6 +23515,26 @@ var NodePanel = function (_Panel) {
 
     var _this = _possibleConstructorReturn(this, (NodePanel.__proto__ || Object.getPrototypeOf(NodePanel)).call(this, props));
 
+    _this.onMouseMove = function (e) {
+      if (_this.state.draggingPort) {
+        var links = _extends({}, _this.state.links);
+        var link = _extends({}, links[_this.state.draggingPort]);
+        link.endPosition.x = e.pageX - _this.state.position[0];
+        link.endPosition.y = e.pageY - _this.state.position[1];
+        link[_this.state.draggingPort] = link;
+        _this.setState({ links: links });
+      }
+    };
+
+    _this.onMouseUp = function (e) {
+      if (_this.state.draggingPort) {
+        // TODO
+        _this.setState({
+          draggingPort: false
+        });
+      }
+    };
+
     _this.onWheel = function (e) {
       e.stopPropagation();
       e.preventDefault();
@@ -23530,8 +23557,11 @@ var NodePanel = function (_Panel) {
     };
 
     _this.state = {
-      nodes: _this.props.data,
-      position: [0, 0, 1]
+      nodes: _this.props.nodes,
+      links: _this.props.links,
+      position: [0, 0, 1],
+      portPositions: {},
+      draggingPort: false
     };
     return _this;
   }
@@ -23545,9 +23575,11 @@ var NodePanel = function (_Panel) {
       var viewTransform = 'translate(' + position[0] + 'px, ' + position[1] + 'px)' + (' scale(' + position[2] + ')');
 
       var nodes = [];
-      for (var id in this.state.nodes) {
-        var node = this.state.nodes[id];
-        nodes.push(_react2.default.createElement(_nodeView2.default, {
+      var nodeIndex = {};
+
+      var _loop = function _loop(id) {
+        var node = _this2.state.nodes[id];
+        var nodeView = _react2.default.createElement(_nodeView2.default, {
           x: node.x,
           y: node.y,
           width: node.width,
@@ -23558,22 +23590,154 @@ var NodePanel = function (_Panel) {
           properties: node.properties,
           saveState: function saveState(state) {
             var nodes = _extends({}, _this2.state.nodes);
-            if (state.deleted) delete nodes[state.id];else {
+            var links = _extends({}, _this2.state.links);
+            if (state.deleted) {
+              var _iteratorNormalCompletion = true;
+              var _didIteratorError = false;
+              var _iteratorError = undefined;
+
+              try {
+                for (var _iterator = node.properties[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+                  var property = _step.value;
+                  var _iteratorNormalCompletion2 = true;
+                  var _didIteratorError2 = false;
+                  var _iteratorError2 = undefined;
+
+                  try {
+                    for (var _iterator2 = property.links[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
+                      var _link = _step2.value;
+
+                      delete links[_link];
+                    }
+                  } catch (err) {
+                    _didIteratorError2 = true;
+                    _iteratorError2 = err;
+                  } finally {
+                    try {
+                      if (!_iteratorNormalCompletion2 && _iterator2.return) {
+                        _iterator2.return();
+                      }
+                    } finally {
+                      if (_didIteratorError2) {
+                        throw _iteratorError2;
+                      }
+                    }
+                  }
+                }
+              } catch (err) {
+                _didIteratorError = true;
+                _iteratorError = err;
+              } finally {
+                try {
+                  if (!_iteratorNormalCompletion && _iterator.return) {
+                    _iterator.return();
+                  }
+                } finally {
+                  if (_didIteratorError) {
+                    throw _iteratorError;
+                  }
+                }
+              }
+
+              delete nodes[state.id];
+            } else {
               delete state.deleted;
               nodes[state.id] = state;
             }
-            _this2.setState({ nodes: nodes });
+            _this2.setState({ nodes: nodes, links: links });
+          },
+          updatePortPositions: function updatePortPositions(positions) {
+            var portPositions = _extends({}, _this2.state.portPositions);
+            portPositions[node.id] = positions;
+            _this2.setState({ portPositions: portPositions });
+          },
+          onPortDrag: function onPortDrag(propertyKey) {
+            var links = _extends({}, _this2.state.links);
+            var id = void 0;
+            do {
+              id = Math.random().toString(36);
+            } while (id in links);
+
+            var endPosition = _this2.state.portPositions[node.id][propertyKey];
+            links[id] = {
+              startNode: node.id,
+              startProperty: propertyKey,
+              endPosition: {
+                x: endPosition.x + node.x,
+                y: endPosition.y + node.y
+              }
+            };
+            _this2.setState({
+              links: links,
+              draggingPort: id
+            });
+            return id;
           }
-        }));
+        });
+        nodes.push(nodeView);
+        nodeIndex[node.id] = nodeView;
+      };
+
+      for (var id in this.state.nodes) {
+        _loop(id);
+      }
+
+      var links = [];
+      for (var id in this.state.links) {
+        var link = this.state.links[id];
+        var startX = 0,
+            startY = 0,
+            startDX = 0,
+            startDY = 0;
+        var endX = 100,
+            endY = 100,
+            endDX = 0,
+            endDY = 0;
+        var bezierOffset = 100;
+
+        var startNode = this.state.portPositions[link.startNode];
+        var startPosition = startNode[link.startProperty];
+        startX = startPosition.x + this.state.nodes[link.startNode].x;
+        startY = startPosition.y + this.state.nodes[link.startNode].y;
+        startDX = startPosition.facingX * bezierOffset;
+        startDY = startPosition.facingY * bezierOffset;
+
+        if (link.endPosition) {
+          endX = link.endPosition.x;
+          endY = link.endPosition.y;
+          endDX = -startPosition.facingX * bezierOffset;
+          endDY = -startPosition.facingY * bezierOffset;
+        } else {
+          var endNode = this.state.portPositions[link.endNode];
+        }
+        var x1 = startX,
+            y1 = startY;
+        var x2 = startX + startDX,
+            y2 = startY + startDY;
+        var x3 = endX + endDX,
+            y3 = endY + endDY;
+        var x4 = endX,
+            y4 = endY;
+        var d = 'M' + x1 + ',' + y1 + ' C' + x2 + ',' + y2 + ' ' + x3 + ',' + y3 + ' ' + x4 + ',' + y4;
+        var path = _react2.default.createElement('path', { className: 'property-link', d: d, key: id });
+        links.push(path);
       }
 
       return _react2.default.createElement(
         'div',
-        { className: 'scroll-container', onWheel: this.onWheel },
+        { className: 'scroll-container',
+          onMouseMove: this.onMouseMove,
+          onMouseUp: this.onMouseUp,
+          onWheel: this.onWheel },
         _react2.default.createElement(
           'div',
           { className: 'view-transform-origin',
             style: { transform: viewTransform } },
+          _react2.default.createElement(
+            'svg',
+            { className: 'node-links-container' },
+            links
+          ),
           nodes
         )
       );
@@ -23594,6 +23758,30 @@ var NodePanel = function (_Panel) {
         y: -this.state.position[1],
         width: 150
       });
+      var _iteratorNormalCompletion3 = true;
+      var _didIteratorError3 = false;
+      var _iteratorError3 = undefined;
+
+      try {
+        for (var _iterator3 = node.properties[Symbol.iterator](), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
+          var property = _step3.value;
+          property.links = [];
+        }
+      } catch (err) {
+        _didIteratorError3 = true;
+        _iteratorError3 = err;
+      } finally {
+        try {
+          if (!_iteratorNormalCompletion3 && _iterator3.return) {
+            _iterator3.return();
+          }
+        } finally {
+          if (_didIteratorError3) {
+            throw _iteratorError3;
+          }
+        }
+      }
+
       this.setState({ nodes: nodes });
     }
   }, {
@@ -23746,6 +23934,7 @@ var NodeView = function (_React$Component) {
           });
         }
         _this._lastMousePosition = [e.clientX, e.clientY];
+        _this.saveState();
       }
       if (_this.adjustingWidth) {
         var _this$_lastMousePosit2 = _slicedToArray(_this._lastMousePosition, 2),
@@ -23760,6 +23949,7 @@ var NodeView = function (_React$Component) {
           _this.setState({ width: width });
         }
         _this._lastMousePosition = [e.clientX, e.clientY];
+        _this.saveState();
       }
     };
 
@@ -23880,6 +24070,49 @@ var NodeView = function (_React$Component) {
       return node;
     }
   }, {
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      var portPositions = {};
+      var nodeRect = this.refs.node.getBoundingClientRect();
+      var _iteratorNormalCompletion2 = true;
+      var _didIteratorError2 = false;
+      var _iteratorError2 = undefined;
+
+      try {
+        for (var _iterator2 = this.state.properties[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
+          var property = _step2.value;
+
+          var portRef = this.refs[property.key + 'Port'];
+          if (portRef) {
+            var rect = portRef.getBoundingClientRect();
+            portPositions[property.key] = {
+              x: rect.left - nodeRect.left + rect.width / 2,
+              y: rect.top - nodeRect.top + rect.height / 2,
+              width: rect.width,
+              height: rect.height,
+              facingX: property.position === 'input' ? -1 : 1,
+              facingY: 0
+            };
+          }
+        }
+      } catch (err) {
+        _didIteratorError2 = true;
+        _iteratorError2 = err;
+      } finally {
+        try {
+          if (!_iteratorNormalCompletion2 && _iterator2.return) {
+            _iterator2.return();
+          }
+        } finally {
+          if (_didIteratorError2) {
+            throw _iteratorError2;
+          }
+        }
+      }
+
+      this.props.updatePortPositions(portPositions);
+    }
+  }, {
     key: 'render',
     value: function render() {
       var _this2 = this;
@@ -23903,13 +24136,13 @@ var NodeView = function (_React$Component) {
             {
               onChange: function onChange(e) {
                 var properties = [].concat(_toConsumableArray(_this2.state.properties));
-                var _iteratorNormalCompletion3 = true;
-                var _didIteratorError3 = false;
-                var _iteratorError3 = undefined;
+                var _iteratorNormalCompletion4 = true;
+                var _didIteratorError4 = false;
+                var _iteratorError4 = undefined;
 
                 try {
-                  for (var _iterator3 = properties[Symbol.iterator](), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
-                    var prop = _step3.value;
+                  for (var _iterator4 = properties[Symbol.iterator](), _step4; !(_iteratorNormalCompletion4 = (_step4 = _iterator4.next()).done); _iteratorNormalCompletion4 = true) {
+                    var prop = _step4.value;
 
                     if (prop.key === property.key) {
                       prop.value = e.target.value;
@@ -23917,16 +24150,16 @@ var NodeView = function (_React$Component) {
                     }
                   }
                 } catch (err) {
-                  _didIteratorError3 = true;
-                  _iteratorError3 = err;
+                  _didIteratorError4 = true;
+                  _iteratorError4 = err;
                 } finally {
                   try {
-                    if (!_iteratorNormalCompletion3 && _iterator3.return) {
-                      _iterator3.return();
+                    if (!_iteratorNormalCompletion4 && _iterator4.return) {
+                      _iterator4.return();
                     }
                   } finally {
-                    if (_didIteratorError3) {
-                      throw _iteratorError3;
+                    if (_didIteratorError4) {
+                      throw _iteratorError4;
                     }
                   }
                 }
@@ -23956,7 +24189,41 @@ var NodeView = function (_React$Component) {
             className: className,
             key: property.key
           },
-          _react2.default.createElement('div', { className: 'property-port' }),
+          _react2.default.createElement('div', { className: 'property-port',
+            onMouseDown: function onMouseDown() {
+              var linkID = _this2.props.onPortDrag(property.key);
+              var properties = [].concat(_toConsumableArray(_this2.state.properties));
+              var _iteratorNormalCompletion5 = true;
+              var _didIteratorError5 = false;
+              var _iteratorError5 = undefined;
+
+              try {
+                for (var _iterator5 = properties[Symbol.iterator](), _step5; !(_iteratorNormalCompletion5 = (_step5 = _iterator5.next()).done); _iteratorNormalCompletion5 = true) {
+                  var prop = _step5.value;
+
+                  if (prop.key === property.key) {
+                    prop.links.push(linkID);
+                    break;
+                  }
+                }
+              } catch (err) {
+                _didIteratorError5 = true;
+                _iteratorError5 = err;
+              } finally {
+                try {
+                  if (!_iteratorNormalCompletion5 && _iterator5.return) {
+                    _iterator5.return();
+                  }
+                } finally {
+                  if (_didIteratorError5) {
+                    throw _iteratorError5;
+                  }
+                }
+              }
+
+              _this2.setState({ properties: properties });
+            },
+            ref: property.key + 'Port' }),
           _react2.default.createElement(
             'div',
             { className: 'property-name' },
@@ -23970,27 +24237,27 @@ var NodeView = function (_React$Component) {
         ));
       };
 
-      var _iteratorNormalCompletion2 = true;
-      var _didIteratorError2 = false;
-      var _iteratorError2 = undefined;
+      var _iteratorNormalCompletion3 = true;
+      var _didIteratorError3 = false;
+      var _iteratorError3 = undefined;
 
       try {
-        for (var _iterator2 = this.props.properties[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
-          var property = _step2.value;
+        for (var _iterator3 = this.props.properties[Symbol.iterator](), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
+          var property = _step3.value;
 
           _loop2(property);
         }
       } catch (err) {
-        _didIteratorError2 = true;
-        _iteratorError2 = err;
+        _didIteratorError3 = true;
+        _iteratorError3 = err;
       } finally {
         try {
-          if (!_iteratorNormalCompletion2 && _iterator2.return) {
-            _iterator2.return();
+          if (!_iteratorNormalCompletion3 && _iterator3.return) {
+            _iterator3.return();
           }
         } finally {
-          if (_didIteratorError2) {
-            throw _iteratorError2;
+          if (_didIteratorError3) {
+            throw _iteratorError3;
           }
         }
       }
@@ -24005,7 +24272,8 @@ var NodeView = function (_React$Component) {
           tabIndex: -1,
           onKeyDown: this.onKeyDown,
           onMouseDown: this.onMouseDown,
-          onBlur: this.onBlur
+          onBlur: this.onBlur,
+          ref: 'node'
         },
         _react2.default.createElement(
           'header',
@@ -24183,6 +24451,50 @@ exports.default = {
       min: 0,
       value: 1,
       max: 2
+    }]
+  },
+  output: {
+    name: 'Output',
+    type: 'output',
+    properties: [{
+      type: 'audio',
+      position: 'input',
+      name: 'Audio',
+      key: 'audio',
+      value: null
+    }]
+  },
+  currentTime: {
+    name: 'Current Time',
+    type: 'currentTime',
+    properties: [{
+      type: 'value',
+      position: 'output',
+      name: 'Output',
+      key: 'output',
+      value: function value(property, node) {
+        // TODO
+        return 0;
+      }
+    }]
+  },
+  value: {
+    name: 'Value',
+    type: 'value',
+    properties: [{
+      type: 'value',
+      position: 'output',
+      name: 'Output',
+      key: 'output',
+      value: function value(property, node) {
+        return node.properties.value.getComputedValue();
+      }
+    }, {
+      type: 'value',
+      position: 'input',
+      name: 'Value',
+      key: 'value',
+      value: 0
     }]
   }
 };

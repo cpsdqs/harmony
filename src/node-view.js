@@ -68,6 +68,26 @@ export default class NodeView extends React.Component {
     return node
   }
 
+  componentDidMount () {
+    let portPositions = {}
+    let nodeRect = this.refs.node.getBoundingClientRect()
+    for (let property of this.state.properties) {
+      let portRef = this.refs[`${property.key}Port`]
+      if (portRef) {
+        let rect = portRef.getBoundingClientRect()
+        portPositions[property.key] = {
+          x: rect.left - nodeRect.left + rect.width / 2,
+          y: rect.top - nodeRect.top + rect.height / 2,
+          width: rect.width,
+          height: rect.height,
+          facingX: property.position === 'input' ? -1 : 1,
+          facingY: 0
+        }
+      }
+    }
+    this.props.updatePortPositions(portPositions)
+  }
+
   render () {
     const computed = this.getComputed()
     const properties = []
@@ -113,7 +133,19 @@ export default class NodeView extends React.Component {
           className={className}
           key={property.key}
         >
-          <div className="property-port"></div>
+          <div className="property-port"
+            onMouseDown={() => {
+              let linkID = this.props.onPortDrag(property.key)
+              let properties = [...this.state.properties]
+              for (let prop of properties) {
+                if (prop.key === property.key) {
+                  prop.links.push(linkID)
+                  break
+                }
+              }
+              this.setState({ properties })
+            }}
+            ref={`${property.key}Port`}></div>
           <div className="property-name">{propertyName}</div>
           <div className="property-control">{control}</div>
         </div>
@@ -130,6 +162,7 @@ export default class NodeView extends React.Component {
         onKeyDown={this.onKeyDown}
         onMouseDown={this.onMouseDown}
         onBlur={this.onBlur}
+        ref='node'
       >
         <header className="node-header">
           <span className="node-name">
@@ -157,6 +190,7 @@ export default class NodeView extends React.Component {
         })
       }
       this._lastMousePosition = [e.clientX, e.clientY]
+      this.saveState()
     }
     if (this.adjustingWidth) {
       let [lastX, lastY] = this._lastMousePosition
@@ -168,6 +202,7 @@ export default class NodeView extends React.Component {
         this.setState({ width: width })
       }
       this._lastMousePosition = [e.clientX, e.clientY]
+      this.saveState()
     }
   }
   onMouseDown = e => {

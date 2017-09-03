@@ -29,7 +29,9 @@ export class Menu extends React.Component {
     if (this.props.horizontal) className += ' horizontal'
     if (this.props.className) className += ` ${this.props.className}`
     return (
-      <div className={className}>
+      <div className={className}
+        role="menu"
+        aria-orientation={this.props.horizontal ? 'horizontal' : 'vertical'}>
         {this.props.children}
       </div>
     )
@@ -72,7 +74,8 @@ export class MenuItem extends React.Component {
         onMouseOver={this.onMouseOver}
         onMouseOut={this.onMouseOut}
         onClick={this.onClick}
-        >
+        role="menuitem"
+        aria-disabled={this.props.disabled}>
         {this.props.children}
       </div>
     )
