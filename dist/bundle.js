@@ -22699,7 +22699,7 @@ exports = module.exports = __webpack_require__(188)(undefined);
 
 
 // module
-exports.push([module.i, "/*\n * Copyright (C) 2017 cpsdqs\n *\n * This file is part of Harmony.\n *\n * Harmony is free software: you can redistribute it and/or modify\n * it under the terms of the GNU General Public License as published by\n * the Free Software Foundation, either version 3 of the License, or\n * (at your option) any later version.\n *\n * Harmony is distributed in the hope that it will be useful,\n * but WITHOUT ANY WARRANTY; without even the implied warranty of\n * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the\n * GNU General Public License for more details.\n *\n * You should have received a copy of the GNU General Public License\n * along with Harmony. If not, see <http://www.gnu.org/licenses/>.\n */\nbody {\n  position: fixed;\n  cursor: default;\n}\n.harmony-app {\n  position: fixed;\n  display: grid;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  grid-template-columns: 1fr;\n  grid-template-rows: 24px 1fr 72px;\n  font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', 'Roboto', 'Lucida Grande', 'Segoe UI', 'Oxygen Sans', 'Ubuntu', 'Cantarell', sans-serif;\n  font-size: 12px;\n  -webkit-user-select: none;\n  -moz-user-select: none;\n  user-select: none;\n}\n/*\n * Copyright (C) 2017 cpsdqs\n *\n * This file is part of Harmony.\n *\n * Harmony is free software: you can redistribute it and/or modify\n * it under the terms of the GNU General Public License as published by\n * the Free Software Foundation, either version 3 of the License, or\n * (at your option) any later version.\n *\n * Harmony is distributed in the hope that it will be useful,\n * but WITHOUT ANY WARRANTY; without even the implied warranty of\n * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the\n * GNU General Public License for more details.\n *\n * You should have received a copy of the GNU General Public License\n * along with Harmony. If not, see <http://www.gnu.org/licenses/>.\n */\n.menu:not(.horizontal) {\n  position: absolute;\n  top: -4px;\n  left: 100%;\n  border-radius: 4px;\n  padding: 4px 0;\n  background: rgba(255, 255, 255, 0.5);\n  -webkit-backdrop-filter: blur(10px);\n  box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.2);\n}\n.menu.horizontal > .menu-item {\n  display: inline-block;\n}\n.menu.horizontal > .menu-item > .menu:not(.horizontal) {\n  top: 100%;\n  left: 0;\n  border-top-left-radius: 0;\n  border-top-right-radius: 0;\n}\n.menu.submenu-above > .menu-item > .menu:not(.horizontal) {\n  top: auto;\n  bottom: 100%;\n  border-radius: 4px;\n  border-bottom-left-radius: 0;\n  border-bottom-right-radius: 0;\n}\n.menu .menu-item {\n  padding: 3px 10px;\n  white-space: nowrap;\n  position: relative;\n  color: #000;\n}\n.menu .menu-item.selected {\n  background: #8c63d9;\n  color: #fff;\n  z-index: 1;\n}\n.menu .menu-item.disabled {\n  opacity: 0.5;\n}\n.menu .menu-item > .shortcut {\n  text-align: right;\n  margin-left: 1em;\n}\n.menu .menu-item:not(.selected) > .menu {\n  display: none;\n}\n/*\n * Copyright (C) 2017 cpsdqs\n *\n * This file is part of Harmony.\n *\n * Harmony is free software: you can redistribute it and/or modify\n * it under the terms of the GNU General Public License as published by\n * the Free Software Foundation, either version 3 of the License, or\n * (at your option) any later version.\n *\n * Harmony is distributed in the hope that it will be useful,\n * but WITHOUT ANY WARRANTY; without even the implied warranty of\n * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the\n * GNU General Public License for more details.\n *\n * You should have received a copy of the GNU General Public License\n * along with Harmony. If not, see <http://www.gnu.org/licenses/>.\n */\n.panel {\n  display: grid;\n  grid-template-rows: 1fr 24px;\n}\n.panel .panel-menu > .menu {\n  height: 100%;\n  box-shadow: none;\n}\n.panel .panel-menu > .menu > .menu-item > .menu {\n  z-index: 100;\n}\n/*\n * Copyright (C) 2017 cpsdqs\n *\n * This file is part of Harmony.\n *\n * Harmony is free software: you can redistribute it and/or modify\n * it under the terms of the GNU General Public License as published by\n * the Free Software Foundation, either version 3 of the License, or\n * (at your option) any later version.\n *\n * Harmony is distributed in the hope that it will be useful,\n * but WITHOUT ANY WARRANTY; without even the implied warranty of\n * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the\n * GNU General Public License for more details.\n *\n * You should have received a copy of the GNU General Public License\n * along with Harmony. If not, see <http://www.gnu.org/licenses/>.\n */\n.node-panel .scroll-container {\n  position: relative;\n  width: 100%;\n  height: 100%;\n  overflow: hidden;\n  background: #ddd;\n}\n.node-panel .scroll-container .view-transform-origin {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n}\n.node-panel .scroll-container .view-transform-origin .node {\n  background: rgba(0, 0, 0, 0.1);\n  border-radius: 4px;\n  border: 1px solid #aaa;\n  position: absolute;\n}\n.node-panel .scroll-container .view-transform-origin .node .node-header {\n  padding: 5px 10px;\n  background: #8c63d9;\n  color: #fff;\n  border-radius: 3px 3px 0 0;\n}\n.node-panel .scroll-container .view-transform-origin .node .node-header .node-name {\n  font-weight: bolder;\n}\n.node-panel .scroll-container .view-transform-origin .node:focus {\n  outline: none;\n  border-color: #fff;\n  box-shadow: 0 0 10px #fff;\n}\n.node-panel .scroll-container .view-transform-origin .node .node-properties {\n  padding: 5px 0;\n}\n.node-panel .scroll-container .view-transform-origin .node .node-properties .node-property {\n  display: flex;\n  position: relative;\n  padding: 5px 10px;\n}\n.node-panel .scroll-container .view-transform-origin .node .node-properties .node-property .property-port {\n  position: absolute;\n  width: 8px;\n  height: 8px;\n  border: 1px solid rgba(0, 0, 0, 0.2);\n  background: #000;\n  border-radius: 50%;\n  z-index: 1;\n}\n.node-panel .scroll-container .view-transform-origin .node .node-properties .node-property.audio-property .property-port {\n  background: #3163ff;\n}\n.node-panel .scroll-container .view-transform-origin .node .node-properties .node-property.value-property .property-port {\n  background: #7d7d7d;\n}\n.node-panel .scroll-container .view-transform-origin .node .node-properties .node-property .property-name {\n  white-space: nowrap;\n  text-overflow: ellipsis;\n  overflow: hidden;\n  flex: 1;\n  min-width: 40px;\n}\n.node-panel .scroll-container .view-transform-origin .node .node-properties .node-property.input .property-port {\n  left: -5px;\n}\n.node-panel .scroll-container .view-transform-origin .node .node-properties .node-property.output {\n  text-align: right;\n}\n.node-panel .scroll-container .view-transform-origin .node .node-properties .node-property.output .property-port {\n  right: -5px;\n}\n.node-panel .scroll-container .view-transform-origin .node .node-properties .node-property.select-property .property-port {\n  display: none;\n}\n.node-panel .scroll-container .view-transform-origin .node .width-adjust {\n  position: absolute;\n  top: 0;\n  right: -3px;\n  height: 100%;\n  width: 6px;\n  cursor: col-resize;\n}\n", ""]);
+exports.push([module.i, "/*\n * Copyright (C) 2017 cpsdqs\n *\n * This file is part of Harmony.\n *\n * Harmony is free software: you can redistribute it and/or modify\n * it under the terms of the GNU General Public License as published by\n * the Free Software Foundation, either version 3 of the License, or\n * (at your option) any later version.\n *\n * Harmony is distributed in the hope that it will be useful,\n * but WITHOUT ANY WARRANTY; without even the implied warranty of\n * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the\n * GNU General Public License for more details.\n *\n * You should have received a copy of the GNU General Public License\n * along with Harmony. If not, see <http://www.gnu.org/licenses/>.\n */\nbody {\n  position: fixed;\n  cursor: default;\n}\n.harmony-app {\n  position: fixed;\n  display: grid;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  grid-template-columns: 1fr;\n  grid-template-rows: 24px 1fr 72px;\n  font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', 'Roboto', 'Lucida Grande', 'Segoe UI', 'Oxygen Sans', 'Ubuntu', 'Cantarell', sans-serif;\n  font-size: 12px;\n  -webkit-user-select: none;\n  -moz-user-select: none;\n  user-select: none;\n}\n/*\n * Copyright (C) 2017 cpsdqs\n *\n * This file is part of Harmony.\n *\n * Harmony is free software: you can redistribute it and/or modify\n * it under the terms of the GNU General Public License as published by\n * the Free Software Foundation, either version 3 of the License, or\n * (at your option) any later version.\n *\n * Harmony is distributed in the hope that it will be useful,\n * but WITHOUT ANY WARRANTY; without even the implied warranty of\n * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the\n * GNU General Public License for more details.\n *\n * You should have received a copy of the GNU General Public License\n * along with Harmony. If not, see <http://www.gnu.org/licenses/>.\n */\n.menu:not(.horizontal) {\n  position: absolute;\n  top: -4px;\n  left: 100%;\n  border-radius: 4px;\n  padding: 4px 0;\n  background: rgba(255, 255, 255, 0.5);\n  -webkit-backdrop-filter: blur(10px);\n  box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.2);\n}\n.menu.horizontal > .menu-item {\n  display: inline-block;\n}\n.menu.horizontal > .menu-item > .menu:not(.horizontal) {\n  top: 100%;\n  left: 0;\n  border-top-left-radius: 0;\n  border-top-right-radius: 0;\n}\n.menu.submenu-above > .menu-item > .menu:not(.horizontal) {\n  top: auto;\n  bottom: 100%;\n  border-radius: 4px;\n  border-bottom-left-radius: 0;\n  border-bottom-right-radius: 0;\n}\n.menu .menu-item {\n  padding: 3px 10px;\n  white-space: nowrap;\n  position: relative;\n  color: #000;\n}\n.menu .menu-item.selected {\n  background: #8c63d9;\n  color: #fff;\n  z-index: 1;\n}\n.menu .menu-item.disabled {\n  opacity: 0.5;\n}\n.menu .menu-item > .shortcut {\n  text-align: right;\n  margin-left: 1em;\n}\n.menu .menu-item:not(.selected) > .menu {\n  display: none;\n}\n/*\n * Copyright (C) 2017 cpsdqs\n *\n * This file is part of Harmony.\n *\n * Harmony is free software: you can redistribute it and/or modify\n * it under the terms of the GNU General Public License as published by\n * the Free Software Foundation, either version 3 of the License, or\n * (at your option) any later version.\n *\n * Harmony is distributed in the hope that it will be useful,\n * but WITHOUT ANY WARRANTY; without even the implied warranty of\n * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the\n * GNU General Public License for more details.\n *\n * You should have received a copy of the GNU General Public License\n * along with Harmony. If not, see <http://www.gnu.org/licenses/>.\n */\n.panel {\n  display: grid;\n  grid-template-rows: 1fr 24px;\n}\n.panel .panel-menu > .menu {\n  height: 100%;\n  box-shadow: none;\n}\n.panel .panel-menu > .menu > .menu-item > .menu {\n  z-index: 100;\n}\n/*\n * Copyright (C) 2017 cpsdqs\n *\n * This file is part of Harmony.\n *\n * Harmony is free software: you can redistribute it and/or modify\n * it under the terms of the GNU General Public License as published by\n * the Free Software Foundation, either version 3 of the License, or\n * (at your option) any later version.\n *\n * Harmony is distributed in the hope that it will be useful,\n * but WITHOUT ANY WARRANTY; without even the implied warranty of\n * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the\n * GNU General Public License for more details.\n *\n * You should have received a copy of the GNU General Public License\n * along with Harmony. If not, see <http://www.gnu.org/licenses/>.\n */\n.node-panel .scroll-container {\n  position: relative;\n  width: 100%;\n  height: 100%;\n  overflow: hidden;\n  background: #ddd;\n}\n.node-panel .scroll-container .view-transform-origin {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n}\n.node-panel .scroll-container .view-transform-origin .node {\n  background: #ccc;\n  border-radius: 4px;\n  border: 1px solid rgba(0, 0, 0, 0.1);\n  position: absolute;\n}\n.node-panel .scroll-container .view-transform-origin .node .node-header {\n  padding: 5px 10px;\n  background: #8c63d9;\n  color: #fff;\n  border-radius: 3px 3px 0 0;\n}\n.node-panel .scroll-container .view-transform-origin .node .node-header .node-name {\n  font-weight: bolder;\n}\n.node-panel .scroll-container .view-transform-origin .node:focus {\n  outline: none;\n  border-color: #fff;\n  box-shadow: 0 0 10px #fff;\n}\n.node-panel .scroll-container .view-transform-origin .node .node-properties {\n  padding: 5px 0;\n}\n.node-panel .scroll-container .view-transform-origin .node .node-properties .node-property {\n  display: flex;\n  position: relative;\n  padding: 5px 10px;\n}\n.node-panel .scroll-container .view-transform-origin .node .node-properties .node-property .property-port {\n  position: absolute;\n  width: 8px;\n  height: 8px;\n  border: 1px solid rgba(0, 0, 0, 0.2);\n  background: #000;\n  border-radius: 50%;\n  z-index: 1;\n}\n.node-panel .scroll-container .view-transform-origin .node .node-properties .node-property.audio-property .property-port {\n  background: #3163ff;\n}\n.node-panel .scroll-container .view-transform-origin .node .node-properties .node-property.value-property .property-port {\n  background: #7d7d7d;\n}\n.node-panel .scroll-container .view-transform-origin .node .node-properties .node-property .property-name {\n  white-space: nowrap;\n  text-overflow: ellipsis;\n  overflow: hidden;\n  flex: 1;\n  min-width: 40px;\n}\n.node-panel .scroll-container .view-transform-origin .node .node-properties .node-property.input .property-port {\n  left: -5px;\n}\n.node-panel .scroll-container .view-transform-origin .node .node-properties .node-property.output {\n  text-align: right;\n}\n.node-panel .scroll-container .view-transform-origin .node .node-properties .node-property.output .property-port {\n  right: -5px;\n}\n.node-panel .scroll-container .view-transform-origin .node .node-properties .node-property.select-property {\n  flex-direction: column;\n}\n.node-panel .scroll-container .view-transform-origin .node .node-properties .node-property.select-property .property-port {\n  display: none;\n}\n.node-panel .scroll-container .view-transform-origin .node .node-properties .node-property.select-property .property-control select {\n  -webkit-appearance: none;\n  -moz-appearance: none;\n  width: 100%;\n  border: none;\n  border-radius: 4px;\n  background: #eee;\n  font: inherit;\n  padding: 3px 10px;\n}\n.node-panel .scroll-container .view-transform-origin .node .node-properties .node-property.hidden {\n  display: none;\n}\n.node-panel .scroll-container .view-transform-origin .node .width-adjust {\n  position: absolute;\n  top: 0;\n  right: -3px;\n  height: 100%;\n  width: 6px;\n  cursor: col-resize;\n}\n", ""]);
 
 // exports
 
@@ -23834,7 +23834,24 @@ var NodeView = function (_React$Component) {
     key: 'getComputed',
     value: function getComputed() {
       // TODO
-      var properties = {};
+      var node = { properties: {} };
+
+      var _loop = function _loop(property) {
+        var computedProperty = {
+          getComputedValue: function getComputedValue() {
+            if (property.getComputedValue) {
+              return property.getComputedValue(node);
+            } else if (property.type === 'select') {
+              return property.value;
+            }
+          },
+          setComputedValue: function setComputedValue(value) {
+            // TODO
+          }
+        };
+        node.properties[property.key] = computedProperty;
+      };
+
       var _iteratorNormalCompletion = true;
       var _didIteratorError = false;
       var _iteratorError = undefined;
@@ -23843,15 +23860,7 @@ var NodeView = function (_React$Component) {
         for (var _iterator = this.state.properties[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
           var property = _step.value;
 
-          var computedProperty = {
-            getComputedValue: function getComputedValue() {
-              // TODO
-            },
-            setComputedValue: function setComputedValue(value) {
-              // TODO
-            }
-          };
-          properties[property.key] = computedProperty;
+          _loop(property);
         }
       } catch (err) {
         _didIteratorError = true;
@@ -23868,12 +23877,99 @@ var NodeView = function (_React$Component) {
         }
       }
 
-      return { properties: properties };
+      return node;
     }
   }, {
     key: 'render',
     value: function render() {
+      var _this2 = this;
+
+      var computed = this.getComputed();
       var properties = [];
+
+      var _loop2 = function _loop2(property) {
+        var control = '';
+        if (property.type === 'select') {
+          var options = [];
+          for (var option in property.options) {
+            options.push(_react2.default.createElement(
+              'option',
+              { value: option, key: option },
+              property.options[option]
+            ));
+          }
+          control = _react2.default.createElement(
+            'select',
+            {
+              onChange: function onChange(e) {
+                var properties = [].concat(_toConsumableArray(_this2.state.properties));
+                var _iteratorNormalCompletion3 = true;
+                var _didIteratorError3 = false;
+                var _iteratorError3 = undefined;
+
+                try {
+                  for (var _iterator3 = properties[Symbol.iterator](), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
+                    var prop = _step3.value;
+
+                    if (prop.key === property.key) {
+                      prop.value = e.target.value;
+                      break;
+                    }
+                  }
+                } catch (err) {
+                  _didIteratorError3 = true;
+                  _iteratorError3 = err;
+                } finally {
+                  try {
+                    if (!_iteratorNormalCompletion3 && _iterator3.return) {
+                      _iterator3.return();
+                    }
+                  } finally {
+                    if (_didIteratorError3) {
+                      throw _iteratorError3;
+                    }
+                  }
+                }
+
+                _this2.setState({ properties: properties });
+              },
+              value: property.value },
+            options
+          );
+        }
+        var className = 'node-property';
+        className += ' ' + property.type + '-property';
+        className += ' ' + property.position;
+        if (property.isVisible) {
+          if (!property.isVisible(computed.properties[property.key], computed)) {
+            className += ' hidden';
+          }
+        }
+        var propertyName = property.name;
+        if (propertyName instanceof Function) {
+          propertyName = propertyName(computed.properties[property.key], computed);
+        }
+
+        properties.push(_react2.default.createElement(
+          'div',
+          {
+            className: className,
+            key: property.key
+          },
+          _react2.default.createElement('div', { className: 'property-port' }),
+          _react2.default.createElement(
+            'div',
+            { className: 'property-name' },
+            propertyName
+          ),
+          _react2.default.createElement(
+            'div',
+            { className: 'property-control' },
+            control
+          )
+        ));
+      };
+
       var _iteratorNormalCompletion2 = true;
       var _didIteratorError2 = false;
       var _iteratorError2 = undefined;
@@ -23882,40 +23978,7 @@ var NodeView = function (_React$Component) {
         for (var _iterator2 = this.props.properties[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
           var property = _step2.value;
 
-          var control = '';
-          if (property.type === 'select') {
-            var options = [];
-            for (var option in property.value) {
-              options.push(_react2.default.createElement(
-                'option',
-                { value: option },
-                property.value[option]
-              ));
-            }
-            control = _react2.default.createElement(
-              'select',
-              null,
-              options
-            );
-          }
-          properties.push(_react2.default.createElement(
-            'div',
-            {
-              className: 'node-property ' + property.type + '-property ' + property.position,
-              key: property.key
-            },
-            _react2.default.createElement('div', { className: 'property-port' }),
-            _react2.default.createElement(
-              'div',
-              { className: 'property-name' },
-              property.name
-            ),
-            _react2.default.createElement(
-              'div',
-              { className: 'property-control' },
-              control
-            )
-          ));
+          _loop2(property);
         }
       } catch (err) {
         _didIteratorError2 = true;
@@ -24008,13 +24071,13 @@ exports.default = {
       position: 'output',
       name: 'Result',
       key: 'result',
-      value: function value(property, node) {
+      getComputedValue: function getComputedValue(property, node) {
         var updateProperty = function updateMathResult() {
           var type = node.properties.operation.getComputedValue();
           var a = node.properties.valuea.getComputedValue();
           var b = node.properties.valueb.getComputedValue();
           var value = 0;
-          if (type === 'add') value = a + b;else if (type === 'subtract') value = a - b;else if (type === 'multiply') value = a * b;else if (type === 'divide') value = a / b;else if (type === 'sine') value = Math.sin(a);else if (type === 'cosine') value = Math.cos(a);else if (type === 'tangent') value = Math.tan(a);else if (type === 'arcsine') value = Math.asin(a);else if (type === 'arccosine') value = Math.acos(a);else if (type === 'arctangent') value = Math.atan(a);else if (type === 'arctangent2') value = Math.atan2(a, b);else if (type === 'power') value = Math.pow(a, b);else if (type === 'logarithm') value = Math.log(a) / Math.log(b);else if (type === 'minimum') value = Math.min(a, b);else if (type === 'maximum') value = Math.max(a, b);else if (type === 'round') value = Math.round(a);else if (type === 'lessThan') value = a < b;else if (type === 'greaterThan') value = a > b;else if (type === 'modulo') value = (a % b + b) % b;else if (type === 'absolute') value = Math.abs(a);
+          if (type === 'add') value = a + b;else if (type === 'subtract') value = a - b;else if (type === 'multiply') value = a * b;else if (type === 'divide') value = a / b;else if (type === 'sine') value = Math.sin(a);else if (type === 'cosine') value = Math.cos(a);else if (type === 'tangent') value = Math.tan(a);else if (type === 'arcsine') value = Math.asin(a);else if (type === 'arccosine') value = Math.acos(a);else if (type === 'arctangent') value = Math.atan(a);else if (type === 'arctangent2') value = Math.atan2(a, b);else if (type === 'root') value = Math.pow(a, 1 / b);else if (type === 'power') value = Math.pow(a, b);else if (type === 'logarithm') value = Math.log(a) / Math.log(b);else if (type === 'minimum') value = Math.min(a, b);else if (type === 'maximum') value = Math.max(a, b);else if (type === 'round') value = Math.round(a);else if (type === 'lessThan') value = a < b;else if (type === 'greaterThan') value = a > b;else if (type === 'modulo') value = (a % b + b) % b;else if (type === 'absolute') value = Math.abs(a);
           property.setComputedValue(value);
         };
         node.properties.valuea.on('change', updateProperty);
@@ -24025,7 +24088,7 @@ exports.default = {
       position: 'input',
       name: 'Operation',
       key: 'operation',
-      value: {
+      options: {
         add: 'Add',
         subtract: 'Subtract',
         multiply: 'Multiply',
@@ -24037,6 +24100,7 @@ exports.default = {
         arccosine: 'Arccosine',
         arctangent: 'Arctangent',
         arctangent2: 'Atan2',
+        root: 'Root',
         power: 'Power',
         logarithm: 'Logarithm',
         minimum: 'Minimum',
@@ -24046,17 +24110,43 @@ exports.default = {
         greaterThan: 'Greater Than',
         modulo: 'Modulo',
         absolute: 'Absolute'
-      }
+      },
+      value: 'add'
     }, {
       type: 'value',
       position: 'input',
-      name: 'Value',
+      name: function name(property, node) {
+        var type = node.properties.operation.getComputedValue();
+        if (type === 'add') return 'Augend';
+        if (type === 'subtract') return 'Minuend';
+        if (type === 'multiply') return 'Multiplicand';
+        if (type === 'divide') return 'Dividend';
+        if (type === 'arctangent2') return 'Y';
+        if (type.startsWith('arc')) return 'Angle';
+        if (type === 'root') return 'Radicand';
+        if (type === 'power') return 'Base';
+        return 'Value';
+      },
+
       key: 'valuea',
       value: 0
     }, {
       type: 'value',
       position: 'input',
-      name: 'Value',
+      name: function name(property, node) {
+        var type = node.properties.operation.getComputedValue();
+        if (type === 'add') return 'Addend';
+        if (type === 'subtract') return 'Subtrahend';
+        if (type === 'multiply') return 'Multiplier';
+        if (type === 'divide') return 'Divisor';
+        if (type === 'arctangent2') return 'X';
+        if (type === 'root') return 'Degree';
+        if (type === 'power') return 'Exponent';
+        if (type === 'logarithm') return 'Base';
+        if (type === 'modulo') return 'Mod';
+        return 'Value';
+      },
+
       key: 'valueb',
       isVisible: function isVisible(property, node) {
         var type = node.properties.operation.getComputedValue();

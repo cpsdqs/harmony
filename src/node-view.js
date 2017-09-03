@@ -49,46 +49,72 @@ export default class NodeView extends React.Component {
 
   getComputed () {
     // TODO
-    let properties = {}
+    let node = { properties: {} }
     for (let property of this.state.properties) {
       let computedProperty = {
         getComputedValue () {
-          // TODO
+          if (property.getComputedValue) {
+            return property.getComputedValue(node)
+          } else if (property.type === 'select') {
+            return property.value
+          }
         },
         setComputedValue (value) {
           // TODO
         }
       }
-      properties[property.key] = computedProperty
+      node.properties[property.key] = computedProperty
     }
-    return { properties }
+    return node
   }
 
   render () {
+    const computed = this.getComputed()
     const properties = []
     for (const property of this.props.properties) {
       let control = ''
       if (property.type === 'select') {
         let options = []
-        for (let option in property.value) {
+        for (let option in property.options) {
           options.push(
-            <option value={option}>
-              {property.value[option]}
+            <option value={option} key={option}>
+              {property.options[option]}
             </option>
           )
         }
-        control = <select>{options}</select>
+        control = <select
+          onChange={e => {
+            let properties = [...this.state.properties]
+            for (let prop of properties) {
+              if (prop.key === property.key) {
+                prop.value = e.target.value
+                break
+              }
+            }
+            this.setState({ properties: properties })
+          }}
+          value={property.value}>{options}</select>
       }
+      let className = 'node-property'
+      className += ` ${property.type}-property`
+      className += ` ${property.position}`
+      if (property.isVisible) {
+        if (!property.isVisible(computed.properties[property.key], computed)) {
+          className += ` hidden`
+        }
+      }
+      let propertyName = property.name
+      if (propertyName instanceof Function) {
+        propertyName = propertyName(computed.properties[property.key], computed)
+      }
+
       properties.push(
         <div
-          className={`node-property ${property.type}-property ` +
-            property.position}
+          className={className}
           key={property.key}
         >
           <div className="property-port"></div>
-          <div className="property-name">
-            {property.name}
-          </div>
+          <div className="property-name">{propertyName}</div>
           <div className="property-control">{control}</div>
         </div>
       )

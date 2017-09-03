@@ -27,7 +27,7 @@ export default {
         position: 'output',
         name: 'Result',
         key: 'result',
-        value (property, node) {
+        getComputedValue (property, node) {
           let updateProperty = function updateMathResult () {
             let type = node.properties.operation.getComputedValue()
             let a = node.properties.valuea.getComputedValue()
@@ -44,6 +44,7 @@ export default {
             else if (type === 'arccosine') value = Math.acos(a)
             else if (type === 'arctangent') value = Math.atan(a)
             else if (type === 'arctangent2') value = Math.atan2(a, b)
+            else if (type === 'root') value = a ** (1 / b)
             else if (type === 'power') value = a ** b
             else if (type === 'logarithm') value = Math.log(a) / Math.log(b)
             else if (type === 'minimum') value = Math.min(a, b)
@@ -63,7 +64,7 @@ export default {
         position: 'input',
         name: 'Operation',
         key: 'operation',
-        value: {
+        options: {
           add: 'Add',
           subtract: 'Subtract',
           multiply: 'Multiply',
@@ -75,6 +76,7 @@ export default {
           arccosine: 'Arccosine',
           arctangent: 'Arctangent',
           arctangent2: 'Atan2',
+          root: 'Root',
           power: 'Power',
           logarithm: 'Logarithm',
           minimum: 'Minimum',
@@ -84,17 +86,41 @@ export default {
           greaterThan: 'Greater Than',
           modulo: 'Modulo',
           absolute: 'Absolute'
-        }
+        },
+        value: 'add'
       }, {
         type: 'value',
         position: 'input',
-        name: 'Value',
+        name (property, node) {
+          let type = node.properties.operation.getComputedValue()
+          if (type === 'add') return 'Augend'
+          if (type === 'subtract') return 'Minuend'
+          if (type === 'multiply') return 'Multiplicand'
+          if (type === 'divide') return 'Dividend'
+          if (type === 'arctangent2') return 'Y'
+          if (type.startsWith('arc')) return 'Angle'
+          if (type === 'root') return 'Radicand'
+          if (type === 'power') return 'Base'
+          return 'Value'
+        },
         key: 'valuea',
         value: 0
       }, {
         type: 'value',
         position: 'input',
-        name: 'Value',
+        name (property, node) {
+          let type = node.properties.operation.getComputedValue()
+          if (type === 'add') return 'Addend'
+          if (type === 'subtract') return 'Subtrahend'
+          if (type === 'multiply') return 'Multiplier'
+          if (type === 'divide') return 'Divisor'
+          if (type === 'arctangent2') return 'X'
+          if (type === 'root') return 'Degree'
+          if (type === 'power') return 'Exponent'
+          if (type === 'logarithm') return 'Base'
+          if (type === 'modulo') return 'Mod'
+          return 'Value'
+        },
         key: 'valueb',
         isVisible (property, node) {
           let type = node.properties.operation.getComputedValue()
