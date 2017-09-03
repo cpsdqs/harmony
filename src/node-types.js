@@ -135,6 +135,110 @@ export default {
       }
     ]
   },
+  channelMerger: {
+    name: 'Channel Merger',
+    type: 'channelMerger',
+    properties: do {
+      let channels = []
+      for (let i = 0; i < 12; i++) {
+        channels.push({
+          type: 'audio',
+          position: 'input',
+          name: `Channel ${i + 1}`,
+          key: `channel${i}`,
+          value: null,
+          isVisible (property, computed) {
+            let channelCount = computed.properties.channels.getComputedValue()
+            let propertyIndex = +property.key.replace(/\D/g, '')
+            if (propertyIndex <= channelCount) return true
+            return false
+          }
+        })
+      }
+      ([
+        {
+          type: 'audio',
+          position: 'output',
+          name: 'Output',
+          key: 'output',
+          value: null
+        },
+        {
+          type: 'select',
+          position: 'input',
+          name: 'Channels',
+          key: 'channels',
+          options: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+          value: 5
+        }
+      ].concat(channels))
+    }
+  },
+  channelSplitter: {
+    name: 'Channel Splitter',
+    type: 'channelSplitter',
+    properties: do {
+      let channels = []
+      for (let i = 0; i < 12; i++) {
+        channels.push({
+          type: 'audio',
+          position: 'output',
+          name: `Channel ${i + 1}`,
+          key: `channel${i}`,
+          value: null,
+          isVisible (property, computed) {
+            let channelCount = computed.properties.channels.getComputedValue()
+            let propertyIndex = +property.key.replace(/\D/g, '')
+            if (propertyIndex <= channelCount) return true
+            return false
+          }
+        })
+      }
+      ([
+        {
+          type: 'select',
+          position: 'input',
+          name: 'Channels',
+          key: 'channels',
+          options: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+          value: 5
+        }
+      ].concat(channels).concat([
+        {
+          type: 'audio',
+          position: 'input',
+          name: 'Input',
+          key: 'input',
+          value: null
+        }
+      ]))
+    }
+  },
+  gain: {
+    name: 'Gain',
+    type: 'gain',
+    properties: [
+      {
+        type: 'audio',
+        position: 'output',
+        name: 'Output',
+        key: 'output',
+        value: null
+      }, {
+        type: 'audio',
+        position: 'input',
+        name: 'Input',
+        key: 'Input',
+        value: null
+      }, {
+        type: 'value',
+        position: 'input',
+        name: 'Gain',
+        key: 'gain',
+        value: null
+      }
+    ]
+  },
   oscillator: {
     name: 'Oscillator',
     type: 'oscillator',
@@ -164,9 +268,66 @@ export default {
       }
     ]
   },
+  delay: {
+    name: 'Delay',
+    type: 'delay',
+    properties: [
+      {
+        type: 'media',
+        position: 'output',
+        name: 'Output',
+        key: 'output',
+        value: null
+      }, {
+        type: 'media',
+        position: 'input',
+        name: 'Input',
+        key: 'input',
+        value: null
+      }, {
+        type: 'value',
+        position: 'input',
+        name: 'Delay',
+        key: 'delay',
+        value: 0
+      }
+    ]
+  },
+  userMediaStreamSource: {
+    name: 'Device Input Stream',
+    type: 'userMediaStreamSource',
+    properties: [
+      {
+        type: 'video',
+        position: 'output',
+        name: 'Video',
+        key: 'video',
+        value: null
+      }, {
+        type: 'audio',
+        position: 'output',
+        name: 'Audio',
+        key: 'audio',
+        value: null
+      }
+    ]
+  },
   output: {
     name: 'Output',
     type: 'output',
+    properties: [
+      {
+        type: 'audio',
+        position: 'input',
+        name: 'Audio',
+        key: 'audio',
+        value: null
+      }
+    ]
+  },
+  outputBuffer: {
+    name: 'Recorder',
+    type: 'outputBuffer',
     properties: [
       {
         type: 'audio',

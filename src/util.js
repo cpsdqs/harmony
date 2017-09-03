@@ -28,4 +28,12 @@ const deepClone = function deepClone (obj) {
   return obj
 }
 
-export default { deepClone }
+const mutate = function shallowMutateImmutable (obj, callback) {
+  let clone
+  if (Array.isArray(obj)) clone = [...obj]
+  else clone = { ...obj }
+  callback(clone)
+  return clone
+}
+
+export default { deepClone, mutate }

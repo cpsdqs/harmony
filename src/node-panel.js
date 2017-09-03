@@ -37,16 +37,64 @@ export default class NodePanel extends Panel {
     }
   }
 
-  renderContent () {
-    const position = this.state.position
-    const viewTransform = `translate(${position[0]}px, ${position[1]}px)` +
-      ` scale(${position[2]})`
+  updateNode (node) {
+    this.setState({
+      nodes: util.mutate(this.state.nodes, nodes => {
+        nodes[node.id] = node
+      })
+    })
+  }
 
-    let nodes = []
-    let nodeIndex = {}
-    for (let id in this.state.nodes) {
-      let node = this.state.nodes[id]
-      let nodeView = <NodeView
+  deleteNode (id) {
+    let node = this.state.nodes[id]
+    if (!node) return
+
+    this.setState({
+      nodes: util.mutate(this.state.nodes, nodes => delete nodes[id]),
+      links: util.mutate(this.state.links, links => {
+        for (let property of node.properties) {
+          for (let link of property.links) if (links[link]) delete links[link]
+        }
+      })
+    })
+  }
+
+  renderLink (link, id) {
+    let startX = 0, startY = 0, startDX = 0, startDY = 0
+    let endX = 0, endY = 0, endDX = 0, endDY = 0
+
+    let startNode = this.state.portPositions[link.startNode]
+    let startPosition = startNode[link.startProperty]
+    startX = startPosition.x + this.state.nodes[link.startNode].x
+    startY = startPosition.y + this.state.nodes[link.startNode].y
+
+    if (link.endPosition) {
+      endX = link.endPosition.x
+      endY = link.endPosition.y
+      endDX = -startPosition.facingX
+      endDY = -startPosition.facingY
+    } else {
+      let endNode = this.state.portPositions[link.endNode]
+    }
+
+    let bezierOffset = Math.sqrt(Math.abs(endX - startX)) * 10
+
+    startDX = startPosition.facingX * bezierOffset
+    startDY = startPosition.facingY * bezierOffset
+    endDX *= bezierOffset
+    endDY *= bezierOffset
+
+    let x1 = startX, y1 = startY
+    let x2 = startX + startDX, y2 = startY + startDY
+    let x3 = endX + endDX, y3 = endY + endDY
+    let x4 = endX, y4 = endY
+    let d = `M${x1},${y1} C${x2},${y2} ${x3},${y3} ${x4},${y4}`
+    return <path className="property-link" d={d} key={link.id} />
+  }
+
+  renderNode (node) {
+    return (
+      <NodeView
         x={node.x}
         y={node.y}
         width={node.width}
@@ -56,27 +104,17 @@ export default class NodePanel extends Panel {
         key={node.id}
         properties={node.properties}
         saveState={state => {
-          const nodes = { ...this.state.nodes }
-          const links = { ...this.state.links }
-          if (state.deleted) {
-            for (let property of node.properties) {
-              for (let link of property.links) {
-                delete links[link]
-              }
-            }
-            delete nodes[state.id]
-          } else {
-            delete state.deleted
-            nodes[state.id] = state
-          }
-          this.setState({ nodes, links })
+          if (state.deleted) this.deleteNode(state.id)
+          else this.updateNode(state)
         }}
-        updatePortPositions={(positions) => {
-          const portPositions = { ...this.state.portPositions }
-          portPositions[node.id] = positions
-          this.setState({ portPositions })
+        updatePortPositions={positions => {
+          this.setState({
+            portPositions: util.mutate(this.state.portPositions,
+              portPositions => portPositions[node.id] = positions)
+          })
         }}
         onPortDrag={propertyKey => {
+          // TODO: refactor
           const links = { ...this.state.links }
           let id
           do {
@@ -85,6 +123,7 @@ export default class NodePanel extends Panel {
 
           let endPosition = this.state.portPositions[node.id][propertyKey]
           links[id] = {
+            id,
             startNode: node.id,
             startProperty: propertyKey,
             endPosition: {
@@ -99,39 +138,22 @@ export default class NodePanel extends Panel {
           return id
         }}
         />
-      nodes.push(nodeView)
-      nodeIndex[node.id] = nodeView
+    )
+  }
+
+  renderContent () {
+    const position = this.state.position
+    const viewTransform = `translate(${position[0]}px, ${position[1]}px)` +
+      ` scale(${position[2]})`
+
+    let nodes = []
+    for (let id in this.state.nodes) {
+      nodes.push(this.renderNode(this.state.nodes[id]))
     }
 
     let links = []
     for (let id in this.state.links) {
-      let link = this.state.links[id]
-      let startX = 0, startY = 0, startDX = 0, startDY = 0
-      let endX = 100, endY = 100, endDX = 0, endDY = 0
-      let bezierOffset = 100
-
-      let startNode = this.state.portPositions[link.startNode]
-      let startPosition = startNode[link.startProperty]
-      startX = startPosition.x + this.state.nodes[link.startNode].x
-      startY = startPosition.y + this.state.nodes[link.startNode].y
-      startDX = startPosition.facingX * bezierOffset
-      startDY = startPosition.facingY * bezierOffset
-
-      if (link.endPosition) {
-        endX = link.endPosition.x
-        endY = link.endPosition.y
-        endDX = -startPosition.facingX * bezierOffset
-        endDY = -startPosition.facingY * bezierOffset
-      } else {
-        let endNode = this.state.portPositions[link.endNode]
-      }
-      let x1 = startX, y1 = startY
-      let x2 = startX + startDX, y2 = startY + startDY
-      let x3 = endX + endDX, y3 = endY + endDY
-      let x4 = endX, y4 = endY
-      let d = `M${x1},${y1} C${x2},${y2} ${x3},${y3} ${x4},${y4}`
-      let path = <path className="property-link" d={d} key={id} />
-      links.push(path)
+      links.push(this.renderLink(this.state.links[id]))
     }
 
     return (
@@ -141,9 +163,7 @@ export default class NodePanel extends Panel {
         onWheel={this.onWheel}>
         <div className="view-transform-origin"
           style={{transform: viewTransform}}>
-          <svg className="node-links-container">
-            {links}
-          </svg>
+          <svg className="node-links-container">{links}</svg>
           {nodes}
         </div>
       </div>
@@ -200,7 +220,8 @@ export default class NodePanel extends Panel {
     let node = util.deepClone(template)
     nodes[id] = node
     Object.assign(node, {
-      id: id,
+      id,
+      // TODO: project mouse position and use that instead
       x: -this.state.position[0],
       y: -this.state.position[1],
       width: 150
@@ -224,11 +245,37 @@ export default class NodePanel extends Panel {
         <MenuItem>
           Add
           <Menu>
-            <MenuItem onClick={() => addNode('math')}>Math</MenuItem>
-            <MenuItem onClick={() => addNode('oscillator')}>Oscillator</MenuItem>
-            <MenuItem onClick={() => addNode('output')}>Output</MenuItem>
-            <MenuItem onClick={() => addNode('currentTime')}>Current Time</MenuItem>
-            <MenuItem onClick={() => addNode('value')}>Value</MenuItem>
+            <MenuItem>
+              Output
+              <Menu>
+                <MenuItem onClick={() => addNode('output')}>Output</MenuItem>
+                <MenuItem onClick={() => addNode('outputBuffer')}>Recorder</MenuItem>
+              </Menu>
+            </MenuItem>
+            <MenuItem>
+              Input
+              <Menu>
+                <MenuItem onClick={() => addNode('currentTime')}>Current Time</MenuItem>
+                <MenuItem onClick={() => addNode('value')}>Value</MenuItem>
+                <MenuItem onClick={() => addNode('userMediaStreamSource')}>Device Input Stream</MenuItem>
+              </Menu>
+            </MenuItem>
+            <MenuItem>
+              Generate
+              <Menu>
+                <MenuItem onClick={() => addNode('oscillator')}>Oscillator</MenuItem>
+              </Menu>
+            </MenuItem>
+            <MenuItem>
+              Convert
+              <Menu>
+                <MenuItem onClick={() => addNode('math')}>Math</MenuItem>
+                <MenuItem onClick={() => addNode('delay')}>Delay</MenuItem>
+                <MenuItem onClick={() => addNode('channelMerger')}>Channel Merger</MenuItem>
+                <MenuItem onClick={() => addNode('channelSplitter')}>Channel Splitter</MenuItem>
+                <MenuItem onClick={() => addNode('gain')}>Gain</MenuItem>
+              </Menu>
+            </MenuItem>
           </Menu>
         </MenuItem>
       </Menu>
