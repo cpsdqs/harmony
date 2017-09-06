@@ -150,9 +150,7 @@ export default class NodeView extends React.Component {
       <div className={className} key={property.key}>
         <div
           className="property-port"
-          onMouseDown={() => {
-            this.props.onPortDrag(property.key)
-          }}
+          onMouseDown={e => this.props.onPortDrag(e, property.key)}
           ref={`${property.key}Port`}></div>
         <div className="property-name">{propertyName}</div>
         <div className="property-control">{control}</div>

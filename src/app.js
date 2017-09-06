@@ -33,6 +33,16 @@ export default class App extends React.Component {
         duration: 10
       }
     }
+
+    this.forceUpdateBound = () => this.forceUpdate()
+  }
+
+  componentDidMount () {
+    window.addEventListener('resize', this.forceUpdateBound)
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.forceUpdateBound)
   }
 
   render () {

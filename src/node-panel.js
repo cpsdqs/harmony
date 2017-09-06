@@ -29,12 +29,33 @@ export default class NodePanel extends Panel {
     super(props)
 
     this.state = {
+      width: 0,
+      height: 0,
       nodes: this.props.nodes,
       links: this.props.links,
       position: [0, 0, 1],
       portPositions: {},
-      draggingPort: false
+      draggingLink: null
     }
+  }
+
+  updateSize () {
+    let rect = this.refs.scrollContainer.getBoundingClientRect()
+    if (rect.width !== this.state.width || rect.height !== this.state.height) {
+      this.setState({
+        width: rect.width,
+        height: rect.height
+      })
+    }
+  }
+
+  componentDidMount () {
+    this.updateSize()
+  }
+  componentDidUpdate () {
+    requestAnimationFrame(() => {
+      this.updateSize()
+    })
   }
 
   updateNode (node) {
@@ -59,37 +80,75 @@ export default class NodePanel extends Panel {
     })
   }
 
-  renderLink (link, id) {
-    let startX = 0, startY = 0, startDX = 0, startDY = 0
-    let endX = 0, endY = 0, endDX = 0, endDY = 0
+  getBezierPath (start, end) {
+    let bezierAmount = Math.sqrt(Math.abs(end.x - start.x)) * 10
+    let d = `M${start.x},${start.y}`
+    d += ' C' + (start.x + start.fx * bezierAmount) + ','
+    d += start.y + start.fy * bezierAmount
+    d += ' ' + (end.x + end.fx * bezierAmount) + ','
+    d += end.y + end.fy * bezierAmount
+    d += ` ${end.x},${end.y}`
+    return d
+  }
 
-    let startNode = this.state.portPositions[link.startNode]
-    let startPosition = startNode[link.startProperty]
-    startX = startPosition.x + this.state.nodes[link.startNode].x
-    startY = startPosition.y + this.state.nodes[link.startNode].y
+  renderLink (link, dragging = false) {
+    let start = { x: 0, y: 0, fx: 0, fy: 0 }
+    let end = { x: 0, y: 0, fx: 0, fy: 0 }
 
-    if (link.endPosition) {
-      endX = link.endPosition.x
-      endY = link.endPosition.y
-      endDX = -startPosition.facingX
-      endDY = -startPosition.facingY
+    let startNode, startPosition
+    if (dragging) {
+      startNode = this.state.nodes[link.startNode]
+      let startPorts = this.state.portPositions[link.startNode]
+      startPosition = startPorts[link.startProperty]
     } else {
-      let endNode = this.state.portPositions[link.endNode]
+      startNode = this.state.nodes[link.outNode]
+      let startPorts = this.state.portPositions[link.outNode]
+      startPosition = startPorts[link.outProperty]
     }
 
-    let bezierOffset = Math.sqrt(Math.abs(endX - startX)) * 10
+    start.x = startNode.x + startPosition.x
+    start.y = startNode.y + startPosition.y
+    start.fx = startPosition.facingX
+    start.fy = startPosition.facingY
 
-    startDX = startPosition.facingX * bezierOffset
-    startDY = startPosition.facingY * bezierOffset
-    endDX *= bezierOffset
-    endDY *= bezierOffset
+    let endNode, endPosition
+    if (dragging) {
+      if (link.endNode) {
+        endNode = this.state.nodes[link.endNode]
+        let endPorts = this.state.portPositions[link.endNode]
+        endPosition = endPorts[link.endProperty]
+      } else {
+        endNode = { x: link.endX, y: link.endY }
+        endPosition = {
+          x: 0,
+          y: 0,
+          facingX: -Math.sign(link.endX - start.x),
+          facingY: 0
+        }
+      }
+    } else {
+      endNode = this.state.nodes[link.inNode]
+      let endPorts = this.state.portPositions[link.inNode]
+      endPosition = endPorts[link.inProperty]
+    }
 
-    let x1 = startX, y1 = startY
-    let x2 = startX + startDX, y2 = startY + startDY
-    let x3 = endX + endDX, y3 = endY + endDY
-    let x4 = endX, y4 = endY
-    let d = `M${x1},${y1} C${x2},${y2} ${x3},${y3} ${x4},${y4}`
-    return <path className="property-link" d={d} key={link.id} />
+    end.x = endNode.x + endPosition.x
+    end.y = endNode.y + endPosition.y
+    end.fx = endPosition.facingX
+    end.fy = endPosition.facingY
+
+    let className = 'property-link'
+    if (dragging) className += ' dragging'
+
+    return (
+      <path
+        className={className}
+        d={this.getBezierPath(start, end)}
+        key={link.id}
+        onMouseDown={e => console.log(e)}
+        onKeyDown={e => console.log(e)}
+        />
+    )
   }
 
   renderNode (node) {
@@ -113,30 +172,7 @@ export default class NodePanel extends Panel {
               portPositions => portPositions[node.id] = positions)
           })
         }}
-        onPortDrag={propertyKey => {
-          // TODO: refactor
-          const links = { ...this.state.links }
-          let id
-          do {
-            id = Math.random().toString(36)
-          } while (id in links)
-
-          let endPosition = this.state.portPositions[node.id][propertyKey]
-          links[id] = {
-            id,
-            startNode: node.id,
-            startProperty: propertyKey,
-            endPosition: {
-              x: endPosition.x + node.x,
-              y: endPosition.y + node.y
-            }
-          }
-          this.setState({
-            links,
-            draggingPort: id
-          })
-          return id
-        }}
+        onPortDrag={(e, key) => this.beginLinkDrag(e, node.id, key)}
         />
     )
   }
@@ -145,6 +181,9 @@ export default class NodePanel extends Panel {
     const position = this.state.position
     const viewTransform = `translate(${position[0]}px, ${position[1]}px)` +
       ` scale(${position[2]})`
+
+    let { width, height } = this.state
+    const viewOffset = `translate(${width / 2}px, ${height / 2}px)`
 
     let nodes = []
     for (let id in this.state.nodes) {
@@ -155,38 +194,201 @@ export default class NodePanel extends Panel {
     for (let id in this.state.links) {
       links.push(this.renderLink(this.state.links[id]))
     }
+    if (this.state.draggingLink) {
+      links.push(this.renderLink(this.state.draggingLink, true))
+    }
 
     return (
-      <div className="scroll-container"
+      <div ref="scrollContainer" className="scroll-container"
         onMouseMove={this.onMouseMove}
         onMouseUp={this.onMouseUp}
         onWheel={this.onWheel}>
+        <svg className="node-links-container">
+          <g className="links-transform-offset"
+            style={{ transform: viewOffset }}>
+            <g className="links-transform-origin"
+              style={{ transform: viewTransform }}>{links}</g>
+          </g>
+        </svg>
         <div className="view-transform-origin"
-          style={{transform: viewTransform}}>
-          <svg className="node-links-container">{links}</svg>
-          {nodes}
-        </div>
+          style={{ transform: viewTransform }}>{nodes}</div>
       </div>
     )
   }
 
+  createLink (fromPort, toPort) {
+    let id
+    this.setState({
+      links: util.mutate(this.state.links, links => {
+        do {
+          id = Math.random().toString(36)
+        } while (id in links)
+
+        links[id] = {
+          id,
+          outNode: fromPort.node,
+          outProperty: fromPort.property,
+          inNode: toPort.node,
+          inProperty: toPort.property
+        }
+
+        let outNode = this.state.nodes[fromPort.node]
+        for (let prop of outNode.properties) {
+          if (prop.key === fromPort.property) {
+            prop.links.push(id)
+            break
+          }
+        }
+
+        let inNode = this.state.nodes[toPort.node]
+        for (let prop of inNode.properties) {
+          if (prop.key === toPort.property) {
+            prop.links.push(id)
+            break
+          }
+        }
+      })
+    })
+  }
+
+  screenToSpace (x, y) {
+    let rect = this.refs.scrollContainer.getBoundingClientRect()
+    x = x - rect.left - rect.width / 2
+    y = y - rect.top - rect.height / 2
+    x *= this.state.position[2]
+    y *= this.state.position[2]
+    x -= this.state.position[0]
+    y -= this.state.position[1]
+    return { x, y }
+  }
+
+  findClosestPort (x, y, checkValid) {
+    checkValid = checkValid || (() => true)
+
+    let closestNode = null
+    let closestProperty = null
+    let closestDistance = Infinity
+
+    for (let id in this.state.nodes) {
+      let node = this.state.nodes[id]
+      let portPositions = this.state.portPositions[id]
+      for (let key in portPositions) {
+        let position = portPositions[key]
+        let distance = Math.hypot(position.x + node.x - x,
+          position.y + node.y - y)
+        if (distance < closestDistance && checkValid(id, key)) {
+          closestNode = id
+          closestProperty = key
+          closestDistance = distance
+        }
+      }
+    }
+
+    return {
+      node: closestNode,
+      property: closestProperty,
+      distance: closestDistance
+    }
+  }
+
+  beginLinkDrag (e, id, property) {
+    let position = this.screenToSpace(e.clientX, e.clientY)
+    let link = {
+      id: 'dragging',
+      startNode: id,
+      startProperty: property,
+      endNode: null,
+      endProperty: null,
+      endX: position.x,
+      endY: position.y
+    }
+    this.setState({
+      draggingLink: link
+    })
+  }
+
+  isValidLink (start, end) {
+    let startNode = this.state.nodes[start.node]
+    let endNode = this.state.nodes[end.node]
+
+    if (startNode === endNode) return false
+
+    let startProperty, endProperty
+    for (let prop of startNode.properties) {
+      if (prop.key === start.property) {
+        startProperty = prop
+        break
+      }
+    }
+    for (let prop of endNode.properties) {
+      if (prop.key === end.property) {
+        endProperty = prop
+        break
+      }
+    }
+
+    if (startProperty.position === endProperty.position) return false
+
+    return true
+  }
+
   onMouseMove = e => {
-    if (this.state.draggingPort) {
-      const links = { ...this.state.links }
-      let link = { ...links[this.state.draggingPort] }
-      link.endPosition.x = e.pageX - this.state.position[0]
-      link.endPosition.y = e.pageY - this.state.position[1]
-      link[this.state.draggingPort] = link
-      this.setState({ links })
+    if (this.state.draggingLink) {
+      this.setState({
+        draggingLink: util.mutate(this.state.draggingLink, link => {
+          let position = this.screenToSpace(e.clientX, e.clientY)
+          let closest = this.findClosestPort(position.x, position.y,
+            (id, property) => {
+              return this.isValidLink({
+                node: link.startNode,
+                property: link.startProperty
+              }, { node: id, property })
+          })
+
+          // MARKER: HERE BE MAGIC NUMBER
+          if (closest.distance < 15) {
+            link.endNode = closest.node
+            link.endProperty = closest.property
+          } else {
+            link.endX = position.x
+            link.endY = position.y
+            link.endNode = link.endProperty = null
+          }
+        })
+      })
     }
   }
 
   onMouseUp = e => {
-    if (this.state.draggingPort) {
-      // TODO
-      this.setState({
-        draggingPort: false
-      })
+    if (this.state.draggingLink) {
+      let draggingLink = this.state.draggingLink
+
+      this.setState({ draggingLink: null })
+
+      if (draggingLink.endNode) {
+        let endNode = this.state.nodes[draggingLink.endNode]
+        let endProperty
+        for (let property of endNode.properties) {
+          if (property.key === draggingLink.endProperty) {
+            endProperty = property
+            break
+          }
+        }
+
+        let outPort = {
+          node: draggingLink.startNode,
+          property: draggingLink.startProperty
+        }
+        let inPort = {
+          node: draggingLink.endNode,
+          property: draggingLink.endProperty
+        }
+        if (endProperty.position === 'output') {
+          [outPort, inPort] = [inPort, outPort]
+        }
+
+        this.createLink(outPort, inPort)
+      }
     }
   }
 
