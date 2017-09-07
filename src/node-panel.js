@@ -420,6 +420,19 @@ export default class NodePanel extends Panel {
 
     if (startProperty.position === endProperty.position) return false
 
+    // check for duplicates
+    for (let id of startProperty.links) {
+      let link = this.state.links[id]
+      let outPort = endProperty.position === 'output' ? end : start
+      let inPort = endProperty.position === 'output' ? start : end
+
+      if (link.outNode === outPort.node && link.inNode === inPort.node &&
+        link.outProperty === outPort.property &&
+        link.inProperty === inPort.property) {
+        return false
+      }
+    }
+
     return true
   }
 
