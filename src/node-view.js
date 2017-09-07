@@ -25,8 +25,6 @@ export default class NodeView extends React.Component {
     super(props)
 
     this.state = {
-      x: props.x,
-      y: props.y,
       width: props.width,
       name: props.name,
       type: props.type,
@@ -36,8 +34,8 @@ export default class NodeView extends React.Component {
 
   saveState () {
     let state = {
-      x: this.state.x,
-      y: this.state.y,
+      x: this.props.x,
+      y: this.props.y,
       width: this.state.width,
       name: this.state.name,
       type: this.state.type,
@@ -166,13 +164,15 @@ export default class NodeView extends React.Component {
       properties.push(this.renderProperty(property, computed))
     }
 
+    let className = 'node'
+    if (this.props.selected) className += ' selected'
+
     return (
-      <div className="node"
+      <div className={className}
         style={{
-          transform: `translate(${this.state.x}px, ${this.state.y}px)`,
+          transform: `translate(${this.props.x}px, ${this.props.y}px)`,
           width: this.state.width
         }}
-        tabIndex={-1}
         onKeyDown={this.onKeyDown}
         onMouseDown={this.onMouseDown}
         onBlur={this.onBlur}
@@ -195,6 +195,7 @@ export default class NodeView extends React.Component {
 
   onMouseMove = (e) => {
     // TODO: refactor
+    return
     if (this.moving) {
       let [lastX, lastY] = this._lastMousePosition
       if (Number.isFinite(lastX) && Number.isFinite(lastY)) {
@@ -221,6 +222,7 @@ export default class NodeView extends React.Component {
     }
   }
   onMouseDown = e => {
+    if (this.props.onMouseDown) this.props.onMouseDown(e)
     if (this.moving || this.adjustingWidth) {
       this.moving = false
       this.adjustingWidth = false

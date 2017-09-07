@@ -35,17 +35,50 @@ export default class NodePanel extends Panel {
       links: this.props.links,
       position: [0, 0, 1],
       portPositions: {},
-      draggingLink: null
+      draggingLink: null,
+      selection: [],
+      grabbedSelected: true
     }
+
+    this.panelProperties = {
+      tabIndex: 0,
+      onKeyDown: this.onKeyDown
+    }
+
+    this.lastMousePosition = { x: 0, y: 0 }
+
+    const self = this
+
+    // because React does not immediately update this.state and because there
+    // may be multiple writes per frame, this stateBuffer will act as a proxy.
+    this._stateBuffer = Object.assign({}, this.state)
+    this.stateBuffer = new Proxy(this._stateBuffer, {
+      set (target, key, value, receiver) {
+        target[key] = value
+        self.scheduleStateUpdateFromBuffer()
+        return true
+      }
+    })
+  }
+
+  scheduleStateUpdateFromBuffer () {
+    clearImmediate(this._bufferStateUpdateTimeout)
+    this._bufferStateUpdateTimeout = setImmediate(() => {
+      let deltas = {}
+      for (let i in this.stateBuffer) {
+        if (this.state[i] !== this.stateBuffer[i]) {
+          deltas[i] = this.stateBuffer[i]
+        }
+      }
+      this.setState(deltas)
+    })
   }
 
   updateSize () {
     let rect = this.refs.scrollContainer.getBoundingClientRect()
     if (rect.width !== this.state.width || rect.height !== this.state.height) {
-      this.setState({
-        width: rect.width,
-        height: rect.height
-      })
+      this.stateBuffer.width = rect.width,
+      this.stateBuffer.height = rect.height
     }
   }
 
@@ -59,10 +92,38 @@ export default class NodePanel extends Panel {
   }
 
   updateNode (node) {
-    this.setState({
-      nodes: util.mutate(this.state.nodes, nodes => {
-        nodes[node.id] = node
-      })
+    this.stateBuffer.nodes = util.mutate(this.stateBuffer.nodes, nodes => {
+      nodes[node.id] = node
+    })
+  }
+
+  deleteLink (id) {
+    let link = this.state.links[id]
+    if (!link) return
+
+    this.stateBuffer.selection = util.mutate(this.stateBuffer.selection,
+      selection => {
+      let selectionID = 'l' + id
+      if (selection.includes(selectionID)) {
+        selection.splice(selection.indexOf(selectionID), 1)
+      }
+    })
+    this.stateBuffer.nodes = util.mutate(this.stateBuffer.nodes, nodes => {
+      let properties = []
+
+      let outNode = this.state.nodes[link.outNode]
+      let inNode = this.state.nodes[link.inNode]
+      if (outNode) properties.push(...outNode.properties)
+      if (inNode) properties.push(...inNode.properties)
+
+      for (let property of properties) {
+        if (property.links.includes(link.id)) {
+          property.links.splice(property.links.indexOf(link.id), 1)
+        }
+      }
+    })
+    this.stateBuffer.links = util.mutate(this.stateBuffer.links, links => {
+      delete links[id]
     })
   }
 
@@ -70,14 +131,22 @@ export default class NodePanel extends Panel {
     let node = this.state.nodes[id]
     if (!node) return
 
-    this.setState({
-      nodes: util.mutate(this.state.nodes, nodes => delete nodes[id]),
-      links: util.mutate(this.state.links, links => {
-        for (let property of node.properties) {
-          for (let link of property.links) if (links[link]) delete links[link]
-        }
-      })
+    this.stateBuffer.selection = util.mutate(this.state.selection,
+      selection => {
+      let selectionID = 'n' + id
+      if (selection.includes(selectionID)) {
+        selection.splice(selection.indexOf(selectionID), 1)
+      }
     })
+    this.stateBuffer.nodes = util.mutate(this.stateBuffer.nodes, nodes => {
+      delete nodes[id]
+    })
+
+    for (let property of node.properties) {
+      for (let link of property.links) {
+        if (this.stateBuffer.links[link]) this.deleteLink(link)
+      }
+    }
   }
 
   getBezierPath (start, end) {
@@ -106,6 +175,11 @@ export default class NodePanel extends Panel {
       startPosition = startPorts[link.outProperty]
     }
 
+    if (!startNode || !startPosition) {
+      console.warn('Tried to render link ' + link.id + ' with no start port')
+      return ''
+    }
+
     start.x = startNode.x + startPosition.x
     start.y = startNode.y + startPosition.y
     start.fx = startPosition.facingX
@@ -132,6 +206,11 @@ export default class NodePanel extends Panel {
       endPosition = endPorts[link.inProperty]
     }
 
+    if (!endNode || !endPosition) {
+      console.warn('Tried to render link ' + link.id + ' with no end port')
+      return ''
+    }
+
     end.x = endNode.x + endPosition.x
     end.y = endNode.y + endPosition.y
     end.fx = endPosition.facingX
@@ -139,14 +218,21 @@ export default class NodePanel extends Panel {
 
     let className = 'property-link'
     if (dragging) className += ' dragging'
+    if (this.state.selection.includes('l' + link.id)) className += ' selected'
 
     return (
       <path
         className={className}
         d={this.getBezierPath(start, end)}
         key={link.id}
-        onMouseDown={e => console.log(e)}
-        onKeyDown={e => console.log(e)}
+        onMouseDown={e => {
+          this.stateBuffer.selection = util.mutate(this.stateBuffer.selection,
+            selection => {
+            let selectionID = 'l' + link.id
+            if (!e.shiftKey) selection.splice(0)
+            if (!selection.includes(selectionID)) selection.push(selectionID)
+          })
+        }}
         />
     )
   }
@@ -162,17 +248,25 @@ export default class NodePanel extends Panel {
         id={node.id}
         key={node.id}
         properties={node.properties}
+        selected={this.state.selection.includes('n' + node.id)}
         saveState={state => {
           if (state.deleted) this.deleteNode(state.id)
           else this.updateNode(state)
         }}
         updatePortPositions={positions => {
-          this.setState({
-            portPositions: util.mutate(this.state.portPositions,
+          this.stateBuffer.portPositions =
+            util.mutate(this.stateBuffer.portPositions,
               portPositions => portPositions[node.id] = positions)
-          })
         }}
         onPortDrag={(e, key) => this.beginLinkDrag(e, node.id, key)}
+        onMouseDown={e => {
+          this.stateBuffer.selection = util.mutate(this.stateBuffer.selection,
+            selection => {
+            let selectionID = 'n' + node.id
+            if (!e.shiftKey) selection.splice(0) // clear if no ShiftKey
+            if (!selection.includes(selectionID)) selection.push(selectionID)
+          })
+        }}
         />
     )
   }
@@ -200,6 +294,7 @@ export default class NodePanel extends Panel {
 
     return (
       <div ref="scrollContainer" className="scroll-container"
+        onMouseDown={this.onMouseDown}
         onMouseMove={this.onMouseMove}
         onMouseUp={this.onMouseUp}
         onWheel={this.onWheel}>
@@ -218,36 +313,34 @@ export default class NodePanel extends Panel {
 
   createLink (fromPort, toPort) {
     let id
-    this.setState({
-      links: util.mutate(this.state.links, links => {
-        do {
-          id = Math.random().toString(36)
-        } while (id in links)
+    this.stateBuffer.links = util.mutate(this.stateBuffer.links, links => {
+      do {
+        id = Math.random().toString(36)
+      } while (id in links)
 
-        links[id] = {
-          id,
-          outNode: fromPort.node,
-          outProperty: fromPort.property,
-          inNode: toPort.node,
-          inProperty: toPort.property
-        }
+      links[id] = {
+        id,
+        outNode: fromPort.node,
+        outProperty: fromPort.property,
+        inNode: toPort.node,
+        inProperty: toPort.property
+      }
 
-        let outNode = this.state.nodes[fromPort.node]
-        for (let prop of outNode.properties) {
-          if (prop.key === fromPort.property) {
-            prop.links.push(id)
-            break
-          }
+      let outNode = this.state.nodes[fromPort.node]
+      for (let prop of outNode.properties) {
+        if (prop.key === fromPort.property) {
+          prop.links.push(id)
+          break
         }
+      }
 
-        let inNode = this.state.nodes[toPort.node]
-        for (let prop of inNode.properties) {
-          if (prop.key === toPort.property) {
-            prop.links.push(id)
-            break
-          }
+      let inNode = this.state.nodes[toPort.node]
+      for (let prop of inNode.properties) {
+        if (prop.key === toPort.property) {
+          prop.links.push(id)
+          break
         }
-      })
+      }
     })
   }
 
@@ -302,9 +395,7 @@ export default class NodePanel extends Panel {
       endX: position.x,
       endY: position.y
     }
-    this.setState({
-      draggingLink: link
-    })
+    this.stateBuffer.draggingLink = link
   }
 
   isValidLink (start, end) {
@@ -332,38 +423,84 @@ export default class NodePanel extends Panel {
     return true
   }
 
-  onMouseMove = e => {
-    if (this.state.draggingLink) {
-      this.setState({
-        draggingLink: util.mutate(this.state.draggingLink, link => {
-          let position = this.screenToSpace(e.clientX, e.clientY)
-          let closest = this.findClosestPort(position.x, position.y,
-            (id, property) => {
-              return this.isValidLink({
-                node: link.startNode,
-                property: link.startProperty
-              }, { node: id, property })
-          })
+  onKeyDown = e => {
+    if (e.key === 'g') {
+      // grab
+      this.stateBuffer.grabbedSelected = true
+      this.stateBuffer.draggingLink = null
+    } else if (e.key === 'x') {
+      // delete
+      for (let item of this.state.selection) {
+        if (item[0] === 'n') {
+          this.deleteNode(item.substr(1))
+        } else if (item[0] === 'l') {
+          this.deleteLink(item.substr(1))
+        }
+      }
+    }
+  }
 
-          // MARKER: HERE BE MAGIC NUMBER
-          if (closest.distance < 15) {
-            link.endNode = closest.node
-            link.endProperty = closest.property
-          } else {
-            link.endX = position.x
-            link.endY = position.y
-            link.endNode = link.endProperty = null
-          }
+  onMouseDown = e => {
+    if (this.state.grabbedSelected) {
+      this.stateBuffer.grabbedSelected = false
+    }
+  }
+
+  onMouseMove = e => {
+    if (this.state.grabbedSelected) {
+      let selectedNodes = []
+      for (let item of this.state.selection) {
+        if (item[0] === 'n') {
+          // node
+          selectedNodes.push(item.substr(1))
+        } else if (item[0] === 'l') {
+          // link. You can't grab a link. Noop.
+        }
+      }
+
+      let deltaX = e.clientX - this.lastMousePosition.x
+      let deltaY = e.clientY - this.lastMousePosition.y
+      deltaX *= this.state.position[2]
+      deltaY *= this.state.position[2]
+
+      this.stateBuffer.nodes = util.mutate(this.stateBuffer.nodes, nodes => {
+        for (let id of selectedNodes) {
+          nodes[id].x += deltaX
+          nodes[id].y += deltaY
+        }
+      })
+    } else if (this.state.draggingLink) {
+      this.stateBuffer.draggingLink = util.mutate(this.stateBuffer.draggingLink,
+        link => {
+        let position = this.screenToSpace(e.clientX, e.clientY)
+        let closest = this.findClosestPort(position.x, position.y,
+          (id, property) => {
+            return this.isValidLink({
+              node: link.startNode,
+              property: link.startProperty
+            }, { node: id, property })
         })
+
+        // MARKER: HERE BE MAGIC NUMBER
+        if (closest.distance < 15) {
+          link.endNode = closest.node
+          link.endProperty = closest.property
+        } else {
+          link.endX = position.x
+          link.endY = position.y
+          link.endNode = link.endProperty = null
+        }
       })
     }
+
+    this.lastMousePosition = { x: e.clientX, y: e.clientY }
   }
 
   onMouseUp = e => {
     if (this.state.draggingLink) {
       let draggingLink = this.state.draggingLink
 
-      this.setState({ draggingLink: null })
+      this.stateBuffer.draggingLink = null
 
       if (draggingLink.endNode) {
         let endNode = this.state.nodes[draggingLink.endNode]
@@ -408,9 +545,7 @@ export default class NodePanel extends Panel {
       position[0] -= e.deltaX
       position[1] -= e.deltaY
     }
-    this.setState({
-      position: position
-    })
+    this.stateBuffer.position = position
   }
 
   addNode (template) {
@@ -429,7 +564,7 @@ export default class NodePanel extends Panel {
       width: 150
     })
     for (let property of node.properties) property.links = []
-    this.setState({ nodes: nodes })
+    this.stateBuffer.nodes = nodes
   }
 
   renderMenu () {
@@ -440,7 +575,7 @@ export default class NodePanel extends Panel {
           View
           <Menu>
             <MenuItem onClick={() => {
-              this.setState({ position: [0, 0, 1] })
+              this.stateBuffer.position = [0, 0, 1]
             }}>Reset</MenuItem>
           </Menu>
         </MenuItem>

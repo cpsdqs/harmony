@@ -22,8 +22,9 @@ import Menu from './menu'
 
 export default class Panel extends React.Component {
   render () {
+    let panelProperties = this.panelProperties || {}
     return (
-      <div className={'panel ' + this.props.className}>
+      <div className={'panel ' + this.props.className} {...panelProperties}>
         <div className="panel-content">
           {this.renderContent()}
         </div>
