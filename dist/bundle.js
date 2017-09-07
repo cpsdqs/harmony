@@ -546,7 +546,7 @@ module.exports = shouldUseNative() ? Object.assign : function (target, source) {
 
 var _prodInvariant = __webpack_require__(3);
 
-var DOMProperty = __webpack_require__(13);
+var DOMProperty = __webpack_require__(14);
 var ReactDOMComponentFlags = __webpack_require__(58);
 
 var invariant = __webpack_require__(1);
@@ -1796,6 +1796,16 @@ function getPooledWarningPropertyDefinition(propName, getVal) {
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
+
+
+module.exports = __webpack_require__(17);
+
+
+/***/ }),
+/* 14 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
 /* WEBPACK VAR INJECTION */(function(process) {/**
  * Copyright 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -2005,16 +2015,6 @@ var DOMProperty = {
 
 module.exports = DOMProperty;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
-
-/***/ }),
-/* 14 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-module.exports = __webpack_require__(17);
-
 
 /***/ }),
 /* 15 */
@@ -6576,7 +6576,7 @@ exports.Shortcut = exports.MenuItem = exports.Menu = undefined;
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _react = __webpack_require__(14);
+var _react = __webpack_require__(13);
 
 var _react2 = _interopRequireDefault(_react);
 
@@ -8141,7 +8141,7 @@ module.exports = CSSProperty;
 
 
 
-var DOMProperty = __webpack_require__(13);
+var DOMProperty = __webpack_require__(14);
 var ReactDOMComponentTree = __webpack_require__(5);
 var ReactInstrumentation = __webpack_require__(8);
 
@@ -9340,7 +9340,7 @@ module.exports = getActiveElement;
 var _prodInvariant = __webpack_require__(3);
 
 var DOMLazyTree = __webpack_require__(20);
-var DOMProperty = __webpack_require__(13);
+var DOMProperty = __webpack_require__(14);
 var React = __webpack_require__(17);
 var ReactBrowserEventEmitter = __webpack_require__(32);
 var ReactCurrentOwner = __webpack_require__(10);
@@ -9914,7 +9914,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _react = __webpack_require__(14);
+var _react = __webpack_require__(13);
 
 var _react2 = _interopRequireDefault(_react);
 
@@ -10115,7 +10115,7 @@ exports.default = { deepClone: deepClone, mutate: mutate };
 "use strict";
 
 
-var _react = __webpack_require__(14);
+var _react = __webpack_require__(13);
 
 var _react2 = _interopRequireDefault(_react);
 
@@ -14666,7 +14666,7 @@ module.exports = EnterLeaveEventPlugin;
 
 
 
-var DOMProperty = __webpack_require__(13);
+var DOMProperty = __webpack_require__(14);
 
 var MUST_USE_PROPERTY = DOMProperty.injection.MUST_USE_PROPERTY;
 var HAS_BOOLEAN_VALUE = DOMProperty.injection.HAS_BOOLEAN_VALUE;
@@ -15363,7 +15363,7 @@ var AutoFocusUtils = __webpack_require__(128);
 var CSSPropertyOperations = __webpack_require__(129);
 var DOMLazyTree = __webpack_require__(20);
 var DOMNamespaces = __webpack_require__(40);
-var DOMProperty = __webpack_require__(13);
+var DOMProperty = __webpack_require__(14);
 var DOMPropertyOperations = __webpack_require__(70);
 var EventPluginHub = __webpack_require__(22);
 var EventPluginRegistry = __webpack_require__(27);
@@ -20378,7 +20378,7 @@ module.exports = getUnboundedScrollPosition;
 
 
 
-var DOMProperty = __webpack_require__(13);
+var DOMProperty = __webpack_require__(14);
 var EventPluginHub = __webpack_require__(22);
 var EventPluginUtils = __webpack_require__(34);
 var ReactComponentEnvironment = __webpack_require__(43);
@@ -22532,7 +22532,7 @@ module.exports = ReactMount.renderSubtreeIntoContainer;
 
 
 
-var DOMProperty = __webpack_require__(13);
+var DOMProperty = __webpack_require__(14);
 var EventPluginRegistry = __webpack_require__(27);
 var ReactComponentTreeHook = __webpack_require__(7);
 
@@ -22699,7 +22699,7 @@ module.exports = ReactDOMNullInputValuePropHook;
 
 
 
-var DOMProperty = __webpack_require__(13);
+var DOMProperty = __webpack_require__(14);
 var ReactComponentTreeHook = __webpack_require__(7);
 
 var warning = __webpack_require__(2);
@@ -22821,7 +22821,7 @@ exports = module.exports = __webpack_require__(190)(undefined);
 
 
 // module
-exports.push([module.i, "/*\n * Copyright (C) 2017 cpsdqs\n *\n * This file is part of Harmony.\n *\n * Harmony is free software: you can redistribute it and/or modify\n * it under the terms of the GNU General Public License as published by\n * the Free Software Foundation, either version 3 of the License, or\n * (at your option) any later version.\n *\n * Harmony is distributed in the hope that it will be useful,\n * but WITHOUT ANY WARRANTY; without even the implied warranty of\n * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the\n * GNU General Public License for more details.\n *\n * You should have received a copy of the GNU General Public License\n * along with Harmony. If not, see <http://www.gnu.org/licenses/>.\n */\nbody {\n  position: fixed;\n  cursor: default;\n}\n.harmony-app {\n  position: fixed;\n  display: grid;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  grid-template-columns: 1fr;\n  grid-template-rows: 24px 1fr 72px;\n  font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', 'Roboto', 'Lucida Grande', 'Segoe UI', 'Oxygen Sans', 'Ubuntu', 'Cantarell', sans-serif;\n  font-size: 12px;\n  -webkit-user-select: none;\n  -moz-user-select: none;\n  user-select: none;\n}\n/*\n * Copyright (C) 2017 cpsdqs\n *\n * This file is part of Harmony.\n *\n * Harmony is free software: you can redistribute it and/or modify\n * it under the terms of the GNU General Public License as published by\n * the Free Software Foundation, either version 3 of the License, or\n * (at your option) any later version.\n *\n * Harmony is distributed in the hope that it will be useful,\n * but WITHOUT ANY WARRANTY; without even the implied warranty of\n * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the\n * GNU General Public License for more details.\n *\n * You should have received a copy of the GNU General Public License\n * along with Harmony. If not, see <http://www.gnu.org/licenses/>.\n */\n.menu:not(.horizontal) {\n  position: absolute;\n  top: -4px;\n  left: 100%;\n  border-radius: 4px;\n  padding: 4px 0;\n  background: rgba(255, 255, 255, 0.5);\n  -webkit-backdrop-filter: blur(10px);\n  backdrop-filter: blur(10px);\n  box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.2);\n}\n.menu.horizontal > .menu-item {\n  display: inline-block;\n}\n.menu.horizontal > .menu-item > .menu:not(.horizontal) {\n  top: 100%;\n  left: 0;\n  border-top-left-radius: 0;\n  border-top-right-radius: 0;\n}\n.menu.submenu-above > .menu-item > .menu:not(.horizontal) {\n  top: auto;\n  bottom: 100%;\n  border-radius: 4px;\n  border-bottom-left-radius: 0;\n  border-bottom-right-radius: 0;\n}\n.menu .menu-item {\n  padding: 3px 10px;\n  white-space: nowrap;\n  position: relative;\n  color: #000;\n}\n.menu .menu-item.selected {\n  background: #8c63d9;\n  color: #fff;\n  z-index: 1;\n}\n.menu .menu-item.disabled {\n  opacity: 0.5;\n}\n.menu .menu-item > .shortcut {\n  text-align: right;\n  margin-left: 1em;\n}\n.menu .menu-item:not(.selected) > .menu {\n  display: none;\n}\n/*\n * Copyright (C) 2017 cpsdqs\n *\n * This file is part of Harmony.\n *\n * Harmony is free software: you can redistribute it and/or modify\n * it under the terms of the GNU General Public License as published by\n * the Free Software Foundation, either version 3 of the License, or\n * (at your option) any later version.\n *\n * Harmony is distributed in the hope that it will be useful,\n * but WITHOUT ANY WARRANTY; without even the implied warranty of\n * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the\n * GNU General Public License for more details.\n *\n * You should have received a copy of the GNU General Public License\n * along with Harmony. If not, see <http://www.gnu.org/licenses/>.\n */\n.panel {\n  display: grid;\n  grid-template-rows: 1fr 24px;\n}\n.panel .panel-menu > .menu {\n  height: 100%;\n  box-shadow: none;\n}\n.panel .panel-menu > .menu > .menu-item > .menu {\n  z-index: 100;\n}\n/*\n * Copyright (C) 2017 cpsdqs\n *\n * This file is part of Harmony.\n *\n * Harmony is free software: you can redistribute it and/or modify\n * it under the terms of the GNU General Public License as published by\n * the Free Software Foundation, either version 3 of the License, or\n * (at your option) any later version.\n *\n * Harmony is distributed in the hope that it will be useful,\n * but WITHOUT ANY WARRANTY; without even the implied warranty of\n * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the\n * GNU General Public License for more details.\n *\n * You should have received a copy of the GNU General Public License\n * along with Harmony. If not, see <http://www.gnu.org/licenses/>.\n */\n.node-panel .scroll-container {\n  position: relative;\n  width: 100%;\n  height: 100%;\n  overflow: hidden;\n  background: #ddd;\n}\n.node-panel .scroll-container .node-links-container {\n  position: absolute;\n  pointer-events: none;\n  width: 100%;\n  height: 100%;\n}\n.node-panel .scroll-container .node-links-container .links-transform-origin .property-link {\n  fill: none;\n  stroke: #7d7d7d;\n  stroke-width: 5;\n  stroke-linecap: round;\n  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.4));\n  pointer-events: all;\n}\n.node-panel .scroll-container .node-links-container .links-transform-origin .property-link.dragging {\n  stroke: #fff;\n}\n.node-panel .scroll-container .node-links-container .links-transform-origin .property-link.selected {\n  stroke: #fff;\n  filter: drop-shadow(0 2px 4px rgba(255, 255, 255, 0.4));\n}\n.node-panel .scroll-container .view-transform-origin {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n}\n.node-panel .scroll-container .view-transform-origin .node {\n  background: #ccc;\n  border-radius: 4px;\n  border: 1px solid rgba(0, 0, 0, 0.1);\n  position: absolute;\n  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);\n}\n.node-panel .scroll-container .view-transform-origin .node .node-header {\n  padding: 5px 10px;\n  background: #8c63d9;\n  color: #fff;\n  border-radius: 3px 3px 0 0;\n}\n.node-panel .scroll-container .view-transform-origin .node .node-header .node-name {\n  font-weight: bolder;\n}\n.node-panel .scroll-container .view-transform-origin .node.selected {\n  outline: none;\n  border-color: #8c63d9;\n  box-shadow: 0 4px 8px #8c63d9;\n}\n.node-panel .scroll-container .view-transform-origin .node .node-properties {\n  padding: 5px 0;\n}\n.node-panel .scroll-container .view-transform-origin .node .node-properties .node-property {\n  display: flex;\n  position: relative;\n  padding: 5px 10px;\n}\n.node-panel .scroll-container .view-transform-origin .node .node-properties .node-property .property-port {\n  position: absolute;\n  width: 8px;\n  height: 8px;\n  border: 1px solid rgba(0, 0, 0, 0.2);\n  background: #000;\n  border-radius: 50%;\n  z-index: 1;\n}\n.node-panel .scroll-container .view-transform-origin .node .node-properties .node-property.audio-property .property-port {\n  background: #3163ff;\n}\n.node-panel .scroll-container .view-transform-origin .node .node-properties .node-property.video-property .property-port {\n  background: #34ffcb;\n}\n.node-panel .scroll-container .view-transform-origin .node .node-properties .node-property.media-property .property-port {\n  background: linear-gradient(to bottom, #3163ff, #34ffcb);\n  background-repeat: no-repeat;\n  background-size: 10px 10px;\n  background-position: -1px -1px;\n}\n.node-panel .scroll-container .view-transform-origin .node .node-properties .node-property.value-property .property-port {\n  background: #7d7d7d;\n}\n.node-panel .scroll-container .view-transform-origin .node .node-properties .node-property .property-name {\n  white-space: nowrap;\n  text-overflow: ellipsis;\n  overflow: hidden;\n  flex: 1;\n  min-width: 40px;\n}\n.node-panel .scroll-container .view-transform-origin .node .node-properties .node-property.input .property-port {\n  left: -5px;\n}\n.node-panel .scroll-container .view-transform-origin .node .node-properties .node-property.output {\n  text-align: right;\n}\n.node-panel .scroll-container .view-transform-origin .node .node-properties .node-property.output .property-port {\n  right: -5px;\n}\n.node-panel .scroll-container .view-transform-origin .node .node-properties .node-property.select-property {\n  flex-direction: column;\n}\n.node-panel .scroll-container .view-transform-origin .node .node-properties .node-property.select-property .property-port {\n  display: none;\n}\n.node-panel .scroll-container .view-transform-origin .node .node-properties .node-property.select-property .property-control select {\n  -webkit-appearance: none;\n  -moz-appearance: none;\n  width: 100%;\n  border: none;\n  border-radius: 4px;\n  background: #eee;\n  font: inherit;\n  padding: 3px 10px;\n}\n.node-panel .scroll-container .view-transform-origin .node .node-properties .node-property.hidden {\n  display: none;\n}\n.node-panel .scroll-container .view-transform-origin .node .width-adjust {\n  position: absolute;\n  top: 0;\n  right: -3px;\n  height: 100%;\n  width: 6px;\n  cursor: col-resize;\n}\n.node-panel:not(:focus) .scroll-container {\n  background: #aaa;\n}\n", ""]);
+exports.push([module.i, "/*\n * Copyright (C) 2017 cpsdqs\n *\n * This file is part of Harmony.\n *\n * Harmony is free software: you can redistribute it and/or modify\n * it under the terms of the GNU General Public License as published by\n * the Free Software Foundation, either version 3 of the License, or\n * (at your option) any later version.\n *\n * Harmony is distributed in the hope that it will be useful,\n * but WITHOUT ANY WARRANTY; without even the implied warranty of\n * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the\n * GNU General Public License for more details.\n *\n * You should have received a copy of the GNU General Public License\n * along with Harmony. If not, see <http://www.gnu.org/licenses/>.\n */\nbody {\n  position: fixed;\n  cursor: default;\n}\n.harmony-app {\n  position: fixed;\n  display: grid;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  grid-template-columns: 1fr;\n  grid-template-rows: 24px 1fr 72px;\n  font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', 'Roboto', 'Lucida Grande', 'Segoe UI', 'Oxygen Sans', 'Ubuntu', 'Cantarell', sans-serif;\n  font-size: 12px;\n  -webkit-user-select: none;\n  -moz-user-select: none;\n  user-select: none;\n}\n/*\n * Copyright (C) 2017 cpsdqs\n *\n * This file is part of Harmony.\n *\n * Harmony is free software: you can redistribute it and/or modify\n * it under the terms of the GNU General Public License as published by\n * the Free Software Foundation, either version 3 of the License, or\n * (at your option) any later version.\n *\n * Harmony is distributed in the hope that it will be useful,\n * but WITHOUT ANY WARRANTY; without even the implied warranty of\n * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the\n * GNU General Public License for more details.\n *\n * You should have received a copy of the GNU General Public License\n * along with Harmony. If not, see <http://www.gnu.org/licenses/>.\n */\n.menu:not(.horizontal) {\n  position: absolute;\n  top: -4px;\n  left: 100%;\n  border-radius: 4px;\n  padding: 4px 0;\n  background: rgba(255, 255, 255, 0.5);\n  -webkit-backdrop-filter: blur(10px);\n  backdrop-filter: blur(10px);\n  box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.2);\n}\n.menu.horizontal > .menu-item {\n  display: inline-block;\n}\n.menu.horizontal > .menu-item > .menu:not(.horizontal) {\n  top: 100%;\n  left: 0;\n  border-top-left-radius: 0;\n  border-top-right-radius: 0;\n}\n.menu.submenu-above > .menu-item > .menu:not(.horizontal) {\n  top: auto;\n  bottom: 100%;\n  border-radius: 4px;\n  border-bottom-left-radius: 0;\n  border-bottom-right-radius: 0;\n}\n.menu .menu-item {\n  padding: 3px 10px;\n  white-space: nowrap;\n  position: relative;\n  color: #000;\n}\n.menu .menu-item.selected {\n  background: #8c63d9;\n  color: #fff;\n  z-index: 1;\n}\n.menu .menu-item.disabled {\n  opacity: 0.5;\n}\n.menu .menu-item > .shortcut {\n  text-align: right;\n  margin-left: 1em;\n}\n.menu .menu-item:not(.selected) > .menu {\n  display: none;\n}\n/*\n * Copyright (C) 2017 cpsdqs\n *\n * This file is part of Harmony.\n *\n * Harmony is free software: you can redistribute it and/or modify\n * it under the terms of the GNU General Public License as published by\n * the Free Software Foundation, either version 3 of the License, or\n * (at your option) any later version.\n *\n * Harmony is distributed in the hope that it will be useful,\n * but WITHOUT ANY WARRANTY; without even the implied warranty of\n * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the\n * GNU General Public License for more details.\n *\n * You should have received a copy of the GNU General Public License\n * along with Harmony. If not, see <http://www.gnu.org/licenses/>.\n */\n.panel {\n  display: grid;\n  grid-template-rows: 1fr 24px;\n}\n.panel .panel-menu > .menu {\n  height: 100%;\n  box-shadow: none;\n}\n.panel .panel-menu > .menu > .menu-item > .menu {\n  z-index: 100;\n}\n/*\n * Copyright (C) 2017 cpsdqs\n *\n * This file is part of Harmony.\n *\n * Harmony is free software: you can redistribute it and/or modify\n * it under the terms of the GNU General Public License as published by\n * the Free Software Foundation, either version 3 of the License, or\n * (at your option) any later version.\n *\n * Harmony is distributed in the hope that it will be useful,\n * but WITHOUT ANY WARRANTY; without even the implied warranty of\n * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the\n * GNU General Public License for more details.\n *\n * You should have received a copy of the GNU General Public License\n * along with Harmony. If not, see <http://www.gnu.org/licenses/>.\n */\n.node-panel .scroll-container {\n  position: relative;\n  width: 100%;\n  height: 100%;\n  overflow: hidden;\n  background: #ddd;\n  transition: background 0.3s;\n}\n.node-panel .scroll-container .node-links-container {\n  position: absolute;\n  pointer-events: none;\n  width: 100%;\n  height: 100%;\n}\n.node-panel .scroll-container .node-links-container .links-transform-origin .property-link {\n  fill: none;\n  stroke: #7d7d7d;\n  stroke-width: 5;\n  stroke-linecap: round;\n  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.4));\n  pointer-events: all;\n}\n.node-panel .scroll-container .node-links-container .links-transform-origin .property-link.dragging {\n  stroke: #fff;\n}\n.node-panel .scroll-container .node-links-container .links-transform-origin .property-link.selected {\n  stroke: #fff;\n  filter: drop-shadow(0 2px 4px rgba(255, 255, 255, 0.4));\n}\n.node-panel .scroll-container .view-transform-origin {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n}\n.node-panel .scroll-container .view-transform-origin .node {\n  background: rgba(0, 0, 0, 0.1);\n  border-radius: 4px;\n  border: 1px solid rgba(0, 0, 0, 0.1);\n  position: absolute;\n  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);\n  -webkit-backdrop-filter: blur(5px);\n}\n.node-panel .scroll-container .view-transform-origin .node .node-header {\n  padding: 5px 10px;\n  background: #8c63d9;\n  color: #fff;\n  border-radius: 3px 3px 0 0;\n}\n.node-panel .scroll-container .view-transform-origin .node .node-header .node-name {\n  font-weight: bolder;\n}\n.node-panel .scroll-container .view-transform-origin .node.selected {\n  outline: none;\n  border-color: #8c63d9;\n  box-shadow: 0 4px 8px #8c63d9;\n}\n.node-panel .scroll-container .view-transform-origin .node .node-properties {\n  padding: 5px 0;\n}\n.node-panel .scroll-container .view-transform-origin .node .node-properties .node-property {\n  display: flex;\n  position: relative;\n  padding: 5px 10px;\n}\n.node-panel .scroll-container .view-transform-origin .node .node-properties .node-property .property-port {\n  position: absolute;\n  width: 8px;\n  height: 8px;\n  border: 1px solid rgba(0, 0, 0, 0.2);\n  background: #000;\n  border-radius: 50%;\n  z-index: 1;\n}\n.node-panel .scroll-container .view-transform-origin .node .node-properties .node-property.audio-property .property-port {\n  background: #3163ff;\n}\n.node-panel .scroll-container .view-transform-origin .node .node-properties .node-property.video-property .property-port {\n  background: #34ffcb;\n}\n.node-panel .scroll-container .view-transform-origin .node .node-properties .node-property.media-property .property-port {\n  background: linear-gradient(to bottom, #3163ff, #34ffcb);\n  background-repeat: no-repeat;\n  background-size: 10px 10px;\n  background-position: -1px -1px;\n}\n.node-panel .scroll-container .view-transform-origin .node .node-properties .node-property.value-property .property-port {\n  background: #7d7d7d;\n}\n.node-panel .scroll-container .view-transform-origin .node .node-properties .node-property .property-name {\n  white-space: nowrap;\n  text-overflow: ellipsis;\n  overflow: hidden;\n  flex: 1;\n  min-width: 40px;\n}\n.node-panel .scroll-container .view-transform-origin .node .node-properties .node-property.input .property-port {\n  left: -5px;\n}\n.node-panel .scroll-container .view-transform-origin .node .node-properties .node-property.output {\n  text-align: right;\n  flex-direction: row-reverse;\n}\n.node-panel .scroll-container .view-transform-origin .node .node-properties .node-property.output .property-port {\n  right: -5px;\n}\n.node-panel .scroll-container .view-transform-origin .node .node-properties .node-property.select-property {\n  flex-direction: column;\n}\n.node-panel .scroll-container .view-transform-origin .node .node-properties .node-property.select-property .property-port {\n  display: none;\n}\n.node-panel .scroll-container .view-transform-origin .node .node-properties .node-property.select-property .property-control select {\n  -webkit-appearance: none;\n  -moz-appearance: none;\n  width: 100%;\n  border: none;\n  border-radius: 4px;\n  background: #eee;\n  font: inherit;\n  padding: 3px 10px;\n}\n.node-panel .scroll-container .view-transform-origin .node .node-properties .node-property.hidden {\n  display: none;\n}\n.node-panel .scroll-container .view-transform-origin .node .node-properties .node-property .property-control {\n  width: 100%;\n  margin: 0 3px;\n}\n.node-panel .scroll-container .view-transform-origin .node .node-properties .node-property .property-control .value-slider {\n  position: relative;\n  overflow: hidden;\n  width: 100%;\n  display: inline-flex;\n  white-space: nowrap;\n  background: rgba(0, 0, 0, 0.4);\n  color: #fff;\n  border-radius: 100px;\n}\n.node-panel .scroll-container .view-transform-origin .node .node-properties .node-property .property-control .value-slider.editable {\n  cursor: ew-resize;\n}\n.node-panel .scroll-container .view-transform-origin .node .node-properties .node-property .property-control .value-slider button.step {\n  background: none;\n  border: none;\n  margin: 0;\n  padding: 0 3px;\n  font: inherit;\n  color: inherit;\n  cursor: pointer;\n  position: relative;\n}\n.node-panel .scroll-container .view-transform-origin .node .node-properties .node-property .property-control .value-slider button.step::before {\n  content: '\\25C2';\n}\n.node-panel .scroll-container .view-transform-origin .node .node-properties .node-property .property-control .value-slider button.step.step-up::before {\n  content: '\\25B8';\n}\n.node-panel .scroll-container .view-transform-origin .node .node-properties .node-property .property-control .value-percentage {\n  position: absolute;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  background: #8c63d9;\n  pointer-events: none;\n  transform-origin: 0 0;\n}\n.node-panel .scroll-container .view-transform-origin .node .node-properties .node-property .property-control .value-display {\n  width: 100%;\n  text-align: center;\n  position: relative;\n}\n.node-panel .scroll-container .view-transform-origin .node .node-properties .node-property .property-control .value-editor {\n  width: 100%;\n  border-radius: inherit;\n  background: none;\n  border: none;\n  margin: 0;\n  padding: 0 10px;\n  font: inherit;\n  color: inherit;\n}\n.node-panel .scroll-container .view-transform-origin .node .width-adjust {\n  position: absolute;\n  top: 0;\n  right: -3px;\n  height: 100%;\n  width: 6px;\n  cursor: col-resize;\n}\n.node-panel:not(:focus) .scroll-container {\n  background: #ccc;\n}\n", ""]);
 
 // exports
 
@@ -23375,7 +23375,7 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _react = __webpack_require__(14);
+var _react = __webpack_require__(13);
 
 var _react2 = _interopRequireDefault(_react);
 
@@ -23478,7 +23478,7 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _react = __webpack_require__(14);
+var _react = __webpack_require__(13);
 
 var _react2 = _interopRequireDefault(_react);
 
@@ -23591,7 +23591,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _react = __webpack_require__(14);
+var _react = __webpack_require__(13);
 
 var _react2 = _interopRequireDefault(_react);
 
@@ -23605,7 +23605,7 @@ var _nodeView = __webpack_require__(198);
 
 var _nodeView2 = _interopRequireDefault(_nodeView);
 
-var _nodeTypes = __webpack_require__(199);
+var _nodeTypes = __webpack_require__(200);
 
 var _nodeTypes2 = _interopRequireDefault(_nodeTypes);
 
@@ -23727,8 +23727,8 @@ var NodePanel = function (_Panel) {
 
         var deltaX = e.clientX - _this.lastMousePosition.x;
         var deltaY = e.clientY - _this.lastMousePosition.y;
-        deltaX *= _this.state.position[2];
-        deltaY *= _this.state.position[2];
+        deltaX /= _this.state.position[2];
+        deltaY /= _this.state.position[2];
 
         _this.stateBuffer.nodes = _util2.default.mutate(_this.stateBuffer.nodes, function (nodes) {
           var _iteratorNormalCompletion3 = true;
@@ -24167,6 +24167,9 @@ var NodePanel = function (_Panel) {
           _this6.stateBuffer.portPositions = _util2.default.mutate(_this6.stateBuffer.portPositions, function (portPositions) {
             return portPositions[node.id] = positions;
           });
+        },
+        getLink: function getLink(id) {
+          return _this6.stateBuffer.links[id];
         },
         onPortDrag: function onPortDrag(e, key) {
           return _this6.beginLinkDrag(e, node.id, key);
@@ -24910,9 +24913,13 @@ var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = [
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _react = __webpack_require__(14);
+var _react = __webpack_require__(13);
 
 var _react2 = _interopRequireDefault(_react);
+
+var _valueSlider = __webpack_require__(199);
+
+var _valueSlider2 = _interopRequireDefault(_valueSlider);
 
 var _util = __webpack_require__(85);
 
@@ -24954,33 +24961,14 @@ var NodeView = function (_React$Component) {
     var _this = _possibleConstructorReturn(this, (NodeView.__proto__ || Object.getPrototypeOf(NodeView)).call(this, props));
 
     _this.onMouseMove = function (e) {
-      // TODO: refactor
-      return;
-      if (_this.moving) {
+      if (_this.adjustingWidth) {
         var _this$_lastMousePosit = _slicedToArray(_this._lastMousePosition, 2),
             lastX = _this$_lastMousePosit[0],
             lastY = _this$_lastMousePosit[1];
 
         if (Number.isFinite(lastX) && Number.isFinite(lastY)) {
-          var deltaX = e.clientX - lastX,
-              deltaY = e.clientY - lastY;
-
-          _this.setState({
-            x: _this.state.x + deltaX,
-            y: _this.state.y + deltaY
-          });
-        }
-        _this._lastMousePosition = [e.clientX, e.clientY];
-        _this.saveState();
-      }
-      if (_this.adjustingWidth) {
-        var _this$_lastMousePosit2 = _slicedToArray(_this._lastMousePosition, 2),
-            _lastX = _this$_lastMousePosit2[0],
-            _lastY = _this$_lastMousePosit2[1];
-
-        if (Number.isFinite(_lastX) && Number.isFinite(_lastY)) {
-          var _deltaX = e.clientX - _lastX;
-          var width = _this.state.width + _deltaX;
+          var deltaX = e.clientX - lastX;
+          var width = _this.state.width + deltaX;
           if (width < 100) width = 100;
           if (width > 500) width = 500;
           _this.setState({ width: width });
@@ -25064,11 +25052,40 @@ var NodeView = function (_React$Component) {
   }, {
     key: 'getComputed',
     value: function getComputed() {
+      var _this2 = this;
+
+      // TODO: put this in node-panel
       var node = { properties: {} };
 
       var _loop = function _loop(property) {
+        var links = [];
+        var _iteratorNormalCompletion2 = true;
+        var _didIteratorError2 = false;
+        var _iteratorError2 = undefined;
+
+        try {
+          for (var _iterator2 = property.links[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
+            var id = _step2.value;
+            links.push(_this2.props.getLink(id));
+          }
+        } catch (err) {
+          _didIteratorError2 = true;
+          _iteratorError2 = err;
+        } finally {
+          try {
+            if (!_iteratorNormalCompletion2 && _iterator2.return) {
+              _iterator2.return();
+            }
+          } finally {
+            if (_didIteratorError2) {
+              throw _iteratorError2;
+            }
+          }
+        }
+
         var computedProperty = {
           key: property.key,
+          links: links,
           getComputedValue: function getComputedValue() {
             if (property.getComputedValue) {
               return property.getComputedValue(node);
@@ -25111,21 +25128,21 @@ var NodeView = function (_React$Component) {
       return node;
     }
   }, {
-    key: 'componentDidMount',
-    value: function componentDidMount() {
+    key: 'updatePortPositions',
+    value: function updatePortPositions() {
       // update port positions
       var portPositions = {};
 
       // get reference node position
       var nodeRect = this.refs.node.getBoundingClientRect();
 
-      var _iteratorNormalCompletion2 = true;
-      var _didIteratorError2 = false;
-      var _iteratorError2 = undefined;
+      var _iteratorNormalCompletion3 = true;
+      var _didIteratorError3 = false;
+      var _iteratorError3 = undefined;
 
       try {
-        for (var _iterator2 = this.state.properties[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
-          var property = _step2.value;
+        for (var _iterator3 = this.state.properties[Symbol.iterator](), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
+          var property = _step3.value;
 
           // get property port div
           var portRef = this.refs[property.key + 'Port'];
@@ -25144,16 +25161,16 @@ var NodeView = function (_React$Component) {
           }
         }
       } catch (err) {
-        _didIteratorError2 = true;
-        _iteratorError2 = err;
+        _didIteratorError3 = true;
+        _iteratorError3 = err;
       } finally {
         try {
-          if (!_iteratorNormalCompletion2 && _iterator2.return) {
-            _iterator2.return();
+          if (!_iteratorNormalCompletion3 && _iterator3.return) {
+            _iterator3.return();
           }
         } finally {
-          if (_didIteratorError2) {
-            throw _iteratorError2;
+          if (_didIteratorError3) {
+            throw _iteratorError3;
           }
         }
       }
@@ -25161,9 +25178,19 @@ var NodeView = function (_React$Component) {
       this.props.updatePortPositions(portPositions);
     }
   }, {
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      this.updatePortPositions();
+    }
+  }, {
+    key: 'componentDidUpdate',
+    value: function componentDidUpdate() {
+      this.updatePortPositions();
+    }
+  }, {
     key: 'renderProperty',
     value: function renderProperty(property, computed) {
-      var _this2 = this;
+      var _this3 = this;
 
       // the control input, if it exists
       var control = null;
@@ -25185,8 +25212,8 @@ var NodeView = function (_React$Component) {
           {
             onChange: function onChange(e) {
               // update properties with new value
-              _this2.setState({
-                properties: _util2.default.mutate(_this2.state.properties, function (properties) {
+              _this3.setState({
+                properties: _util2.default.mutate(_this3.state.properties, function (properties) {
                   for (var i in properties) {
                     var stateProperty = properties[i];
                     if (stateProperty.key === property.key) {
@@ -25197,12 +25224,34 @@ var NodeView = function (_React$Component) {
                   }
                 })
               }, function () {
-                return _this2.saveState();
+                return _this3.saveState();
               });
             },
             value: property.value },
           selectOptions
         );
+      } else if (property.type == 'value') {
+        control = _react2.default.createElement(_valueSlider2.default, {
+          editable: property.position === 'input',
+          value: property.value,
+          min: property.min,
+          max: property.max,
+          step: property.step,
+          onChange: function onChange(value) {
+            _this3.setState({
+              properties: _util2.default.mutate(_this3.state.properties, function (properties) {
+                for (var i in properties) {
+                  var stateProperty = properties[i];
+                  if (stateProperty.key === property.key) {
+                    properties[i] = _util2.default.mutate(stateProperty, function (stateProperty) {
+                      stateProperty.value = value;
+                    });
+                  }
+                }
+              })
+            });
+          }
+        });
       }
 
       var computedProperty = computed.properties[property.key];
@@ -25225,7 +25274,7 @@ var NodeView = function (_React$Component) {
         _react2.default.createElement('div', {
           className: 'property-port',
           onMouseDown: function onMouseDown(e) {
-            return _this2.props.onPortDrag(e, property.key);
+            return _this3.props.onPortDrag(e, property.key);
           },
           ref: property.key + 'Port' }),
         _react2.default.createElement(
@@ -25246,27 +25295,27 @@ var NodeView = function (_React$Component) {
       var computed = this.getComputed();
 
       var properties = [];
-      var _iteratorNormalCompletion3 = true;
-      var _didIteratorError3 = false;
-      var _iteratorError3 = undefined;
+      var _iteratorNormalCompletion4 = true;
+      var _didIteratorError4 = false;
+      var _iteratorError4 = undefined;
 
       try {
-        for (var _iterator3 = this.state.properties[Symbol.iterator](), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
-          var property = _step3.value;
+        for (var _iterator4 = this.state.properties[Symbol.iterator](), _step4; !(_iteratorNormalCompletion4 = (_step4 = _iterator4.next()).done); _iteratorNormalCompletion4 = true) {
+          var property = _step4.value;
 
           properties.push(this.renderProperty(property, computed));
         }
       } catch (err) {
-        _didIteratorError3 = true;
-        _iteratorError3 = err;
+        _didIteratorError4 = true;
+        _iteratorError4 = err;
       } finally {
         try {
-          if (!_iteratorNormalCompletion3 && _iterator3.return) {
-            _iterator3.return();
+          if (!_iteratorNormalCompletion4 && _iterator4.return) {
+            _iterator4.return();
           }
         } finally {
-          if (_didIteratorError3) {
-            throw _iteratorError3;
+          if (_didIteratorError4) {
+            throw _iteratorError4;
           }
         }
       }
@@ -25314,6 +25363,185 @@ exports.default = NodeView;
 
 /***/ }),
 /* 199 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(13);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } /*
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * Copyright (C) 2017 cpsdqs
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                *
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * This file is part of Harmony.
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                *
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * Harmony is free software: you can redistribute it and/or modify
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * it under the terms of the GNU General Public License as published by
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * the Free Software Foundation, either version 3 of the License, or
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * (at your option) any later version.
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                *
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * Harmony is distributed in the hope that it will be useful,
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * but WITHOUT ANY WARRANTY; without even the implied warranty of
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * GNU General Public License for more details.
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                *
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * You should have received a copy of the GNU General Public License
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * along with Harmony. If not, see <http://www.gnu.org/licenses/>.
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                */
+
+var ValueSlider = function (_React$Component) {
+  _inherits(ValueSlider, _React$Component);
+
+  function ValueSlider(props) {
+    _classCallCheck(this, ValueSlider);
+
+    var _this = _possibleConstructorReturn(this, (ValueSlider.__proto__ || Object.getPrototypeOf(ValueSlider)).call(this, props));
+
+    _this.onMouseMove = function (e) {
+      var startDeltaX = e.clientX - _this.mouseDownPosition.x;
+      var startDeltaY = e.clientY - _this.mouseDownPosition.y;
+      var startDistance = Math.hypot(startDeltaX, startDeltaY);
+      if (startDistance > _this.maxMouseDistanceFromStart) {
+        _this.maxMouseDistanceFromStart = startDistance;
+      }
+
+      var value = _this.state.value;
+      var speed = 0.1;
+      if (e.shiftKey) speed *= 10;
+      if (e.ctrlKey) speed /= 10;
+      var changePerPixel = speed * (_this.props.step || 0.1);
+      var deltaX = e.clientX - _this.lastMousePosition.x;
+      value += changePerPixel * deltaX;
+
+      if (Number.isFinite(_this.props.min) && value < _this.props.min) {
+        value = _this.props.min;
+      }
+      if (Number.isFinite(_this.props.max) && value > _this.props.max) {
+        value = _this.props.max;
+      }
+
+      _this.setState({ value: value });
+      _this.lastMousePosition = { x: e.clientX, y: e.clientY };
+    };
+
+    _this.onMouseUp = function (e) {
+      window.removeEventListener('mousemove', _this.onMouseMove);
+      window.removeEventListener('mouseup', _this.onMouseUp);
+    };
+
+    _this.state = {
+      editing: false,
+      value: _this.props.value
+    };
+    return _this;
+  }
+
+  _createClass(ValueSlider, [{
+    key: "componentWillReceiveProps",
+    value: function componentWillReceiveProps(nextProps) {
+      if (nextProps.value !== this.props.value) {
+        this.setState({ value: nextProps.value });
+      }
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var _this2 = this;
+
+      var items = [];
+      if (this.state.editing) {
+        items.push(_react2.default.createElement("input", { key: "value-editor", className: "value-editor",
+          value: this.state.value,
+          type: "number",
+          min: this.props.min,
+          max: this.props.max,
+          step: this.props.step || 0.1,
+          autoFocus: true,
+          onKeyDown: function onKeyDown(e) {
+            if (e.key === 'Escape') {
+              _this2.setState({ editing: false, value: _this2.props.value });
+            } else if (e.key === 'Enter') {
+              _this2.setState({ editing: false });
+              _this2.props.onChange(+e.target.value);
+            }
+          },
+          onChange: function onChange(e) {
+            return _this2.setState({ value: e.target.value });
+          }
+        }));
+      } else {
+        var percentage = 0;
+        if (Number.isFinite(this.props.min) && Number.isFinite(this.props.max)) {
+          percentage = (this.state.value - this.props.min) / (this.props.max - this.props.min);
+        }
+
+        items.push(_react2.default.createElement("div", { key: "value-percentage",
+          style: { transform: "scaleX(" + percentage + ")" },
+          className: "value-percentage" }));
+        if (this.props.editable) {
+          items.push(_react2.default.createElement("button", { key: "step-down", className: "step step-down" }));
+        }
+
+        var displayValue = this.state.value;
+        if (Number.isFinite(displayValue)) {
+          displayValue = Math.round(displayValue * 1000) / 1000;
+        }
+        items.push(_react2.default.createElement(
+          "div",
+          { key: "value-display", className: "value-display",
+            onMouseDown: function onMouseDown(e) {
+              if (!_this2.props.editable) return;
+              _this2.lastMousePosition = { x: e.clientX, y: e.clientY };
+              _this2.mouseDownPosition = { x: e.clientX, y: e.clientY };
+              _this2.maxMouseDistanceFromStart = 0;
+              window.addEventListener('mousemove', _this2.onMouseMove);
+              window.addEventListener('mouseup', _this2.onMouseUp);
+            },
+            onMouseUp: function onMouseUp(e) {
+              if (!_this2.props.editable) return;
+              var distance = _this2.maxMouseDistanceFromStart;
+              if (distance < 3) _this2.setState({ editing: true });
+            }
+          },
+          displayValue
+        ));
+        if (this.props.editable) {
+          items.push(_react2.default.createElement("button", { key: "step-up", className: "step step-up" }));
+        }
+      }
+
+      var className = 'value-slider';
+      if (this.props.editable) className += ' editable';
+
+      return _react2.default.createElement(
+        "div",
+        { className: className },
+        items
+      );
+    }
+  }]);
+
+  return ValueSlider;
+}(_react2.default.Component);
+
+exports.default = ValueSlider;
+
+/***/ }),
+/* 200 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -25548,7 +25776,8 @@ exports.default = {
       key: 'frequency',
       min: 10,
       value: 440,
-      max: 22000
+      max: 22000,
+      step: 10
     }, {
       type: 'value',
       position: 'input',
@@ -25556,7 +25785,8 @@ exports.default = {
       key: 'gain',
       min: 0,
       value: 1,
-      max: 2
+      max: 2,
+      step: 0.1
     }]
   },
   delay: {

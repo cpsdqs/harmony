@@ -256,7 +256,8 @@ export default {
         key: 'frequency',
         min: 10,
         value: 440,
-        max: 22000
+        max: 22000,
+        step: 10
       }, {
         type: 'value',
         position: 'input',
@@ -264,7 +265,8 @@ export default {
         key: 'gain',
         min: 0,
         value: 1,
-        max: 2
+        max: 2,
+        step: 0.1
       }
     ]
   },

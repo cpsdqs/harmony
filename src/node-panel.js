@@ -259,6 +259,7 @@ export default class NodePanel extends Panel {
             util.mutate(this.stateBuffer.portPositions,
               portPositions => portPositions[node.id] = positions)
         }}
+        getLink={id => this.stateBuffer.links[id]}
         onPortDrag={(e, key) => this.beginLinkDrag(e, node.id, key)}
         onMouseDown={e => {
           this.stateBuffer.selection = util.mutate(this.stateBuffer.selection,
@@ -475,8 +476,8 @@ export default class NodePanel extends Panel {
 
       let deltaX = e.clientX - this.lastMousePosition.x
       let deltaY = e.clientY - this.lastMousePosition.y
-      deltaX *= this.state.position[2]
-      deltaY *= this.state.position[2]
+      deltaX /= this.state.position[2]
+      deltaY /= this.state.position[2]
 
       this.stateBuffer.nodes = util.mutate(this.stateBuffer.nodes, nodes => {
         for (let id of selectedNodes) {

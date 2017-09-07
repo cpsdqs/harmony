@@ -18,6 +18,7 @@
  */
 
 import React from 'react'
+import ValueSlider from './value-slider'
 import util from './util'
 
 export default class NodeView extends React.Component {
@@ -51,10 +52,14 @@ export default class NodeView extends React.Component {
    * @return pseudo-snapshot of this node view as required for computing nodes
    */
   getComputed () {
+    // TODO: put this in node-panel
     let node = { properties: {} }
     for (let property of this.state.properties) {
+      let links = []
+      for (let id of property.links) links.push(this.props.getLink(id))
       let computedProperty = {
         key: property.key,
+        links,
         getComputedValue () {
           if (property.getComputedValue) {
             return property.getComputedValue(node)
@@ -71,7 +76,7 @@ export default class NodeView extends React.Component {
     return node
   }
 
-  componentDidMount () {
+  updatePortPositions () {
     // update port positions
     let portPositions = {}
 
@@ -96,6 +101,14 @@ export default class NodeView extends React.Component {
       }
     }
     this.props.updatePortPositions(portPositions)
+  }
+
+  componentDidMount() {
+    this.updatePortPositions()
+  }
+
+  componentDidUpdate () {
+    this.updatePortPositions()
   }
 
   renderProperty (property, computed) {
@@ -127,6 +140,28 @@ export default class NodeView extends React.Component {
           }, () => this.saveState())
         }}
         value={property.value}>{selectOptions}</select>
+    } else if (property.type == 'value') {
+      control = <ValueSlider
+        editable={property.position === 'input'}
+        value={property.value}
+        min={property.min}
+        max={property.max}
+        step={property.step}
+        onChange={value => {
+          this.setState({
+            properties: util.mutate(this.state.properties, properties => {
+              for (let i in properties) {
+                let stateProperty = properties[i]
+                if (stateProperty.key === property.key) {
+                  properties[i] = util.mutate(stateProperty, stateProperty => {
+                    stateProperty.value = value
+                  })
+                }
+              }
+            })
+          })
+        }}
+        />
     }
 
     let computedProperty = computed.properties[property.key]
@@ -194,20 +229,6 @@ export default class NodeView extends React.Component {
   }
 
   onMouseMove = (e) => {
-    // TODO: refactor
-    return
-    if (this.moving) {
-      let [lastX, lastY] = this._lastMousePosition
-      if (Number.isFinite(lastX) && Number.isFinite(lastY)) {
-        let [deltaX, deltaY] = [e.clientX - lastX, e.clientY - lastY]
-        this.setState({
-          x: this.state.x + deltaX,
-          y: this.state.y + deltaY
-        })
-      }
-      this._lastMousePosition = [e.clientX, e.clientY]
-      this.saveState()
-    }
     if (this.adjustingWidth) {
       let [lastX, lastY] = this._lastMousePosition
       if (Number.isFinite(lastX) && Number.isFinite(lastY)) {
