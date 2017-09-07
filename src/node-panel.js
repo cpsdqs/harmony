@@ -231,6 +231,7 @@ export default class NodePanel extends Panel {
             let selectionID = 'l' + link.id
             if (!e.shiftKey) selection.splice(0)
             if (!selection.includes(selectionID)) selection.push(selectionID)
+            else selection.splice(selection.indexOf(selectionID), 1)
           })
         }}
         />
@@ -265,6 +266,7 @@ export default class NodePanel extends Panel {
             let selectionID = 'n' + node.id
             if (!e.shiftKey) selection.splice(0) // clear if no ShiftKey
             if (!selection.includes(selectionID)) selection.push(selectionID)
+            else selection.splice(selection.indexOf(selectionID), 1)
           })
         }}
         />

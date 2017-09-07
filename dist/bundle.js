@@ -24140,7 +24140,7 @@ var NodePanel = function (_Panel) {
           _this5.stateBuffer.selection = _util2.default.mutate(_this5.stateBuffer.selection, function (selection) {
             var selectionID = 'l' + link.id;
             if (!e.shiftKey) selection.splice(0);
-            if (!selection.includes(selectionID)) selection.push(selectionID);
+            if (!selection.includes(selectionID)) selection.push(selectionID);else selection.splice(selection.indexOf(selectionID), 1);
           });
         }
       });
@@ -24175,7 +24175,7 @@ var NodePanel = function (_Panel) {
           _this6.stateBuffer.selection = _util2.default.mutate(_this6.stateBuffer.selection, function (selection) {
             var selectionID = 'n' + node.id;
             if (!e.shiftKey) selection.splice(0); // clear if no ShiftKey
-            if (!selection.includes(selectionID)) selection.push(selectionID);
+            if (!selection.includes(selectionID)) selection.push(selectionID);else selection.splice(selection.indexOf(selectionID), 1);
           });
         }
       });
