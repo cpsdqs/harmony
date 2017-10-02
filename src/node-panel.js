@@ -270,6 +270,9 @@ export default class NodePanel extends Panel {
             else selection.splice(selection.indexOf(selectionID), 1)
           })
         }}
+        onForceDrop={e => {
+          this.stateBuffer.grabbedSelected = false
+        }}
         />
     )
   }

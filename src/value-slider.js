@@ -38,8 +38,11 @@ export default class ValueSlider extends React.Component {
   render () {
     let items = []
     if (this.state.editing) {
+      let number = +this.state.value
+      if (Number.isNaN(number)) number = 0
+
       items.push(<input key="value-editor" className="value-editor"
-        value={this.state.value}
+        value={+number.toFixed(5)}
         type="number"
         min={this.props.min}
         max={this.props.max}
@@ -50,10 +53,14 @@ export default class ValueSlider extends React.Component {
             this.setState({ editing: false, value: this.props.value })
           } else if (e.key === 'Enter') {
             this.setState({ editing: false })
-            this.props.onChange(+e.target.value)
+
+            let number = +this.state.value
+            if (Number.isNaN(number)) number = 0
+            this.props.onChange(+number.toFixed(5))
           }
         }}
         onChange={e => this.setState({ value: e.target.value })}
+        onBlur={e => this.setState({ editing: false, value: this.props.value })}
         />)
     } else {
       let percentage = 0
@@ -67,7 +74,18 @@ export default class ValueSlider extends React.Component {
         style={{ transform: `scaleX(${percentage})` }}
         className="value-percentage"></div>)
       if (this.props.editable) {
-        items.push(<button key="step-down" className="step step-down"></button>)
+        items.push(<button
+          key="step-down"
+          className="step step-down"
+          onClick={e => {
+            let step = this.props.step || 0.1
+            let value = this.state.value - step
+            if (Number.isFinite(this.props.min) && value < this.props.min) {
+              value = this.props.min
+            }
+            this.props.onChange(value)
+          }}
+          ></button>)
       }
 
       let displayValue = this.state.value
@@ -94,7 +112,18 @@ export default class ValueSlider extends React.Component {
         </div>
       )
       if (this.props.editable) {
-        items.push(<button key="step-up" className="step step-up"></button>)
+        items.push(<button
+          key="step-up"
+          className="step step-up"
+          onClick={e => {
+            let step = this.props.step || 0.1
+            let value = this.state.value + step
+            if (Number.isFinite(this.props.max) && value > this.props.max) {
+              value = this.props.max
+            }
+            this.props.onChange(value)
+          }}
+          ></button>)
       }
     }
 
@@ -134,5 +163,6 @@ export default class ValueSlider extends React.Component {
   onMouseUp = e => {
     window.removeEventListener('mousemove', this.onMouseMove)
     window.removeEventListener('mouseup', this.onMouseUp)
+    this.props.onChange(this.state.value)
   }
 }

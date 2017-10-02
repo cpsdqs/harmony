@@ -22821,7 +22821,7 @@ exports = module.exports = __webpack_require__(190)(undefined);
 
 
 // module
-exports.push([module.i, "/*\n * Copyright (C) 2017 cpsdqs\n *\n * This file is part of Harmony.\n *\n * Harmony is free software: you can redistribute it and/or modify\n * it under the terms of the GNU General Public License as published by\n * the Free Software Foundation, either version 3 of the License, or\n * (at your option) any later version.\n *\n * Harmony is distributed in the hope that it will be useful,\n * but WITHOUT ANY WARRANTY; without even the implied warranty of\n * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the\n * GNU General Public License for more details.\n *\n * You should have received a copy of the GNU General Public License\n * along with Harmony. If not, see <http://www.gnu.org/licenses/>.\n */\nbody {\n  position: fixed;\n  cursor: default;\n}\n.harmony-app {\n  position: fixed;\n  display: grid;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  grid-template-columns: 1fr;\n  grid-template-rows: 24px 1fr 72px;\n  font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', 'Roboto', 'Lucida Grande', 'Segoe UI', 'Oxygen Sans', 'Ubuntu', 'Cantarell', sans-serif;\n  font-size: 12px;\n  -webkit-user-select: none;\n  -moz-user-select: none;\n  user-select: none;\n}\n/*\n * Copyright (C) 2017 cpsdqs\n *\n * This file is part of Harmony.\n *\n * Harmony is free software: you can redistribute it and/or modify\n * it under the terms of the GNU General Public License as published by\n * the Free Software Foundation, either version 3 of the License, or\n * (at your option) any later version.\n *\n * Harmony is distributed in the hope that it will be useful,\n * but WITHOUT ANY WARRANTY; without even the implied warranty of\n * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the\n * GNU General Public License for more details.\n *\n * You should have received a copy of the GNU General Public License\n * along with Harmony. If not, see <http://www.gnu.org/licenses/>.\n */\n.menu:not(.horizontal) {\n  position: absolute;\n  top: -4px;\n  left: 100%;\n  border-radius: 4px;\n  padding: 4px 0;\n  background: rgba(255, 255, 255, 0.5);\n  -webkit-backdrop-filter: blur(10px);\n  backdrop-filter: blur(10px);\n  box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.2);\n}\n.menu.horizontal > .menu-item {\n  display: inline-block;\n}\n.menu.horizontal > .menu-item > .menu:not(.horizontal) {\n  top: 100%;\n  left: 0;\n  border-top-left-radius: 0;\n  border-top-right-radius: 0;\n}\n.menu.submenu-above > .menu-item > .menu:not(.horizontal) {\n  top: auto;\n  bottom: 100%;\n  border-radius: 4px;\n  border-bottom-left-radius: 0;\n  border-bottom-right-radius: 0;\n}\n.menu .menu-item {\n  padding: 3px 10px;\n  white-space: nowrap;\n  position: relative;\n  color: #000;\n}\n.menu .menu-item.selected {\n  background: #8c63d9;\n  color: #fff;\n  z-index: 1;\n}\n.menu .menu-item.disabled {\n  opacity: 0.5;\n}\n.menu .menu-item > .shortcut {\n  text-align: right;\n  margin-left: 1em;\n}\n.menu .menu-item:not(.selected) > .menu {\n  display: none;\n}\n/*\n * Copyright (C) 2017 cpsdqs\n *\n * This file is part of Harmony.\n *\n * Harmony is free software: you can redistribute it and/or modify\n * it under the terms of the GNU General Public License as published by\n * the Free Software Foundation, either version 3 of the License, or\n * (at your option) any later version.\n *\n * Harmony is distributed in the hope that it will be useful,\n * but WITHOUT ANY WARRANTY; without even the implied warranty of\n * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the\n * GNU General Public License for more details.\n *\n * You should have received a copy of the GNU General Public License\n * along with Harmony. If not, see <http://www.gnu.org/licenses/>.\n */\n.panel {\n  display: grid;\n  grid-template-rows: 1fr 24px;\n}\n.panel .panel-menu > .menu {\n  height: 100%;\n  box-shadow: none;\n}\n.panel .panel-menu > .menu > .menu-item > .menu {\n  z-index: 100;\n}\n/*\n * Copyright (C) 2017 cpsdqs\n *\n * This file is part of Harmony.\n *\n * Harmony is free software: you can redistribute it and/or modify\n * it under the terms of the GNU General Public License as published by\n * the Free Software Foundation, either version 3 of the License, or\n * (at your option) any later version.\n *\n * Harmony is distributed in the hope that it will be useful,\n * but WITHOUT ANY WARRANTY; without even the implied warranty of\n * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the\n * GNU General Public License for more details.\n *\n * You should have received a copy of the GNU General Public License\n * along with Harmony. If not, see <http://www.gnu.org/licenses/>.\n */\n.node-panel .scroll-container {\n  position: relative;\n  width: 100%;\n  height: 100%;\n  overflow: hidden;\n  background: #ddd;\n  transition: background 0.3s;\n}\n.node-panel .scroll-container .node-links-container {\n  position: absolute;\n  pointer-events: none;\n  width: 100%;\n  height: 100%;\n}\n.node-panel .scroll-container .node-links-container .links-transform-origin .property-link {\n  fill: none;\n  stroke: #7d7d7d;\n  stroke-width: 5;\n  stroke-linecap: round;\n  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.4));\n  pointer-events: all;\n}\n.node-panel .scroll-container .node-links-container .links-transform-origin .property-link.dragging {\n  stroke: #fff;\n}\n.node-panel .scroll-container .node-links-container .links-transform-origin .property-link.selected {\n  stroke: #fff;\n  filter: drop-shadow(0 2px 4px rgba(255, 255, 255, 0.4));\n}\n.node-panel .scroll-container .view-transform-origin {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n}\n.node-panel .scroll-container .view-transform-origin .node {\n  background: rgba(0, 0, 0, 0.1);\n  border-radius: 4px;\n  border: 1px solid rgba(0, 0, 0, 0.1);\n  position: absolute;\n  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);\n  -webkit-backdrop-filter: blur(5px);\n}\n.node-panel .scroll-container .view-transform-origin .node .node-header {\n  padding: 5px 10px;\n  background: #8c63d9;\n  color: #fff;\n  border-radius: 3px 3px 0 0;\n}\n.node-panel .scroll-container .view-transform-origin .node .node-header .node-name {\n  font-weight: bolder;\n}\n.node-panel .scroll-container .view-transform-origin .node.selected {\n  outline: none;\n  border-color: #8c63d9;\n  box-shadow: 0 4px 8px #8c63d9;\n}\n.node-panel .scroll-container .view-transform-origin .node .node-properties {\n  padding: 5px 0;\n}\n.node-panel .scroll-container .view-transform-origin .node .node-properties .node-property {\n  display: flex;\n  position: relative;\n  padding: 5px 10px;\n}\n.node-panel .scroll-container .view-transform-origin .node .node-properties .node-property .property-port {\n  position: absolute;\n  width: 8px;\n  height: 8px;\n  border: 1px solid rgba(0, 0, 0, 0.2);\n  background: #000;\n  border-radius: 50%;\n  z-index: 1;\n}\n.node-panel .scroll-container .view-transform-origin .node .node-properties .node-property.audio-property .property-port {\n  background: #3163ff;\n}\n.node-panel .scroll-container .view-transform-origin .node .node-properties .node-property.video-property .property-port {\n  background: #34ffcb;\n}\n.node-panel .scroll-container .view-transform-origin .node .node-properties .node-property.media-property .property-port {\n  background: linear-gradient(to bottom, #3163ff, #34ffcb);\n  background-repeat: no-repeat;\n  background-size: 10px 10px;\n  background-position: -1px -1px;\n}\n.node-panel .scroll-container .view-transform-origin .node .node-properties .node-property.value-property .property-port {\n  background: #7d7d7d;\n}\n.node-panel .scroll-container .view-transform-origin .node .node-properties .node-property .property-name {\n  white-space: nowrap;\n  text-overflow: ellipsis;\n  overflow: hidden;\n  flex: 1;\n  min-width: 40px;\n}\n.node-panel .scroll-container .view-transform-origin .node .node-properties .node-property.input .property-port {\n  left: -5px;\n}\n.node-panel .scroll-container .view-transform-origin .node .node-properties .node-property.output {\n  text-align: right;\n  flex-direction: row-reverse;\n}\n.node-panel .scroll-container .view-transform-origin .node .node-properties .node-property.output .property-port {\n  right: -5px;\n}\n.node-panel .scroll-container .view-transform-origin .node .node-properties .node-property.select-property {\n  flex-direction: column;\n}\n.node-panel .scroll-container .view-transform-origin .node .node-properties .node-property.select-property .property-port {\n  display: none;\n}\n.node-panel .scroll-container .view-transform-origin .node .node-properties .node-property.select-property .property-control select {\n  -webkit-appearance: none;\n  -moz-appearance: none;\n  width: 100%;\n  border: none;\n  border-radius: 4px;\n  background: #eee;\n  font: inherit;\n  padding: 3px 10px;\n}\n.node-panel .scroll-container .view-transform-origin .node .node-properties .node-property.hidden {\n  display: none;\n}\n.node-panel .scroll-container .view-transform-origin .node .node-properties .node-property .property-control {\n  width: 100%;\n  margin: 0 3px;\n}\n.node-panel .scroll-container .view-transform-origin .node .node-properties .node-property .property-control .value-slider {\n  position: relative;\n  overflow: hidden;\n  width: 100%;\n  display: inline-flex;\n  white-space: nowrap;\n  background: rgba(0, 0, 0, 0.4);\n  color: #fff;\n  border-radius: 100px;\n}\n.node-panel .scroll-container .view-transform-origin .node .node-properties .node-property .property-control .value-slider.editable {\n  cursor: ew-resize;\n}\n.node-panel .scroll-container .view-transform-origin .node .node-properties .node-property .property-control .value-slider button.step {\n  background: none;\n  border: none;\n  margin: 0;\n  padding: 0 3px;\n  font: inherit;\n  color: inherit;\n  cursor: pointer;\n  position: relative;\n}\n.node-panel .scroll-container .view-transform-origin .node .node-properties .node-property .property-control .value-slider button.step::before {\n  content: '\\25C2';\n}\n.node-panel .scroll-container .view-transform-origin .node .node-properties .node-property .property-control .value-slider button.step.step-up::before {\n  content: '\\25B8';\n}\n.node-panel .scroll-container .view-transform-origin .node .node-properties .node-property .property-control .value-percentage {\n  position: absolute;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  background: #8c63d9;\n  pointer-events: none;\n  transform-origin: 0 0;\n}\n.node-panel .scroll-container .view-transform-origin .node .node-properties .node-property .property-control .value-display {\n  width: 100%;\n  text-align: center;\n  position: relative;\n}\n.node-panel .scroll-container .view-transform-origin .node .node-properties .node-property .property-control .value-editor {\n  width: 100%;\n  border-radius: inherit;\n  background: none;\n  border: none;\n  margin: 0;\n  padding: 0 10px;\n  font: inherit;\n  color: inherit;\n}\n.node-panel .scroll-container .view-transform-origin .node .width-adjust {\n  position: absolute;\n  top: 0;\n  right: -3px;\n  height: 100%;\n  width: 6px;\n  cursor: col-resize;\n}\n.node-panel:not(:focus) .scroll-container {\n  background: #ccc;\n}\n", ""]);
+exports.push([module.i, "/*\n * Copyright (C) 2017 cpsdqs\n *\n * This file is part of Harmony.\n *\n * Harmony is free software: you can redistribute it and/or modify\n * it under the terms of the GNU General Public License as published by\n * the Free Software Foundation, either version 3 of the License, or\n * (at your option) any later version.\n *\n * Harmony is distributed in the hope that it will be useful,\n * but WITHOUT ANY WARRANTY; without even the implied warranty of\n * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the\n * GNU General Public License for more details.\n *\n * You should have received a copy of the GNU General Public License\n * along with Harmony. If not, see <http://www.gnu.org/licenses/>.\n */\nbody {\n  position: fixed;\n  cursor: default;\n}\n.harmony-app {\n  position: fixed;\n  display: grid;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  grid-template-columns: 1fr;\n  grid-template-rows: 24px 1fr 72px;\n  font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', 'Roboto', 'Lucida Grande', 'Segoe UI', 'Oxygen Sans', 'Ubuntu', 'Cantarell', sans-serif;\n  font-size: 12px;\n  -webkit-user-select: none;\n  -moz-user-select: none;\n  user-select: none;\n}\n/*\n * Copyright (C) 2017 cpsdqs\n *\n * This file is part of Harmony.\n *\n * Harmony is free software: you can redistribute it and/or modify\n * it under the terms of the GNU General Public License as published by\n * the Free Software Foundation, either version 3 of the License, or\n * (at your option) any later version.\n *\n * Harmony is distributed in the hope that it will be useful,\n * but WITHOUT ANY WARRANTY; without even the implied warranty of\n * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the\n * GNU General Public License for more details.\n *\n * You should have received a copy of the GNU General Public License\n * along with Harmony. If not, see <http://www.gnu.org/licenses/>.\n */\n.menu:not(.horizontal) {\n  position: absolute;\n  top: -4px;\n  left: 100%;\n  border-radius: 4px;\n  padding: 4px 0;\n  background: rgba(255, 255, 255, 0.5);\n  -webkit-backdrop-filter: blur(10px);\n  backdrop-filter: blur(10px);\n  box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.2);\n}\n.menu.horizontal > .menu-item {\n  display: inline-block;\n}\n.menu.horizontal > .menu-item > .menu:not(.horizontal) {\n  top: 100%;\n  left: 0;\n  border-top-left-radius: 0;\n  border-top-right-radius: 0;\n}\n.menu.submenu-above > .menu-item > .menu:not(.horizontal) {\n  top: auto;\n  bottom: 100%;\n  border-radius: 4px;\n  border-bottom-left-radius: 0;\n  border-bottom-right-radius: 0;\n}\n.menu .menu-item {\n  padding: 3px 10px;\n  white-space: nowrap;\n  position: relative;\n  color: #000;\n}\n.menu .menu-item.selected {\n  background: #8c63d9;\n  color: #fff;\n  z-index: 1;\n}\n.menu .menu-item.disabled {\n  opacity: 0.5;\n}\n.menu .menu-item > .shortcut {\n  text-align: right;\n  margin-left: 1em;\n}\n.menu .menu-item:not(.selected) > .menu {\n  display: none;\n}\n/*\n * Copyright (C) 2017 cpsdqs\n *\n * This file is part of Harmony.\n *\n * Harmony is free software: you can redistribute it and/or modify\n * it under the terms of the GNU General Public License as published by\n * the Free Software Foundation, either version 3 of the License, or\n * (at your option) any later version.\n *\n * Harmony is distributed in the hope that it will be useful,\n * but WITHOUT ANY WARRANTY; without even the implied warranty of\n * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the\n * GNU General Public License for more details.\n *\n * You should have received a copy of the GNU General Public License\n * along with Harmony. If not, see <http://www.gnu.org/licenses/>.\n */\n.panel {\n  display: grid;\n  grid-template-rows: 1fr 24px;\n}\n.panel .panel-menu > .menu {\n  height: 100%;\n  box-shadow: none;\n}\n.panel .panel-menu > .menu > .menu-item > .menu {\n  z-index: 100;\n}\n/*\n * Copyright (C) 2017 cpsdqs\n *\n * This file is part of Harmony.\n *\n * Harmony is free software: you can redistribute it and/or modify\n * it under the terms of the GNU General Public License as published by\n * the Free Software Foundation, either version 3 of the License, or\n * (at your option) any later version.\n *\n * Harmony is distributed in the hope that it will be useful,\n * but WITHOUT ANY WARRANTY; without even the implied warranty of\n * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the\n * GNU General Public License for more details.\n *\n * You should have received a copy of the GNU General Public License\n * along with Harmony. If not, see <http://www.gnu.org/licenses/>.\n */\n.node-panel .scroll-container {\n  position: relative;\n  width: 100%;\n  height: 100%;\n  overflow: hidden;\n  background: #ddd;\n  transition: background 0.3s;\n}\n.node-panel .scroll-container .node-links-container {\n  position: absolute;\n  pointer-events: none;\n  width: 100%;\n  height: 100%;\n}\n.node-panel .scroll-container .node-links-container .links-transform-origin .property-link {\n  fill: none;\n  stroke: #7d7d7d;\n  stroke-width: 5;\n  stroke-linecap: round;\n  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.4));\n  pointer-events: all;\n}\n.node-panel .scroll-container .node-links-container .links-transform-origin .property-link.dragging {\n  stroke: #fff;\n}\n.node-panel .scroll-container .node-links-container .links-transform-origin .property-link.selected {\n  stroke: #fff;\n  filter: drop-shadow(0 2px 4px rgba(255, 255, 255, 0.4));\n}\n.node-panel .scroll-container .view-transform-origin {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n}\n.node-panel .scroll-container .view-transform-origin .node {\n  background: rgba(0, 0, 0, 0.1);\n  border-radius: 4px;\n  border: 1px solid rgba(0, 0, 0, 0.1);\n  position: absolute;\n  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);\n  -webkit-backdrop-filter: blur(5px);\n}\n.node-panel .scroll-container .view-transform-origin .node .node-header {\n  padding: 5px 10px;\n  background: #8c63d9;\n  color: #fff;\n  border-radius: 3px 3px 0 0;\n}\n.node-panel .scroll-container .view-transform-origin .node .node-header .node-name {\n  font-weight: bolder;\n}\n.node-panel .scroll-container .view-transform-origin .node.selected {\n  outline: none;\n  border-color: #8c63d9;\n  box-shadow: 0 4px 8px #8c63d9;\n}\n.node-panel .scroll-container .view-transform-origin .node .node-properties {\n  padding: 5px 0;\n}\n.node-panel .scroll-container .view-transform-origin .node .node-properties .node-property {\n  display: flex;\n  position: relative;\n  padding: 5px 10px;\n}\n.node-panel .scroll-container .view-transform-origin .node .node-properties .node-property .property-port {\n  position: absolute;\n  width: 8px;\n  height: 8px;\n  border: 1px solid rgba(0, 0, 0, 0.2);\n  background: #000;\n  border-radius: 50%;\n  z-index: 1;\n}\n.node-panel .scroll-container .view-transform-origin .node .node-properties .node-property.audio-property .property-port {\n  background: #3163ff;\n}\n.node-panel .scroll-container .view-transform-origin .node .node-properties .node-property.video-property .property-port {\n  background: #34ffcb;\n}\n.node-panel .scroll-container .view-transform-origin .node .node-properties .node-property.media-property .property-port {\n  background: linear-gradient(to bottom, #3163ff, #34ffcb);\n  background-repeat: no-repeat;\n  background-size: 10px 10px;\n  background-position: -1px -1px;\n}\n.node-panel .scroll-container .view-transform-origin .node .node-properties .node-property.value-property .property-port {\n  background: #7d7d7d;\n}\n.node-panel .scroll-container .view-transform-origin .node .node-properties .node-property .property-name {\n  white-space: nowrap;\n  text-overflow: ellipsis;\n  overflow: hidden;\n  flex: 1;\n  min-width: 40px;\n}\n.node-panel .scroll-container .view-transform-origin .node .node-properties .node-property.input .property-port {\n  left: -5px;\n}\n.node-panel .scroll-container .view-transform-origin .node .node-properties .node-property.output {\n  text-align: right;\n  flex-direction: row-reverse;\n}\n.node-panel .scroll-container .view-transform-origin .node .node-properties .node-property.output .property-port {\n  right: -5px;\n}\n.node-panel .scroll-container .view-transform-origin .node .node-properties .node-property.select-property {\n  flex-direction: column;\n}\n.node-panel .scroll-container .view-transform-origin .node .node-properties .node-property.select-property .property-port {\n  display: none;\n}\n.node-panel .scroll-container .view-transform-origin .node .node-properties .node-property.select-property .property-control select {\n  -webkit-appearance: none;\n  -moz-appearance: none;\n  width: 100%;\n  border: none;\n  border-radius: 4px;\n  background: #eee;\n  font: inherit;\n  padding: 3px 10px;\n}\n.node-panel .scroll-container .view-transform-origin .node .node-properties .node-property.hidden {\n  display: none;\n}\n.node-panel .scroll-container .view-transform-origin .node .node-properties .node-property.has-control .property-control {\n  width: 100%;\n  max-width: 150px;\n  margin: 0 3px;\n}\n.node-panel .scroll-container .view-transform-origin .node .node-properties .node-property.has-control .property-control .value-slider {\n  position: relative;\n  overflow: hidden;\n  width: 100%;\n  display: inline-flex;\n  white-space: nowrap;\n  background: rgba(0, 0, 0, 0.4);\n  color: #fff;\n  border-radius: 100px;\n}\n.node-panel .scroll-container .view-transform-origin .node .node-properties .node-property.has-control .property-control .value-slider.editable {\n  cursor: ew-resize;\n}\n.node-panel .scroll-container .view-transform-origin .node .node-properties .node-property.has-control .property-control .value-slider button.step {\n  background: none;\n  border: none;\n  margin: 0;\n  padding: 0 3px;\n  font: inherit;\n  color: inherit;\n  cursor: pointer;\n  position: relative;\n}\n.node-panel .scroll-container .view-transform-origin .node .node-properties .node-property.has-control .property-control .value-slider button.step::before {\n  content: '\\25C2';\n}\n.node-panel .scroll-container .view-transform-origin .node .node-properties .node-property.has-control .property-control .value-slider button.step.step-up::before {\n  content: '\\25B8';\n}\n.node-panel .scroll-container .view-transform-origin .node .node-properties .node-property.has-control .property-control .value-percentage {\n  position: absolute;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  background: #8c63d9;\n  pointer-events: none;\n  transform-origin: 0 0;\n}\n.node-panel .scroll-container .view-transform-origin .node .node-properties .node-property.has-control .property-control .value-display {\n  width: 100%;\n  text-align: center;\n  position: relative;\n}\n.node-panel .scroll-container .view-transform-origin .node .node-properties .node-property.has-control .property-control .value-editor {\n  width: 100%;\n  border-radius: inherit;\n  background: none;\n  border: none;\n  margin: 0;\n  padding: 0 10px;\n  font: inherit;\n  color: inherit;\n}\n.node-panel .scroll-container .view-transform-origin .node .width-adjust {\n  position: absolute;\n  top: 0;\n  right: -3px;\n  height: 100%;\n  width: 6px;\n  cursor: col-resize;\n}\n.node-panel:not(:focus) .scroll-container {\n  background: #ccc;\n}\n", ""]);
 
 // exports
 
@@ -24180,6 +24180,9 @@ var NodePanel = function (_Panel) {
             if (!e.shiftKey) selection.splice(0); // clear if no ShiftKey
             if (!selection.includes(selectionID)) selection.push(selectionID);else selection.splice(selection.indexOf(selectionID), 1);
           });
+        },
+        onForceDrop: function onForceDrop(e) {
+          _this6.stateBuffer.grabbedSelected = false;
         }
       });
     }
@@ -24980,8 +24983,8 @@ var NodeView = function (_React$Component) {
 
     _this.onMouseDown = function (e) {
       if (_this.props.onMouseDown) _this.props.onMouseDown(e);
-      if (_this.moving || _this.adjustingWidth) {
-        _this.moving = false;
+
+      if (_this.adjustingWidth) {
         _this.adjustingWidth = false;
         window.removeEventListener('mousemove', _this.onMouseMove);
         window.removeEventListener('mousedown', _this.onMouseDown);
@@ -24989,35 +24992,26 @@ var NodeView = function (_React$Component) {
       }
     };
 
-    _this.onBlur = function (e) {
-      if (_this.moving) {
-        _this.moving = false;
-        window.removeEventListener('mousemove', _this.onMouseMove);
-        _this.saveState();
-      }
-    };
-
-    _this.onKeyDown = function (e) {
-      if (e.key === 'g') {
-        _this._lastMousePosition = [];
-        _this.moving = true;
-        _this.adjustingWidth = false;
-        window.addEventListener('mousemove', _this.onMouseMove);
-      } else if (e.key === 'x') {
-        _this.setState({ deleted: true }, function () {
-          return _this.saveState();
-        });
-      }
-    };
-
     _this.onWidthAdjustMouseDown = function (e) {
       e.stopPropagation();
       _this._lastMousePosition = [];
-      _this.moving = false;
       _this.adjustingWidth = true;
       window.addEventListener('mousemove', _this.onMouseMove);
-      // HACK
-      window.addEventListener('mouseup', _this.onMouseDown);
+      window.addEventListener('mouseup', _this.onMouseUp);
+      _this.saveState();
+
+      // prevent hovering over width adjust breaking everything
+      if (_this.props.onForceDrop) _this.props.onForceDrop();
+    };
+
+    _this.onMouseUp = function (e) {
+      if (_this.props.onMouseUp) _this.props.onMouseUp(e);
+      if (_this.adjustingWidth) {
+        _this.adjustingWidth = false;
+        window.removeEventListener('mousemove', _this.onMouseMove);
+        window.removeEventListener('mouseup', _this.onMouseUp);
+        _this.saveState();
+      }
     };
 
     _this.state = {
@@ -25195,63 +25189,66 @@ var NodeView = function (_React$Component) {
       // the control input, if it exists
       var control = null;
 
-      if (property.type === 'select') {
-        // create a <select> control
-        var selectOptions = [];
-        for (var option in property.options) {
-          var label = property.options[option];
-          selectOptions.push(_react2.default.createElement(
-            'option',
-            { value: option, key: option },
-            label
-          ));
-        }
+      if (!property.links.length) {
+        if (property.type === 'select') {
+          // create a <select> control
+          var selectOptions = [];
+          for (var option in property.options) {
+            var label = property.options[option];
+            selectOptions.push(_react2.default.createElement(
+              'option',
+              { value: option, key: option },
+              label
+            ));
+          }
 
-        control = _react2.default.createElement(
-          'select',
-          {
-            onChange: function onChange(e) {
-              // update properties with new value
+          control = _react2.default.createElement(
+            'select',
+            {
+              onChange: function onChange(e) {
+                // update properties with new value
+                _this3.setState({
+                  properties: _util2.default.mutate(_this3.state.properties, function (properties) {
+                    for (var i in properties) {
+                      var stateProperty = properties[i];
+                      if (stateProperty.key === property.key) {
+                        properties[i] = _util2.default.mutate(stateProperty, function (stateProperty) {
+                          stateProperty.value = e.target.value;
+                        });
+                      }
+                    }
+                  })
+                }, function () {
+                  return _this3.saveState();
+                });
+              },
+              value: property.value },
+            selectOptions
+          );
+        } else if (property.type == 'value') {
+          control = _react2.default.createElement(_valueSlider2.default, {
+            editable: property.position === 'input',
+            value: property.value,
+            min: property.min,
+            max: property.max,
+            step: property.step,
+            onChange: function onChange(value) {
               _this3.setState({
                 properties: _util2.default.mutate(_this3.state.properties, function (properties) {
                   for (var i in properties) {
                     var stateProperty = properties[i];
                     if (stateProperty.key === property.key) {
                       properties[i] = _util2.default.mutate(stateProperty, function (stateProperty) {
-                        stateProperty.value = e.target.value;
+                        stateProperty.value = +value;
+                        if (Number.isNaN(stateProperty.value)) stateProperty.value = 0;
                       });
                     }
                   }
                 })
-              }, function () {
-                return _this3.saveState();
               });
-            },
-            value: property.value },
-          selectOptions
-        );
-      } else if (property.type == 'value') {
-        control = _react2.default.createElement(_valueSlider2.default, {
-          editable: property.position === 'input',
-          value: property.value,
-          min: property.min,
-          max: property.max,
-          step: property.step,
-          onChange: function onChange(value) {
-            _this3.setState({
-              properties: _util2.default.mutate(_this3.state.properties, function (properties) {
-                for (var i in properties) {
-                  var stateProperty = properties[i];
-                  if (stateProperty.key === property.key) {
-                    properties[i] = _util2.default.mutate(stateProperty, function (stateProperty) {
-                      stateProperty.value = value;
-                    });
-                  }
-                }
-              })
-            });
-          }
-        });
+            }
+          });
+        }
       }
 
       var computedProperty = computed.properties[property.key];
@@ -25267,6 +25264,8 @@ var NodeView = function (_React$Component) {
       if (propertyName instanceof Function) {
         propertyName = propertyName(computedProperty, computed);
       }
+
+      if (control) className += ' has-control';
 
       return _react2.default.createElement(
         'div',
@@ -25441,6 +25440,7 @@ var ValueSlider = function (_React$Component) {
     _this.onMouseUp = function (e) {
       window.removeEventListener('mousemove', _this.onMouseMove);
       window.removeEventListener('mouseup', _this.onMouseUp);
+      _this.props.onChange(_this.state.value);
     };
 
     _this.state = {
@@ -25464,8 +25464,11 @@ var ValueSlider = function (_React$Component) {
 
       var items = [];
       if (this.state.editing) {
+        var number = +this.state.value;
+        if (Number.isNaN(number)) number = 0;
+
         items.push(_react2.default.createElement("input", { key: "value-editor", className: "value-editor",
-          value: this.state.value,
+          value: +number.toFixed(5),
           type: "number",
           min: this.props.min,
           max: this.props.max,
@@ -25476,11 +25479,17 @@ var ValueSlider = function (_React$Component) {
               _this2.setState({ editing: false, value: _this2.props.value });
             } else if (e.key === 'Enter') {
               _this2.setState({ editing: false });
-              _this2.props.onChange(+e.target.value);
+
+              var _number = +_this2.state.value;
+              if (Number.isNaN(_number)) _number = 0;
+              _this2.props.onChange(+_number.toFixed(5));
             }
           },
           onChange: function onChange(e) {
             return _this2.setState({ value: e.target.value });
+          },
+          onBlur: function onBlur(e) {
+            return _this2.setState({ editing: false, value: _this2.props.value });
           }
         }));
       } else {
@@ -25493,7 +25502,18 @@ var ValueSlider = function (_React$Component) {
           style: { transform: "scaleX(" + percentage + ")" },
           className: "value-percentage" }));
         if (this.props.editable) {
-          items.push(_react2.default.createElement("button", { key: "step-down", className: "step step-down" }));
+          items.push(_react2.default.createElement("button", {
+            key: "step-down",
+            className: "step step-down",
+            onClick: function onClick(e) {
+              var step = _this2.props.step || 0.1;
+              var value = _this2.state.value - step;
+              if (Number.isFinite(_this2.props.min) && value < _this2.props.min) {
+                value = _this2.props.min;
+              }
+              _this2.props.onChange(value);
+            }
+          }));
         }
 
         var displayValue = this.state.value;
@@ -25520,7 +25540,18 @@ var ValueSlider = function (_React$Component) {
           displayValue
         ));
         if (this.props.editable) {
-          items.push(_react2.default.createElement("button", { key: "step-up", className: "step step-up" }));
+          items.push(_react2.default.createElement("button", {
+            key: "step-up",
+            className: "step step-up",
+            onClick: function onClick(e) {
+              var step = _this2.props.step || 0.1;
+              var value = _this2.state.value + step;
+              if (Number.isFinite(_this2.props.max) && value > _this2.props.max) {
+                value = _this2.props.max;
+              }
+              _this2.props.onChange(value);
+            }
+          }));
         }
       }
 
@@ -25757,7 +25788,10 @@ exports.default = {
       position: 'input',
       name: 'Gain',
       key: 'gain',
-      value: null
+      min: 0,
+      value: 1,
+      max: 100,
+      step: 0.1
     }]
   },
   oscillator: {

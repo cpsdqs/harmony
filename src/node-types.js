@@ -230,12 +230,15 @@ export default {
         name: 'Input',
         key: 'Input',
         value: null
-      }, {
+      },{
         type: 'value',
         position: 'input',
         name: 'Gain',
         key: 'gain',
-        value: null
+        min: 0,
+        value: 1,
+        max: 100,
+        step: 0.1
       }
     ]
   },

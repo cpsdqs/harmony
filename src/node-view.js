@@ -115,53 +115,56 @@ export default class NodeView extends React.Component {
     // the control input, if it exists
     let control = null
 
-    if (property.type === 'select') {
-      // create a <select> control
-      let selectOptions = []
-      for (let option in property.options) {
-        let label = property.options[option]
-        selectOptions.push(<option value={option} key={option}>{label}</option>)
-      }
+    if (!property.links.length) {
+      if (property.type === 'select') {
+        // create a <select> control
+        let selectOptions = []
+        for (let option in property.options) {
+          let label = property.options[option]
+          selectOptions.push(<option value={option} key={option}>{label}</option>)
+        }
 
-      control = <select
-        onChange={e => {
-          // update properties with new value
-          this.setState({
-            properties: util.mutate(this.state.properties, properties => {
-              for (let i in properties) {
-                let stateProperty = properties[i]
-                if (stateProperty.key === property.key) {
-                  properties[i] = util.mutate(stateProperty, stateProperty => {
-                    stateProperty.value = e.target.value
-                  })
+        control = <select
+          onChange={e => {
+            // update properties with new value
+            this.setState({
+              properties: util.mutate(this.state.properties, properties => {
+                for (let i in properties) {
+                  let stateProperty = properties[i]
+                  if (stateProperty.key === property.key) {
+                    properties[i] = util.mutate(stateProperty, stateProperty => {
+                      stateProperty.value = e.target.value
+                    })
+                  }
                 }
-              }
-            })
-          }, () => this.saveState())
-        }}
-        value={property.value}>{selectOptions}</select>
-    } else if (property.type == 'value') {
-      control = <ValueSlider
-        editable={property.position === 'input'}
-        value={property.value}
-        min={property.min}
-        max={property.max}
-        step={property.step}
-        onChange={value => {
-          this.setState({
-            properties: util.mutate(this.state.properties, properties => {
-              for (let i in properties) {
-                let stateProperty = properties[i]
-                if (stateProperty.key === property.key) {
-                  properties[i] = util.mutate(stateProperty, stateProperty => {
-                    stateProperty.value = value
-                  })
+              })
+            }, () => this.saveState())
+          }}
+          value={property.value}>{selectOptions}</select>
+      } else if (property.type == 'value') {
+        control = <ValueSlider
+          editable={property.position === 'input'}
+          value={property.value}
+          min={property.min}
+          max={property.max}
+          step={property.step}
+          onChange={value => {
+            this.setState({
+              properties: util.mutate(this.state.properties, properties => {
+                for (let i in properties) {
+                  let stateProperty = properties[i]
+                  if (stateProperty.key === property.key) {
+                    properties[i] = util.mutate(stateProperty, stateProperty => {
+                      stateProperty.value = +value
+                      if (Number.isNaN(stateProperty.value)) stateProperty.value = 0
+                    })
+                  }
                 }
-              }
+              })
             })
-          })
-        }}
-        />
+          }}
+          />
+      }
     }
 
     let computedProperty = computed.properties[property.key]
@@ -178,6 +181,8 @@ export default class NodeView extends React.Component {
     if (propertyName instanceof Function) {
       propertyName = propertyName(computedProperty, computed)
     }
+
+    if (control) className += ' has-control'
 
     return (
       <div className={className} key={property.key}>
@@ -244,38 +249,32 @@ export default class NodeView extends React.Component {
   }
   onMouseDown = e => {
     if (this.props.onMouseDown) this.props.onMouseDown(e)
-    if (this.moving || this.adjustingWidth) {
-      this.moving = false
+
+    if (this.adjustingWidth) {
       this.adjustingWidth = false
       window.removeEventListener('mousemove', this.onMouseMove)
       window.removeEventListener('mousedown', this.onMouseDown)
       this.saveState()
     }
   }
-  onBlur = e => {
-    if (this.moving) {
-      this.moving = false
-      window.removeEventListener('mousemove', this.onMouseMove)
-      this.saveState()
-    }
-  }
-  onKeyDown = e => {
-    if (e.key === 'g') {
-      this._lastMousePosition = []
-      this.moving = true
-      this.adjustingWidth = false
-      window.addEventListener('mousemove', this.onMouseMove)
-    } else if (e.key === 'x') {
-      this.setState({ deleted: true }, () => this.saveState())
-    }
-  }
   onWidthAdjustMouseDown = e => {
     e.stopPropagation()
     this._lastMousePosition = []
-    this.moving = false
     this.adjustingWidth = true
     window.addEventListener('mousemove', this.onMouseMove)
-    // HACK
-    window.addEventListener('mouseup', this.onMouseDown)
+    window.addEventListener('mouseup', this.onMouseUp)
+    this.saveState()
+
+    // prevent hovering over width adjust breaking everything
+    if (this.props.onForceDrop) this.props.onForceDrop()
+  }
+  onMouseUp = e => {
+    if (this.props.onMouseUp) this.props.onMouseUp(e)
+    if (this.adjustingWidth) {
+      this.adjustingWidth = false
+      window.removeEventListener('mousemove', this.onMouseMove)
+      window.removeEventListener('mouseup', this.onMouseUp)
+      this.saveState()
+    }
   }
 }
